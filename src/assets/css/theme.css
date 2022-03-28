@@ -1,0 +1,56 @@
+.n-button.n-button--primary-type{
+    --n-border-hover:1px solid #217dff !important;
+    --n-border-pressed:1px solid #005adb !important;
+    --n-border-focus:1px solid #217dff !important;
+}
+.n-button.n-button--primary-type .n-button__border{
+    --n-border: 1px solid #0069FF !important;
+}
+.n-button.n-button--primary-type .n-button__state-border{
+    --n-border: 1px solid #5dabf3 !important;
+}
+
+.n-button.n-button--success-type{
+    --n-border-hover:1px solid #3198f7 !important;
+    --n-border-pressed:1px solid #0b86f9 !important;
+    --n-border-focus:1px solid #3198f7 !important;
+}
+.n-button.n-button--success-type .n-button__border{
+    --n-border: 1px solid #1890FF !important;
+}
+.n-button.n-button--success-type .n-button__state-border{
+    --n-border: 1px solid #5dabf3 !important;
+}
+
+
+.n-button.n-button--default-type{
+    --n-text-color-hover:#217dff !important;
+    --n-text-color-pressed:#005adb !important;
+    --n-text-color-focus:#217dff !important;
+}
+.n-button.n-button--default-type{
+    --n-border-hover: 1px solid #217dff !important;
+    --n-border-pressed: 1px solid #005adb !important;
+    --n-border-focus: 1px solid #217dff !important;
+}
+
+.n-base-selection {
+    --n-border-focus:1px solid #217dff !important;
+    --n-border-hover:1px solid #217dff !important;
+}
+
+.n-message-container .n-message{
+    position: relative;
+}
+.n-message-container .n-message::after{
+   content: " ";
+   position: absolute;
+   height: 100%;
+   top: 0;
+   left: 0;
+   border-left: 7px solid ;
+}
+
+.n-message-container  .n-message.n-message--info-type::after {
+    border-left-color: var(--n-icon-color-info);
+}

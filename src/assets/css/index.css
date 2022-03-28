@@ -1,0 +1,269 @@
+@import url("./tailwind.css");
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    --primary-color:#005adb;
+    --light-blue-color:#005adb;
+    font-weight: 500;
+    background-color: #fafafc;
+    @apply font-sans
+}
+a{
+    text-decoration: none;
+}
+
+img {
+    pointer-events: none;
+}
+
+.logo {
+    display: inline-block;
+    position: relative;
+    @apply md:mr-2 mr-1;
+}
+.logo > img{
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 5px;
+    overflow: hidden;
+    @apply  h-10 md:mr-3 mr-1;
+}
+.logo > strong {
+    @apply text-xl;
+    vertical-align: middle;
+}
+
+.n-select.select-hide-arrow  .n-base-selection-input{
+    padding:0 8px !important;
+}
+
+.n-menu.n-menu--horizontal.contractile-menu .n-menu-item-content{
+    font-size: 0px;
+    @apply  pr-3 pl-3;
+}
+.n-menu.n-menu--horizontal.contractile-menu .n-menu-item:last-child .n-menu-item-content{
+    @apply pr-0 pl-0;
+}
+
+.n-menu.n-menu--vertical.accordion-menu .n-menu-item-content{
+    padding-left: 0px !important;
+    padding-right:0px;
+}
+
+
+.n-menu.n-menu--vertical.accordion-menu .n-menu-item-content .menu-text {
+    padding-left: 60px;
+}
+.n-menu.n-menu--vertical.accordion-menu .n-menu-item-content .n-button {
+    width: 100%;
+}
+
+a.menu-text{
+    color: rgb(31, 34, 37) !important;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.menu-expandet a.menu-text > .n-icon{
+    @apply mr-4;
+    vertical-align: middle;
+}
+
+.menu-expandet a.menu-text.router-link-active{
+    color: var(--primary-color) !important;
+}
+.accordion-menu a.menu-text .n-icon{
+    position: absolute;
+    left: 20px;
+}
+
+.circular{
+    background-color: rgb(0 105 255 / 70%);
+    @apply rounded-full leading-none text-center text-white inline-flex items-center justify-center;
+}
+.circular:hover{
+    opacity: 0.9;
+}
+.circular.large{
+    @apply  md:h-56 md:text-3xl md:w-56 h-48 w-48 text-xl;
+}
+.circular.small{
+    background-color:rgb(0 105 255 / 90%); ;
+    @apply  md:h-28 md:w-28 text-base h-24 w-24;
+}
+
+.shadow{
+    box-shadow: 0px 0px 4px 1px rgb(150 192 240 / 84%)
+}
+.shadow:hover{
+    border: 1px solid #217dff;
+}
+
+.global-alert .n-alert-body{
+    background-color:  #217dff;
+    border: none;
+    border-radius: 0;
+}
+.global-alert  .n-alert__close{
+    --n-close-color:white !important;
+}
+.n-drawer-container{
+    @apply top-16
+}
+
+.card-link{
+    position: relative;
+    text-align: center;
+    @apply block p-4 text-black md:border-none border-gray-100 border-solid md:bg-gray-100;
+}
+.card-link:hover{
+    z-index: 1;
+    border-radius: 1px;
+    @apply md:bg-primary text-primary md:text-white  md:shadow-widen  shadow-none;
+}
+.card-link:hover *{
+    @apply md:text-current
+}
+.n-grid > div + div > .card-link{
+    border-top-width: 0px;
+}
+
+.profit-grid.n-grid{
+    @apply gap-y-6 md:gap-x-11 !important;
+}
+
+.table-base{
+    --n-th-padding: 10px !important;
+    --n-merged-th-color: white;
+    --n-td-padding:10px !important;
+    --n-td-text-color:#707070 !important; 
+    @apply bg-white;
+}
+.table-base .n-data-table-td:first-child,
+.table-base .n-data-table-th:first-child{
+    padding-left: 20px;
+}
+.table-base .n-data-table-td:last-child,
+.table-base .n-data-table-th:last-child{
+    padding-right: 20px;
+}
+.table-base.n-data-table .n-data-table__pagination{
+    --n-pagination-margin:12px 15px !important ;
+}
+.table-base.table-base-expand  .n-data-table-td:first-child {
+    display: flex;
+    align-items: center;
+}
+.table-base.table-base-expand  .n-data-table-td:first-child.n-data-table-td--last-col{
+    display: table-cell;
+}
+
+ul.footer-nav{
+    list-style-type: none;
+}
+.footer-nav > li{
+    @apply pt-2 pb-2;
+}
+.footer-nav > li:first-child{
+    @apply mb-3
+}
+
+.coin-switch {
+    border: none;
+    background-color: #E9EEF3;
+    padding: 5px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+}
+
+.coin-switch.coin-switch--medium-type{
+    border-radius: 2rem;
+}
+.coin-switch.coin-switch--large-type{
+    border-radius: 2.5rem;
+ 
+}
+.coin-switch.coin-switch--medium-type .coin-switch-wrapper img{
+    height: 1.6rem;
+    width: 1.6rem;
+
+}
+.coin-switch.coin-switch--large-type .coin-switch-wrapper img{
+    height: 2.2rem;
+    width: 2.2rem;
+}
+.coin-switch.coin-switch--large-type .coin-switch-wrapper > span{
+    height: 2.2rem;
+    line-height: 2.2rem;
+    font-size: 0.8rem;
+}
+.coin-switch.coin-switch--large-type .coin-switch-wrapper > span{
+    height: 2.2rem;
+    line-height: 2.2rem;
+    font-size: 1rem;
+}
+.coin-switch .coin-switch-wrapper{
+    background-color:white;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    border-radius: 1000px;
+    transition: all 0.3s ease-in;
+
+}
+.coin-switch .coin-switch-wrapper > img{
+    vertical-align: middle;
+}
+.coin-switch .coin-switch-wrapper > span{
+    display: inline-block;
+    font-weight: 600;
+    @apply pr-3 pl-3;
+}
+.coin-switch label.coin-switch-wrapper:hover{
+    box-shadow: 0px 0px 6px 1px rgb(57 143 241 / 84%)
+}
+.coin-switch .coin-switch-wrapper:active{
+    opacity: 0.6;
+}
+
+.coin-switch .coin-switch-wrapper +  .coin-switch-wrapper{
+    margin-left: 5px;
+}
+.coin-switch  input[type="radio"]{
+    display: none;
+}
+.coin-switch  .coin-switch-wrapper.coin-switch--checked{
+    box-shadow: 0px 0px 6px 1px rgb(57 143 241 / 84%)
+}
+
+.tabs-container.n-tabs .n-tabs-nav{
+    border-bottom: 1px solid rgb(239, 239, 245);
+}
+.tabs-container.n-tabs .n-tabs-nav-scroll-wrapper{
+    @apply container max-w-screen-xl mx-auto px-4 !important;
+}
+.tabs-container.n-tabs .n-tabs-tab{
+    @apply text-lg font-medium
+}
+.tabs-container.n-tabs   .n-tabs-nav-scroll-content{
+    border-bottom-color: transparent !important;
+}
+
+
+.simplicity-inupt.n-input {
+    --n-color:transparent  !important;
+    --n-color-focus:transparent  !important;
+    --n-border: 1px solid rgb(0 0 0) !important;
+}
+.simplicity-inupt.n-input .n-input__border,
+.simplicity-inupt.n-input .n-input__state-border{
+    border-width: 0px 0px 2px 0px !important;
+    border-radius: 0 !important;
+    box-shadow:none !important;
+}
+

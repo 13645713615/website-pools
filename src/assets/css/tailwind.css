@@ -1,0 +1,7 @@
+/* @import "tailwindcss/base"; */
+/* @import "tailwindcss/components"; */
+@import "tailwindcss/utilities";
+
+.border-light{
+    border-color:#9BC4FF !important;
+}

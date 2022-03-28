@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "strictBindCallApply": false,
+    "baseUrl": "./" /* 解析非相对模块的基地址，默认是当前目录 */,
+    "isolatedModules": true /* vite 编译器选项 */,
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true /* 允许 `export =` 导出，由 `import from` 导入 */,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": false /* 不允许把 null、undefined 赋值给其他类型的变量 */,
+    "experimentalDecorators": true,
+    "moduleResolution": "node" /* 模块解析策略，ts默认用node的解析策略，即相对的方式导入 */,
+    "jsx": "preserve",
+    "noUnusedParameters": true /* 检查未使用的函数参数（只提示、不报错） */,
+    "noUnusedLocals": true /* 检查只声明、未使用的局部变量（只提示、不报错） */,
+    "noImplicitAny": false /* 不允许隐式 Any 类型 */,
+    "allowJs": true /* 允许编译器编译 JS、JSX 文件 */,
+    "target": "es6" /* 目标语言的版本 */,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@root/*":["./"],
+      "@components/*": ["./src/components/*"],
+      "@api/*": ["./src/api/*"],
+      "@css/*": ["./src/assets/css/*"],
+      "@store/*": ["./src/store/*"],
+      "@assets/*":["./src/assets/*"]
+    },
+    "lib": [
+      "dom",
+      "es2017"
+    ] /* TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array" */
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "mock/*.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,5 @@
+kind: template
+load: nodeJS.yaml
+data:
+  dockerfile: docker/Dockerfile
+  repo: jxcloud/web_frontend_main
