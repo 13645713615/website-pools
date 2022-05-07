@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-12 10:38:43
- * @LastEditTime: 2022-03-17 15:16:14
+ * @LastEditTime: 2022-04-20 17:04:52
  */
 
 import { useService } from "@/hooks";
@@ -64,7 +64,9 @@ export default defineComponent({
                                 <div class="text-gray-500">{this.$t("statistic.yesterdayearnings")}</div>
                                 <NSpace align="center">
                                     <strong class="font-medium text-2xl">{this.paneData.yesReward || "--"}</strong>
-                                    <span class="mt-2 text-gray-500 text-base">≈{this.paneData.yesReward_RMB || "--"}</span>
+                                    {
+                                        !isNaN(Number(this.paneData.yesReward)) && <span class="mt-2 text-gray-500 text-base">≈{this.paneData.yesReward_RMB || "--"}</span>
+                                    }
                                 </NSpace>
                             </div>
                             <div>

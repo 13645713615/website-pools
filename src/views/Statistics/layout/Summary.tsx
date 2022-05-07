@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-04 14:46:26
- * @LastEditTime: 2022-03-18 15:33:00
+ * @LastEditTime: 2022-05-05 15:04:51
  */
 
 import { getIndexPool } from "@/service/api"
@@ -37,7 +37,7 @@ export default defineComponent({
         const poolCoinInfo = computed<PoolInfo>(() => poolInfo.value.get(coin.value))
         return {
             poolCoinInfo,
-            hashrate: computed<[number,string]>(() => {
+            hashrate: computed<[number, string]>(() => {
                 const vlaue = poolCoinInfo.value?.hashrate || "H";
                 return [parseFloat(vlaue) || 0, vlaue.substr(-2)]
             })
@@ -49,7 +49,7 @@ export default defineComponent({
                 <NGrid cols={4} responsive="screen" itemResponsive={true}>
                     <NGi span="2 m:1" class="m-2">
                         <NCard class="rounded-md border-light">
-                            <NStatistic label={this.$t("statistic.hashrate")} v-slots={{ suffix: () => <span class="text-light" >{this.hashrate[1]}/s</span> }}>
+                            <NStatistic label={this.$t("statistic.hashrate")} v-slots={{ suffix: () => <span class="text-light md:text-2xl text-xs" >{this.hashrate[1]}/s</span> }}>
                                 <span class="text-light">  <NNumberAnimation showSeparator precision={2} from={0} to={this.hashrate[0]}></NNumberAnimation></span>
                             </NStatistic>
                         </NCard>
@@ -57,7 +57,7 @@ export default defineComponent({
 
                     <NGi span="2 m:1" class="m-2">
                         <NCard class="rounded-md border-light">
-                            <NStatistic v-slots={{ suffix: () => <span class="text-green-300">%</span>, label: () => <span>{this.$t("statistic.averageLuck")}<NTooltip v-slots={{ trigger: () => <NIcon size={14} component={AlertCircleOutline} /> }}>过去30天区块平均幸运值。</NTooltip></span> }}>
+                            <NStatistic v-slots={{ suffix: () => <span class="text-green-300 md:text-2xl text-xs">%</span>, label: () => <span>{this.$t("statistic.averageLuck")}<NTooltip v-slots={{ trigger: () => <NIcon size={14} component={AlertCircleOutline} /> }}>过去30天区块平均幸运值。</NTooltip></span> }}>
                                 <span class=" text-green-300"> <NNumberAnimation showSeparator from={0} to={this.poolCoinInfo?.lucky}></NNumberAnimation></span>
                             </NStatistic>
                         </NCard>

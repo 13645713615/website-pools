@@ -3,15 +3,14 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 16:12:34
- * @LastEditTime: 2022-03-25 09:11:02
+ * @LastEditTime: 2022-04-19 10:46:58
  */
 
 
-import { NLayout } from "naive-ui";
-import { computed, defineComponent } from "vue";
-import { useRoute } from "vue-router";
+import { NLayout, NLayoutContent } from "naive-ui";
+import { computed, DefineComponent, defineComponent, KeepAlive } from "vue";
+import { RouteRecordRaw, RouterView, useRoute } from "vue-router";
 import Container from "../Container";
-import Content from "../Content";
 import SiderMenu from "../SiderMenu";
 
 export default defineComponent({
@@ -24,7 +23,14 @@ export default defineComponent({
                 <Container class="pt-4 pb-9">
                     <NLayout hasSider>
                         <SiderMenu value={pageName.value} class="mr-4 lg:block  hidden"></SiderMenu>
-                        <Content></Content>
+                        <NLayoutContent>
+                            <RouterView v-slots={{
+                                default: ({ Component, route }: { Component: DefineComponent, route: RouteRecordRaw }) =>
+                                    <KeepAlive include={["Account"]}>
+                                        <Component key={route.name}></Component>
+                                    </KeepAlive>
+                            }}></RouterView>
+                        </NLayoutContent>
                     </NLayout>
                 </Container>
             )

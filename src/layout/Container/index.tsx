@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-27 18:13:43
- * @LastEditTime: 2022-03-22 20:38:25
+ * @LastEditTime: 2022-04-20 11:45:43
  */
 
 import { defineComponent, PropType, renderSlot } from "vue"
@@ -33,7 +33,7 @@ export default defineComponent({
     },
     render() {
         return (
-            <section class={"container mx-auto px-4 " + this.maxScreen}>{renderSlot(this.$slots, "default")}</section>
+            <section class={"container mx-auto px-2 md:px-4 " + this.maxScreen}>{renderSlot(this.$slots, "default")}</section>
         )
     }
 })

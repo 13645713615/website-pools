@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-03-27 17:31:59
+ * @LastEditTime: 2022-04-23 14:41:54
  */
 
 
@@ -60,13 +60,14 @@ export default defineComponent({
                 tableService.run()
             }
         }, { immediate: true })
-
+        
+        
         function handleDelete(row: Columns) {
             const d = dialog.warning({
-                title: t("dialog.warning.openAutomatic"),
-                content: '确定删除？',
-                positiveText: t("dialog.warning..penAutomatic"),
-                negativeText: t("dialog.warning.openAutomatic"),
+                title: t("dialog.warning.title"),
+                content:  t("dialog.warning.delete"),
+                positiveText: t("dialog.warning.positiveText"),
+                negativeText: t("dialog.warning.negativeText"),
                 onPositiveClick: async () => {
                     d.loading = true
                     await deleteAutomaticPay(row.id);

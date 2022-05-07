@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-03-15 16:43:55
+ * @LastEditTime: 2022-04-09 10:50:00
  */
 
 import { NDataTable } from "naive-ui";
@@ -21,9 +21,9 @@ export default defineComponent({
         onClick: Function as PropType<(rowData: Columns) => void>
     },
     emits: {
-        click: (rowData: Columns) => true
+        click: (_rowData: Columns) => true
     },
-    setup(props, context) {
+    setup(_props, context) {
         return {
             columns: createColumns(context)
         }
@@ -35,7 +35,7 @@ export default defineComponent({
                     <b class="block text-2xl font-semibold">{this.$t("title.currency")}</b>
                     <p>{this.$t("title.support")}</p>
                 </div>
-                <NDataTable class="mt-5 table-base" loading={this.loading} data={this.data} pagination={false} columns={this.columns} size="large" />
+                <NDataTable class="mt-5 table-base" scrollX={1100} loading={this.loading} data={this.data} pagination={false} columns={this.columns} size="large" />
             </div>
         )
     }

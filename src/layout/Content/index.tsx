@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-27 15:50:37
- * @LastEditTime: 2022-03-02 16:10:31
+ * @LastEditTime: 2022-04-19 10:41:11
  */
 
 import { NLayoutContent } from 'naive-ui';
@@ -13,7 +13,7 @@ import { RouterView } from "vue-router";
 export default defineComponent({
     render() {
         return (
-            <NLayoutContent >
+            <NLayoutContent>
                 <RouterView></RouterView>
             </NLayoutContent>
         )

@@ -3,11 +3,10 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-04 13:50:25
- * @LastEditTime: 2022-03-19 15:52:28
+ * @LastEditTime: 2022-04-19 15:21:03
  */
 
 import Charts, { PropsOption } from "@/components/Charts";
-import Container from "@/layout/Container";
 import { NCard, NSpace } from "naive-ui";
 import { defineComponent, shallowReactive, watch } from "vue";
 import Summary from "./layout/Summary";

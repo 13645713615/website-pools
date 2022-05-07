@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2021-07-08 19:15:03
- * @LastEditTime: 2022-03-14 21:16:11
+ * @LastEditTime: 2022-04-19 20:11:10
  */
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, Canceler } from "axios"
 import qs from 'qs';
@@ -106,7 +106,7 @@ export const cancelWorks = (message: string, keys?: string): void => {
     }
 }
 // 创建请求
-class CreateRequest {
+class CreateRequest<Options extends IHttpOptions> {
     constructor(config: IHttpConfig) {
         this.config = config;
         this.httpInstance = this.create(this.config);
@@ -129,7 +129,7 @@ class CreateRequest {
     }
     // 通行证，默认全部通过
     private isPassRule(key: string, data: any): boolean {
-        let config: IHttpOptions = getWorks(key);
+        let config: Options = getWorks(key);
         const isPassRule = config.isPassRule || this.config.isPassRule || false;
         if (isPassRule) {
             return isPassRule(data)
@@ -138,7 +138,7 @@ class CreateRequest {
     };
     // 错误处理
     private handleError(key: string, data: any): any {
-        let config: IHttpOptions = getWorks(key);
+        let config: Options = getWorks(key);
         const handleError = config.handleError || this.config.handleError;
         if (handleError) {
             return handleError(data)
@@ -243,7 +243,7 @@ class CreateRequest {
         }
     }
     // 发起请求
-    public request(options: IHttpOptions): Promise<any> {
+    public request(options: Options): Promise<any> {
         const key = CreateRequest.buildSecretKey(options);
         if (hasWorks(key)) {
             cancelWorks("重复工作", key);
@@ -253,19 +253,19 @@ class CreateRequest {
         return this.httpInstance(options);
     }
 
-    public get(url: string, options?: IHttpOptions): Promise<any> {
+    public get(url: string, options?: Options): Promise<any> {
         return this.request(Object.assign({ method: "get", url }, options));
     }
 
-    public post(url: string, options?: IHttpOptions): Promise<any> {
+    public post(url: string, options?: Options): Promise<any> {
         return this.request(Object.assign({ method: "post", url }, options));
     }
 
-    public put(url: string, options?: IHttpOptions): Promise<any> {
+    public put(url: string, options?: Options): Promise<any> {
         return this.request(Object.assign({ method: "put", url }, options));
     }
 
-    public delete(url: string, options?: IHttpOptions): Promise<any> {
+    public delete(url: string, options?: Options): Promise<any> {
         return this.request(Object.assign({ method: "delete", url }, options));
     }
 }

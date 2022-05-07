@@ -3,12 +3,13 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:10:44
- * @LastEditTime: 2022-03-25 17:45:36
+ * @LastEditTime: 2022-04-21 14:08:43
  */
 
 
 import { useWalletToken } from '@/hooks'
 import Main from '@/layout/Main'
+import { analysisShareUrl, validateToken } from '@/service/api';
 import { useUser } from '@/store';
 import { createbeforeEnter } from './beforeEach';
 import { TRoutesRaw } from './router.types'
@@ -48,6 +49,33 @@ const routes: TRoutesRaw[] = [
                     if (token) return true
                     const tmptoken = await useWalletToken(coin as string, wallet as string);
                     to.params.token = tmptoken as string
+                    return true
+                })
+            },
+            {
+                path: '/observe',
+                name: "observe",
+                component: () => import('@/views/Miner'),
+                meta: {
+                    title: "route.miner"
+                },
+                beforeEnter: createbeforeEnter(async (to) => {
+                    if (!to.query.token) return false;
+                    const { data: { coin, token, username: wallet } } = await validateToken(to.query.token as string)
+                    Object.assign(to.params, { wallet, coin, token })
+                    return true
+                })
+            },
+            {
+                path: '/share/:key',
+                name: "share",
+                component: () => import('@/views/Miner'),
+                meta: {
+                    title: "route.miner"
+                },
+                beforeEnter: createbeforeEnter(async (to) => {
+                    const { data: { accountName: wallet, coin, token, type } } = await analysisShareUrl(to.params.key as string);
+                    Object.assign(to.params, { wallet, coin, token, type })
                     return true
                 })
             },
@@ -148,6 +176,15 @@ const routes: TRoutesRaw[] = [
                         component: () => import("@/views/Extract"),
                         meta: {
                             title: "route.extract",
+                            visitor: true
+                        }
+                    },
+                    {
+                        path: "/follow",
+                        name: "follow",
+                        component: () => import("@/views/Follow"),
+                        meta: {
+                            title: "route.follow",
                             visitor: true
                         }
                     },

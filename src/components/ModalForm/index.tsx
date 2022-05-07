@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-22 17:58:33
- * @LastEditTime: 2022-03-24 22:02:35
+ * @LastEditTime: 2022-04-15 15:44:02
  */
 
 import { FormInst, FormRules, NAlert, NButton, NForm, NSpace } from "naive-ui";
@@ -25,7 +25,12 @@ export default defineComponent({
         rules: Object as PropType<FormRules>,
         onSubmit: Function as PropType<(next: (props: AlertProps) => void) => void>,
         size: String as PropType<'small' | 'medium' | 'large'>,
-        onClose: Function
+        onClose: Function,
+        notBut: Boolean,
+        showLabel: {
+            typpe: Boolean,
+            default: false
+        }
     },
     emits: {
         submit: (_: (props: AlertProps) => void) => true,
@@ -62,12 +67,16 @@ export default defineComponent({
             return (
                 <Modal contextClass="max-w-xl" visible={props.visible} onClose={handleClose} title={props.title}>
                     <div class="w-screen p-6 max-w-xl m-auto ">
-                        <NForm size={props.size} showLabel={false} ref={(ref) => formRef.value = ref} model={props.model} rules={props.rules} onSubmit={handleSubmit}>
+                        <NForm size={props.size} showLabel={props.showLabel} ref={(ref) => formRef.value = ref} model={props.model} rules={props.rules} onSubmit={handleSubmit}>
                             {alert.visible && <NAlert class="mb-3" type="error" closable onClose={() => alert.visible = false}>{alert.message}</NAlert>}
                             {renderSlot(context.slots, "default")}
-                            <div class="flex justify-end">
-                                <NButton type="success" class="min-w-full md:min-w-9" size={props.size} loading={loading.value} attrType="submit">{t("button.submit")}</NButton>
-                            </div>
+                            {
+                                !props.notBut && (
+                                    <div class="flex justify-end">
+                                        <NButton type="success" class="min-w-full md:min-w-9" size={props.size} loading={loading.value} attrType="submit">{t("button.submit")}</NButton>
+                                    </div>
+                                )
+                            }
                         </NForm>
                     </div>
                 </Modal>

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2021-06-17 20:07:19
- * @LastEditTime: 2022-03-27 14:22:56
+ * @LastEditTime: 2022-05-06 16:18:11
  */
 
 
@@ -401,6 +401,17 @@ export const formatHashrate = (hashrate: any, unit: string = 'H', decimals: numb
     return `${bytes.toFixed(decimals)} ${units[i]}${unit}`
 }
 
+export const formatHashrateUnit = (hashrate: string | number, unit: string) => {
+    let bytes = Number(hashrate);
+    if (isNaN(bytes)) {
+        bytes = 0;
+    }
+    const i = units.findIndex(u => u === unit);
+    bytes /= Math.pow(1000, i)
+    return `${toFixed(bytes, 2)} ${unit}H`
+}
+
+
 /**
  * @name: 获取字母
  * @msg: 
@@ -434,9 +445,9 @@ export const debounce = function (callback: Function, time: number) {
  * @param {number} time
  * @return {*}
  */
-export const throttle = function (callback: Function, time: number) {
+export const throttle = function <T extends (...args: any) => void>(callback: T, time: number): (...args: Parameters<T>) => ReturnType<T> {
     let timeId: NodeJS.Timeout = null
-    return function (...args: any[]) {
+    return function (...args) {
         if (timeId) return;
         timeId = setTimeout(() => { timeId = null }, time);
         return callback.apply(callback, args);
@@ -584,5 +595,24 @@ export function getLanguage(): string {
             return "zh"
         default:
             return "en"
+    }
+}
+
+
+export function at<T extends Array<any>>(value: T, index: number) {
+    const length = value.length;
+    if (Math.sign(index) === -1) {
+        return value[length + index]
+    }
+    return value[index]
+}
+
+
+export function toFixed(value: number | string, size: number = 6): number {
+    try {
+        return Number(value.toString().match(new RegExp(`\^\\d+(?:\\.\\d{0,${size}})?`)))
+    } catch (error) {
+        console.warn(error)
+        return Number(value)
     }
 }

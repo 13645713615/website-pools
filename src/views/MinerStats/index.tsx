@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-10 14:26:46
- * @LastEditTime: 2022-03-27 12:43:26
+ * @LastEditTime: 2022-04-27 15:26:13
  */
 
 import Container from "@/layout/Container";
@@ -12,18 +12,27 @@ import { formatHashrate } from "@/utils/tools";
 import { TrailSignOutline } from "@vicons/ionicons5";
 import { NButton, NIcon, NSpace } from "naive-ui";
 import CollapseTransition from "naive-ui/lib/collapse-transition/src/CollapseTransition";
-import { computed, defineComponent, inject, onMounted, provide, ref } from "vue";
+import { computed, defineAsyncComponent, defineComponent, inject, PropType, provide, ref } from "vue";
 import { RouterLink, useRoute } from "vue-router";
-import Hashcharts from "./layout/Hashcharts";
 import PaneCard, { PaneDataProps } from "./layout/PaneCard";
-import Sharescharts from "./layout/Sharescharts";
-import Table from "./layout/Table";
 import { Columns } from "./layout/Table/option";
 import { ProvideWorker } from "./provide";
 
+export type Module = "HashCharts" | "SharesCharts" | "MinerTable"
+
+const HashCharts = defineAsyncComponent(() => import("./layout/Hashcharts"))
+const SharesCharts = defineAsyncComponent(() => import("./layout/Sharescharts"))
+const MinerTable = defineAsyncComponent(() => import("./layout/Table"))
+
 export default defineComponent({
     name: "MinerStats",
-    setup() {
+    props: {
+        module: {
+            type: Array as PropType<Module[]>,
+            default: () => ["HashCharts", "SharesCharts", "MinerTable"]
+        }
+    },
+    setup(props) {
         const workerBarRefs = ref(null);
         const route = useRoute();
         const scrollTo = inject(ProvideScrollTo);
@@ -34,8 +43,8 @@ export default defineComponent({
             workerData.value = {
                 ...rowData,
                 speed: formatHashrate(rowData.speed),
-                speed24h: formatHashrate(rowData.speed),
-                localspeed: formatHashrate(rowData.speed)
+                speed24h: formatHashrate(rowData.speed24h),
+                localspeed24h: formatHashrate(rowData.localspeed24h)
             };
         }
         provide(ProvideWorker, worker)
@@ -48,15 +57,21 @@ export default defineComponent({
                             <div class="bg-primary p-5 rounded-md flex items-center justify-between flex-row text-white" >
                                 <div class="min-w-0">
                                     当前选择的矿机
-                                    <h3 class="text-3xl my-1">{worker.value}</h3>
+                                    <h3 class="text-3xl my-1 break-words"><span>{worker.value}</span></h3>
                                 </div>
                                 <RouterLink to={{ query: {} }}><NButton class="bg-white" onClick={() => workerData.value = null}><NIcon size={20} component={TrailSignOutline}></NIcon></NButton></RouterLink>
                             </div>
                         </CollapseTransition>
                         <PaneCard data={workerData.value}></PaneCard>
-                        <Hashcharts></Hashcharts>
-                        <Sharescharts></Sharescharts>
-                        <Table onClick={handleClickWorker}></Table>
+                        {
+                            props.module.includes("HashCharts") && <HashCharts></HashCharts>
+                        }
+                        {
+                            props.module.includes("SharesCharts") && <SharesCharts></SharesCharts>
+                        }
+                        {
+                            props.module.includes("MinerTable") && <MinerTable onClick={handleClickWorker}></MinerTable>
+                        }
                     </NSpace>
                 </Container>
             )

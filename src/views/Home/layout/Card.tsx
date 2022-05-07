@@ -3,10 +3,9 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-02 21:51:04
- * @LastEditTime: 2022-03-16 15:44:28
+ * @LastEditTime: 2022-04-19 20:08:50
  */
 
-import { useExchange } from "@/hooks";
 import { useApp } from "@/store";
 import { mul } from "@/utils/tools";
 import { AddCircleOutline, AlertCircleOutline } from "@vicons/ionicons5";
@@ -22,7 +21,7 @@ interface CardPropData {
     coinUnit: string;
     baseRate: number;
     defaultMethod: string,
-    coinType:string
+    coinType: string
 }
 
 export default defineComponent({
@@ -32,7 +31,6 @@ export default defineComponent({
     },
     setup(props) {
         const appStore = useApp()
-        const exchange = useExchange();
         const { hashrateprice, price, coinUnit, defaultMethod, baseRate, coinType } = toRefs<CardPropData>(props.data)
         return {
             hashrateprice,
@@ -41,7 +39,6 @@ export default defineComponent({
             coinType,
             baseRate,
             defaultMethod,
-            exchange,
             coinPicture: computed(() => appStore.getCoinPictures.get(props.data.coinUnit))
         }
     },
@@ -50,10 +47,10 @@ export default defineComponent({
             return Number(mul(this.hashrateprice, this.price).toFixed(6))
         },
         dayCoinEarnings(): [number, string] {
-            return [this.exchange(mul(this.earnings, scope)).value, mul(this.hashrateprice, scope).toFixed(6)]
+            return [mul(this.earnings, scope), mul(this.hashrateprice, scope).toFixed(6)]
         },
         monthCoinEarnings(): [number, string] {
-            return [this.exchange(mul(this.earnings, scope * 30)).value, mul(this.hashrateprice, scope * 30).toFixed(6)]
+            return [mul(this.earnings, scope * 30), mul(this.hashrateprice, scope * 30).toFixed(6)]
         },
     },
     render() {

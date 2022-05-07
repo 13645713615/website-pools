@@ -3,11 +3,11 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-27 17:39:37
- * @LastEditTime: 2022-03-25 16:48:46
+ * @LastEditTime: 2022-05-02 15:00:27
  */
 import { DropdownOption, MenuOption, NButton, NIcon } from 'naive-ui';
 import { useI18n } from "vue-i18n";
-import { Search, CellularSharp, Recording, PersonOutline, SettingsOutline, TrailSignOutline, CellularOutline, RecordingOutline, ServerOutline, JournalOutline } from "@vicons/ionicons5"
+import { Search, CellularSharp, Recording, PersonOutline, SettingsOutline, TrailSignOutline, CellularOutline, RecordingOutline, ServerOutline, JournalOutline, StarHalfOutline } from "@vicons/ionicons5"
 import { OpenDrawerBut } from '../Drawer';
 import { RouterLink } from 'vue-router';
 import { useLogout } from '@/hooks';
@@ -63,6 +63,9 @@ export function useUserMenu(): DropdownOption[] {
         },
         {
             key: "extract", label: () => <RouterLink to={{ name: "extract" }} class="menu-text"><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><JournalOutline /></NIcon>{t("header.extract")}</RouterLink >
+        },
+        {
+            key: "follow", label: () => <RouterLink to={{ name: "follow" }} class="menu-text"><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><StarHalfOutline /></NIcon>{t("header.follow")}</RouterLink >
         },
         {
             key: "setup", label: () => <RouterLink to={{ name: "setup" }} class="menu-text"><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><SettingsOutline /></NIcon>{t("header.setup")}</RouterLink >

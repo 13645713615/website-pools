@@ -3,12 +3,13 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-22 09:56:19
- * @LastEditTime: 2022-03-25 16:22:39
+ * @LastEditTime: 2022-05-03 10:45:26
  */
 
 import router from "@/router";
 import { signOut } from "@/service/api";
 import { useUser } from "@/store";
+import {  usePathname } from ".";
 
 
 /**
@@ -28,7 +29,7 @@ function useLogout() {
     if (getToken) {
         signOut(getToken)
     }
-    router.push({ name: "login", query: { redirect: location.pathname } }).then(() => {
+    router.push({ name: "login", query: { redirect: usePathname() } }).then(() => {
         useUser().$reset();
     })
 }

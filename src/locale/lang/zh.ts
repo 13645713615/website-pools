@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-03-27 15:28:47
+ * @LastEditTime: 2022-05-05 16:52:33
  */
 
 export default {
@@ -28,7 +28,7 @@ export default {
             account: "账户中心",
             started: "开始挖矿",
             finance: "财务中心",
-            follow: "关注钱包",
+            follow: "个人收藏",
             extract: "自动提币",
             setup: "用户设置",
             miner: "矿工"
@@ -42,7 +42,7 @@ export default {
             account: "账户中心",
             started: "开始挖矿",
             finance: "财务中心",
-            follow: "关注钱包",
+            follow: "个人收藏",
             extract: "自动提币",
             setup: "用户设置"
         },
@@ -65,7 +65,8 @@ export default {
             edit: "编辑",
             delete: "删除",
             cancel: "取消",
-            update: "修改"
+            update: "修改",
+            addFollow: "收藏钱包"
         },
         profit: {
             daily: "每日收益",
@@ -138,8 +139,11 @@ export default {
             withdrawal: "自动提币",
             formalChain: "{coin}正式链",
             withdrawalRatio: "提币比例",
-            proportion: "实际分账比例"
-
+            proportion: "实际分账比例",
+            share: "分享",
+            settlementtable: "结算列表",
+            follow: "个人收藏",
+            setFollow: "收藏"
         },
         table: {
             coinType: "币种",
@@ -149,11 +153,11 @@ export default {
             hashrateFormat: "矿池算力",
             defaultMethod: "收益模式",
             number: "区块高度",
-            type: "区块类型",
+            type: "类型",
             date: "区块时间",
             region: "矿工所在地区",
             miner: "矿工",
-            reward: "区块收益",
+            reward: "收益",
             roundTime: "运行时间",
             luck: "幸运值",
             wallet: "钱包",
@@ -197,6 +201,14 @@ export default {
             cratedts: "提交时间",
             remark: "备注",
             scale: "提币比例",
+            dateStr: "日期",
+            blockReward: "挖矿收益",
+            txFree: "矿工费收益",
+            mev: "MEV收益",
+            totalReward: "总收益",
+            address: "地址",
+            state: "状态",
+            avgHashrate:"日算力"
         },
         operation: {
             excavation: "开挖",
@@ -257,6 +269,8 @@ export default {
             yesterdayAvgeffective: "昨日平均算力",
             total: "总累计",
             yesterdayearnings: "昨日收益",
+            noPaid: "待支付",
+            paymentpending: "结算中"
         },
         verificationCode: {
             reacquire: "重新获取"
@@ -279,6 +293,7 @@ export default {
             passwordatypism: "两次密码不一致",
             coinAddress: "请输入收款地址",
             scale: "请输入提币比例",
+            expiration: "请选择过期时间",
         },
         form: {
             email: "邮箱",
@@ -289,9 +304,14 @@ export default {
             accountName: "账户名",
             remark: "备注",
             coinAddress: "收款地址",
-            scale: "提币比例(1 - {scale}) "
+            scale: "提币比例(1 - {scale}) ",
+            expiration: "过期时间",
+            module: "分享模块",
+            coin:"币种",
+            address:'地址'
         },
         tip: {
+            notAccount: "不支持创建多个未挖矿账户",
             sentSuccessfully: "验证码发送成功，请注意查收!",
             requestError: "请求错误，请稍后再试！",
             requestFail: "请求错误",
@@ -310,12 +330,16 @@ export default {
             noon: "中午好",
             afternoon: "下午好",
             night: "晚上好",
+            hour: "一小时",
+            day: "一天",
+            month: "一个月",
+            permanent: "永久",
         },
         tutorial: {
             scheme: "（PPS+PPLNS）",
             bonuses: "矿工可提取价值99%（MEV）的收入",
             payout: "24小时一轮",
-            payouts: "自定义额度，0.01 ETH 到最大 100 ETH",
+            payouts: "{lowest} {coin} 到最大 100 {coin}",
             block: "个区块",
             minerName: "建议自定义矿机名字，容易分析矿机情况",
             wallet: {
@@ -339,6 +363,7 @@ export default {
                 title: "警告",
                 positiveText: "确定",
                 negativeText: "不确定",
+                delete: "确定删除？"
             },
         },
         help: {
@@ -346,7 +371,8 @@ export default {
             h1: "1. 什么是自动分账",
             t1: "您可以为子账号绑定一个或多个白名单收款钱包；系统将子账号的当日收益按照规则提币到多个收款钱包",
             h2: "2. 是否收费？",
-            t2: "ERC20 即以ETH正式链：收费，EIP1559 实施后，手续费不受我们控制，将按照实际网络情况收取转账费用。\nOKEX 智能生态链(https://www.okexgo.com/)：免费",
+            // \nOKEX 智能生态链(https://www.okexgo.com/)：免费
+            t2: "ERC20 即以ETH正式链：收费，EIP1559 实施后，手续费不受我们控制，将按照实际网络情况收取转账费用。",
             h3: "3. 最小分账金额(自动提币阈值)是多少？",
             t3: "当待转账收益 > 0.1 ETH (如已设置自动提币阈值，则以设置为准)，次日将触发自动提币。如果提币到一个钱包，则默认的最小分账金额为0.1 ETH; 提币到多个钱包， 最小的分账金额是0.01 ETH",
             h4: "4. 如何配置多种自动分账方案？",

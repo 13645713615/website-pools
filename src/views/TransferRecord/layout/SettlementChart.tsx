@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-12 10:19:08
- * @LastEditTime: 2022-03-17 15:24:53
+ * @LastEditTime: 2022-03-31 17:15:20
  */
 import Charts, { PropsOption } from "@/components/Charts";
 import columnar from "@/components/Charts/type/columnar";
@@ -37,7 +37,7 @@ export default defineComponent({
         return (
             <NCard>
                 <h2 class="text-center">{this.$t("title.Settlement")}</h2>
-                <Charts class="pt-4" color={["#0069FF","#e21d26","#ff9d4d"]} data={this.settlementchartsData} construct={columnar} style={{ height: "300px" }} />
+                <Charts class="pt-4" color={["#0069FF","#3da4f1","#51c51a"]} data={this.settlementchartsData} construct={columnar} style={{ height: "300px" }} />
             </NCard>
         )
     }

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-03-27 10:10:22
+ * @LastEditTime: 2022-05-03 12:27:18
  */
 
 import { useUser } from "@/store";
@@ -21,7 +21,12 @@ const agentHost = import.meta.env.VITE_APP_AGENT_HOST;
  * @return {*}
  */
 export function getIndexPool() {
-    return useRequest.get(`${BAESURl}/getIndexPool`, { meta: { loading: false } })
+    return useRequest.get(`${BAESURl}/getIndexPool`, {
+        meta: {
+            loading: false,
+            cache: "app"
+        }
+    })
 }
 
 /**
@@ -127,9 +132,13 @@ export function getPanelData(params: { coin: string, accountname: string, token:
  * @return {*}
  */
 export function getUserHashByDay(params: { coin: string, accountName: string, day: number, token: string }) {
-    return useRequest.get(`${BAESURl}/account-chart/getUserHashByDay`, {
-        params: { ...params, agentHost },
-    })
+    return params.day == 1 ?
+        useRequest.get(`${BAESURl}/account-chart/getUserHashByDay`, {
+            params: { ...params, agentHost },
+        }) :
+        useRequest.get(`${BAESURl}/account-chart/getUserHashByMonth`, {
+            params: { ...params, agentHost }
+        })
 }
 
 /**
@@ -139,9 +148,13 @@ export function getUserHashByDay(params: { coin: string, accountName: string, da
  * @return {*}
  */
 export function getUserSharesDay(params: { coin: string, accountName: string, day: number, token: string }) {
-    return useRequest.get(`${BAESURl}/account-chart/usershares_day`, {
-        params: { ...params, agentHost },
-    })
+    return params.day == 1 ?
+        useRequest.get(`${BAESURl}/account-chart/usershares_day`, {
+            params: { ...params, agentHost },
+        }) :
+        useRequest.get(`${BAESURl}/account-chart/usershares_month`, {
+            params: { ...params, agentHost },
+        })
 }
 
 
@@ -152,9 +165,13 @@ export function getUserSharesDay(params: { coin: string, accountName: string, da
  * @return {*}
  */
 export function getWorkerHashByDay(params: { coin: string, accountName: string, workerName: string, day: number, token: string }) {
-    return useRequest.get(`${BAESURl}/worker-chart/getWorkerHashByDay`, {
-        params
-    })
+    return params.day == 1 ?
+        useRequest.get(`${BAESURl}/worker-chart/getWorkerHashByDay`, {
+            params
+        }) :
+        useRequest.get(`${BAESURl}/worker-chart/getWorkerHashByMonth`, {
+            params
+        })
 }
 
 /**
@@ -163,10 +180,14 @@ export function getWorkerHashByDay(params: { coin: string, accountName: string, 
  * @param {object} params
  * @return {*}
  */
-export function getWorkersharesDay(params: { coin: string, accountName: string, workerName: string, token: string }) {
-    return useRequest.get(`${BAESURl}/worker-chart/workershares_day`, {
-        params
-    })
+export function getWorkersharesDay(params: { coin: string, accountName: string, workerName: string, day: number, token: string }) {
+    return params.day == 1 ?
+        useRequest.get(`${BAESURl}/worker-chart/workershares_day`, {
+            params
+        }) :
+        useRequest.get(`${BAESURl}/worker-chart/workershares_month`, {
+            params
+        })
 }
 
 
@@ -182,6 +203,22 @@ export function getworkerlist(params: WorkerSearch) {
         meta: { loading: false }
     })
 }
+
+
+
+/**
+ * @name: 获取全部矿机名称
+ * @msg: 
+ * @param {object} params
+ * @return {*}
+ */
+export function getworkerName(params: { accountname: string, coin: string }) {
+    return useRequest.get(`${BAESURl}/getworkername`, {
+        params,
+        meta: { loading: false }
+    })
+}
+
 
 /**
  * @name: 交易列表
@@ -217,6 +254,20 @@ export function getEarningChart(params: { coin: string, accountName: string, tok
  */
 export function getSettlementChart(params: { coin: string, accountName: string, token }) {
     return useRequest.post(`${BAESURl}/settlement`, {
+        params,
+    })
+}
+
+
+
+/**
+ * @name: 结算列表
+ * @msg: 
+ * @param {string} token
+ * @return {*}
+ */
+export function getSettlementList(params: { coin: string, accountName: string, token }) {
+    return useRequest.post(`${BAESURl}/settlement_table`, {
         params,
     })
 }
@@ -260,6 +311,12 @@ export function getWorkerMinerTop(coin: string) {
 }
 
 
+/**
+ * @name: 获取货币汇率
+ * @msg: 聚合接口
+ * @param {*}
+ * @return {*}
+ */
 export function getFinanceExchange(): Promise<IJuHeRes> {
     return useRequest.get("/finance/exchange/rmbquot", {
         params: { type: 1, bank: 0, key: "778d6dac585b68858f131970a3509056" },
@@ -362,7 +419,7 @@ export function getCoinAddressByCoin(params: { coin: string, isSet: boolean }) {
  * @return {*}
  */
 export async function getAccountCoin(coins: string[]): Promise<IRes<any[]>> {
-    const [...result] = await Promise.all(coins.map((coin) => getCoinAddressByCoin({ coin, isSet: false })));
+    const [...result] = await Promise.all(coins.map((coin) => getCoinAddressByCoin({ coin: coin.toLocaleLowerCase(), isSet: false })));
     const data = [];
     result.forEach(({ data: item }, index) => {
         if (Array.isArray(item)) {
@@ -544,5 +601,120 @@ export function updateAutomaticPay(params: { username: string, coin: string, cod
 export function deleteAutomaticPay(id: number) {
     return useRequest.post(`${BAESURl}/automatic_pay/delete`, {
         params: { id }
+    })
+}
+
+
+/**
+ * @name: 分享
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function shareAccount(data: { accountName: string, coin: string, time?: number, isPermanent: boolean, type: string }) {
+    return useRequest.post(`${BAESURl}/shareAccount`, {
+        data,
+        meta: {
+            loading: false
+        }
+    })
+}
+
+/**
+ * @name: 获取分享token
+ * @msg: 
+ * @param {string} url
+ * @return {*}
+ */
+export function analysisShareUrl(url: string) {
+    return useRequest.get(`${BAESURl}/analysisShareUrl`, {
+        params: { url }
+    })
+}
+
+
+/**
+ * @name: 解析token
+ * @msg: 
+ * @param {string} token
+ * @return {*}
+ */
+export function validateToken(token: string) {
+    return useRequest.get(`${BAESURl}/validateToken`, {
+        params: { token }
+    })
+}
+
+
+
+/**
+ * @name: 设置清楚时间
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function setCleanHours(data: { accountId: number, hours: number }) {
+    return useRequest.post(`${BAESURl}/setCleanHours`, {
+        data
+    })
+}
+
+/**
+ * @name: 分享列表
+ * @msg: 
+ * @param {*}
+ * @return {*}
+ */
+export function getFollow() {
+    return useRequest.get(`${BAESURl}/collect/list `)
+}
+
+
+/**
+ * @name: 保存
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function saveFollow(data: { collectType: number, collectUrl: string, coinType: string, collectRemark?: string }) {
+    return useRequest.post(`${BAESURl}/collect/save`, {
+        headers: { "Content-Type": "application/json;charset=utf-8" },
+        data
+    })
+}
+
+/**
+ * @name: 修改
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function updateFollow(data: { id: number, collectType: number, collectUrl: string, coinType: string, collectRemark: string }) {
+    return useRequest.post(`${BAESURl}/collect/update`, {
+        headers: { "Content-Type": "application/json;charset=utf-8" },
+        data
+    })
+}
+
+/**
+ * @name: 删除
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function deleteFollow(collectUrl: string) {
+    return useRequest.delete(`${BAESURl}/collect/${collectUrl}`)
+}
+
+
+/**
+ * @name: 删除
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function checkFollow(collectUrl: string) {
+    return useRequest.get(`${BAESURl}/collect/check`, {
+        params: { collectUrl }
     })
 }

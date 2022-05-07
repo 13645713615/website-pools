@@ -3,10 +3,9 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-03-20 14:33:19
+ * @LastEditTime: 2022-04-29 13:52:28
  */
 
-import { useExchange } from "@/hooks";
 import { useApp } from "@/store";
 import { Calculator } from "@vicons/ionicons5";
 import { DataTableColumns, NAvatar, NButton, NIcon } from "naive-ui";
@@ -27,11 +26,11 @@ export interface Columns {
     avgHashrateprice1: string,
     hashrateprice: number;
     baseRate: number;
+    dayReward:string;
 }
 export function createColumns(context: SetupContext<{ click: (rowData: Columns) => true; }>): DataTableColumns<Columns> {
     const { t, n } = useI18n()
     const { getCoinPictures } = useApp();
-    const exchange = useExchange()
     function handleCalculator(rowData: Columns) {
         context.emit("click", readonly(rowData))
     }
@@ -55,9 +54,7 @@ export function createColumns(context: SetupContext<{ click: (rowData: Columns) 
             align: "right",
             title: () => t("table.avgHashrateprice"),
             render(rowData) {
-                return (
-                    <>{parseFloat(rowData.avgHashrateprice).toFixed(2) } <span>{rowData.avgHashrateprice1}</span></>
-                )
+                return rowData.dayReward
             }
         },
         {
@@ -85,7 +82,7 @@ export function createColumns(context: SetupContext<{ click: (rowData: Columns) 
             title: () => t("table.price"),
             render(rowData) {
                 return (
-                    <>{n(exchange(rowData.price).value, "currency")} </>
+                    <>{n(rowData.price, "currency")} </>
                 )
             }
         },
@@ -95,7 +92,7 @@ export function createColumns(context: SetupContext<{ click: (rowData: Columns) 
                 return (
                     <div class="flex items-center justify-end min-w-9">
                         <NButton onClick={handleCalculator.bind(null, row)} class="mr-5" text ><NIcon size={34} color="#005adb" component={Calculator}></NIcon></NButton>
-                        <RouterLink to={{ name: "GPU", params: { coin: row.coinType } }}><NButton type="primary">{t("operation.excavation")}</NButton></RouterLink> 
+                        <RouterLink to={{ name: "GPU", params: { coin: row.coinType } }}><NButton type="primary">{t("operation.excavation")}</NButton></RouterLink>
                     </div>
                 )
             }

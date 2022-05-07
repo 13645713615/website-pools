@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-24 20:20:04
- * @LastEditTime: 2022-03-26 21:18:19
+ * @LastEditTime: 2022-04-22 14:46:50
  */
 
 import ModalForm, { AlertProps } from "@/components/ModalForm";
@@ -15,7 +15,7 @@ import { PersonAddOutline } from "@vicons/ionicons5";
 import { FormRules, NAvatar, NButton, NFormItem, NIcon, NInput, NInputGroup, NInputNumber, NSelect, NSpace, useMessage } from "naive-ui";
 import { SelectMixedOption } from "naive-ui/lib/select/src/interface";
 import { storeToRefs } from "pinia";
-import { computed, defineComponent, onMounted, PropType, reactive, ref, toRaw } from "vue";
+import { computed, defineComponent, PropType, reactive, ref, toRaw } from "vue";
 import { useI18n } from "vue-i18n";
 import { Columns } from "../Table/option";
 
@@ -87,6 +87,7 @@ export default defineComponent({
             isCreate.value = false;
             Object.assign(formData, formTemplateData, { address, remark, scale, id });
             handleChangeCoin(coin)
+            scales.value -= scale;
             visible.value = true;
         });
 

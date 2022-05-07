@@ -3,13 +3,13 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-11 18:36:25
- * @LastEditTime: 2022-03-27 13:01:33
+ * @LastEditTime: 2022-04-21 22:07:18
  */
 
 import { WorkerSearch } from "@/service/api.types";
 import { objNoNempty } from "@/utils/tools";
 import { ProvideWalletInfo } from "@/views/Miner/provide";
-import { ComputedRef, inject, unref, watch } from "vue";
+import { ComputedRef, inject, unref } from "vue";
 
 export default class SetData implements WorkerSearch {
 
@@ -17,7 +17,17 @@ export default class SetData implements WorkerSearch {
 
     public pageNo = 1;
 
-    public minType = 0;
+    private _minType = 0;
+
+    public get minType() {
+        return this._minType
+    }
+    public set minType(value: number) {
+        this._minType = value;
+        if (this.flag) {
+            this.trigger?.apply(this);
+        }
+    }
 
     public type = 2;
 

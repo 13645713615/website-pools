@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-03-16 17:22:38
+ * @LastEditTime: 2022-04-21 10:33:49
  */
 
 
@@ -15,7 +15,7 @@ import { RouterLink } from "vue-router";
 
 export interface Columns {
     blockHeight: number,
-    blockType: string,
+    blockType: number,
     date: string,
     workerPlace: string,
     workers: string,
@@ -39,11 +39,23 @@ export function createColumns(): DataTableColumns<Columns> {
             key: "blockType",
             width: 100,
             align: "right",
-            title: () => t("table.type")
+            title: () => t("table.type"),
+            render: (rowData) => {
+                switch (rowData.blockType) {
+                    case 1:
+                        return "正常块"
+                    case 2:
+                        return "叔块"
+                    case 3:
+                        return "孤块"
+                    default:
+                        return rowData.blockType
+                }
+            }
         },
         {
             key: "time",
-            width: 180,
+            width: 200,
             align: "right",
             title: () => t("table.date")
         },
@@ -72,6 +84,7 @@ export function createColumns(): DataTableColumns<Columns> {
         {
             key: "lucky",
             width: 180,
+            align: "right",
             title: () => t("table.luck"),
         },
     ]

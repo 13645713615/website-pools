@@ -54,3 +54,9 @@
 .n-message-container  .n-message.n-message--info-type::after {
     border-left-color: var(--n-icon-color-info);
 }
+.n-message-container  .n-message.n-message--erorr-type::after {
+    border-left-color: var(--n-icon-color-erorr);
+}
+.n-message-container  .n-message.n-message--success-type::after {
+    border-left-color: var(--n-icon-color-success);
+}

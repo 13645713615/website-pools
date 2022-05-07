@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-03-27 12:58:58
+ * @LastEditTime: 2022-04-21 21:56:18
  */
 
 
@@ -52,17 +52,33 @@ export interface Columns {
     validscale: number
     worker: string
 }
-export function createColumns({ handleClickWorker }: { handleClickWorker: (rowData: Columns) => void }): DataTableColumns<Columns> {
+export function createColumns({ handleClickWorker, ds }: { handleClickWorker: (rowData: Columns) => void, ds: Record<string, any> }): DataTableColumns<Columns> {
     const { t } = useI18n()
+
+    function useToggle(value: Array<string | number>) {
+        switch (ds.minType) {
+            case 0:
+                return value[0]
+            case 1:
+                return value[1]
+            case 2:
+                return value[2]
+            default:
+                return ""
+        }
+    }
     return [
         {
             key: "worker",
             width: 150,
-            ellipsis: true,
+            ellipsis: {
+                tooltip: true,
+            },
+            className: "!text-black",
             sorter: true,
             title: () => t("table.worker"),
             render(rowData) {
-                return <RouterLink to={{ query: { worker: rowData.worker } }}><span onClick={handleClickWorker.bind(null,rowData)} class="text-black font-semibold">{rowData.worker}</span></RouterLink>
+                return <RouterLink class="text-current" to={{ query: { worker: rowData.worker } }}><span onClick={handleClickWorker.bind(null, rowData)} class="font-semibold">{rowData.worker}</span></RouterLink>
             }
         },
         {
@@ -71,7 +87,7 @@ export function createColumns({ handleClickWorker }: { handleClickWorker: (rowDa
             align: "right",
             sorter: true,
             title: () => t("table.nowM5"),
-            render: (rowData) => formatHashrate(rowData.speed)
+            render: (rowData) => formatHashrate(useToggle([rowData.speed, rowData.speed30m, rowData.speed24h]))
         },
         {
             key: "localSuanLiFlag",
@@ -79,7 +95,7 @@ export function createColumns({ handleClickWorker }: { handleClickWorker: (rowDa
             align: "right",
             sorter: true,
             title: () => t("table.nowHashm5"),
-            render: (rowData) => formatHashrate(rowData.localspeed)
+            render: (rowData) => formatHashrate(useToggle([rowData.localspeed, rowData.localspeed30m, rowData.localspeed24h]))
         },
 
         {
@@ -88,7 +104,7 @@ export function createColumns({ handleClickWorker }: { handleClickWorker: (rowDa
             align: "right",
             sorter: true,
             title: () => t("table.validscale"),
-            render: (rowData) => `${rowData.validscale} %`
+            render: (rowData) => `${useToggle([rowData.validscale, rowData.valid30mscale, rowData.valid24hscale])} %`
         },
         {
             key: "uncountFlag",
@@ -96,7 +112,7 @@ export function createColumns({ handleClickWorker }: { handleClickWorker: (rowDa
             align: "right",
             sorter: true,
             title: () => t("table.invalidscale"),
-            render: (rowData) => `${rowData.invalidscale} %`
+            render: (rowData) => `${useToggle([rowData.invalidscale, rowData.invalid30mscale, rowData.invalid24hscale])} %`
         },
         {
             key: "stale24hscale",
@@ -104,7 +120,7 @@ export function createColumns({ handleClickWorker }: { handleClickWorker: (rowDa
             align: "right",
             sorter: true,
             title: () => t("table.stalescale"),
-            render: (rowData) => `${rowData.stalescale} %`
+            render: (rowData) => `${useToggle([rowData.stalescale, rowData.stale30mscale, rowData.stale24hscale])} %`
         },
         {
             key: "suanlicha",
@@ -112,7 +128,7 @@ export function createColumns({ handleClickWorker }: { handleClickWorker: (rowDa
             align: "right",
             sorter: true,
             title: () => t("table.chazhiScale"),
-            render: (rowData) => rowData.chazhiScale
+            render: (rowData) => useToggle([rowData.chazhiScale, rowData.chazhi30mScale, rowData.chazhi24Scale])
         },
         {
             key: "timeFlag",

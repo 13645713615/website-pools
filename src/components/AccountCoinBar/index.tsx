@@ -3,13 +3,13 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-23 20:20:27
- * @LastEditTime: 2022-03-26 14:20:25
+ * @LastEditTime: 2022-05-05 15:21:27
  */
 
 import AccountSelect from "@/components/AccountSelect";
 import { useApp, useUser } from "@/store";
 import { Copy } from "@vicons/ionicons5";
-import { NAvatar, NButton, NDropdown, NIcon } from "naive-ui";
+import { NAvatar, NButton, NDropdown, NIcon, NPopover } from "naive-ui";
 import { DropdownMixedOption } from "naive-ui/lib/dropdown/src/interface";
 import { computed, defineComponent } from "vue";
 import useClipboard from 'vue-clipboard3'
@@ -70,7 +70,12 @@ export default defineComponent({
                             <a class="font-medium block text-xl leading-10 text-current truncate">{wallet.value}</a>
                         </AccountSelect>
                     </div>
-                    <NButton secondary circle class="align-middle" onClick={handleCopy}><NIcon size={18}><Copy></Copy></NIcon> </NButton>
+                    <NPopover>
+                        {{
+                            trigger: () =>  <NButton secondary circle class="align-middle" onClick={handleCopy}><NIcon size={18}><Copy></Copy></NIcon> </NButton>,
+                            default: () => <span>拷贝</span>
+                        }}
+                    </NPopover>
                 </div>
             )
         }

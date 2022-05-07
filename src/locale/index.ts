@@ -3,9 +3,9 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:50:34
- * @LastEditTime: 2022-03-26 21:54:31
+ * @LastEditTime: 2022-04-19 20:23:59
  */
-import axios from "axios";
+
 import { createI18n, I18n } from "vue-i18n";
 import languages from "./lang"
 
@@ -17,8 +17,6 @@ const localeName: string[] = Object.keys(languages);
 
 function setLanguage(lang: string): string {
     i18n.global.locale = lang;
-    axios.defaults.headers.common['Accept-Language'] = lang
-    axios.defaults.headers.common['languageType'] = lang
     document.querySelector("html").setAttribute("lang", lang);
     console.info("[LANG] 切换语言" + lang)
     return lang;

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-04 13:43:34
- * @LastEditTime: 2022-03-22 09:57:08
+ * @LastEditTime: 2022-05-03 10:31:49
  */
 
 import { Emiter } from "@/object/Emiter";
@@ -91,4 +91,24 @@ function useFnReactive<T extends Record<string, any>>(object: T): UnwrapNestedRe
     return proxy
 }
 
-export { useTemporaryFooterBgColor, useWalletToken, useEmiter, useExchange, useFnReactive }
+function usePathname(): string {
+    let pathname = location.pathname;
+    if (import.meta.env.DEV) {
+        pathname = location.hash.replace("#", "");
+    }
+    return pathname
+}
+
+function useLocation(index?: number): string | string[] {
+    let pathname = usePathname();
+    if (pathname.length && pathname.charAt(0) === "/") {
+        pathname = pathname.substring(1)
+    }
+    const paths = pathname.split("/");
+    if (index != undefined) {
+        return paths[index] || ""
+    }
+    return paths
+}
+
+export { useTemporaryFooterBgColor, useWalletToken, useEmiter, useExchange, useFnReactive,usePathname, useLocation }

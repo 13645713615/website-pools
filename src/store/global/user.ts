@@ -3,10 +3,10 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 23:18:13
- * @LastEditTime: 2022-03-27 16:15:33
+ * @LastEditTime: 2022-05-02 16:18:36
  */
 
-import { getAccountCoin, login } from "@/service/api";
+import { getAccountCoin, getFollow, login } from "@/service/api";
 import { defineStore } from "pinia";
 import { CacheStorage } from "@/utils/cache"
 import { useApp } from "./app";
@@ -36,8 +36,9 @@ export interface UseraActions {
     loadUsersCoins(): Promise<Record<string, UsersAccount> | null>;
     setAccount(account: string, coin?: string): void;
     setCoin(coin: string): void;
-    getUserAccountCoin: (v: { account: string, coin: string } | string) => Record<string, any>[] | Record<string, any> | false
+    getUserAccountCoin: (v?: { account: string, coin: string }) => Record<string, any> | false
     setUsersAccount: (key: string, data: UsersAccount) => void;
+    setUserAccount: (account: string, data: Record<string, any>) => void
 }
 export type UserGetters = {
     getToken: (state: UserState) => string | undefined,
@@ -137,16 +138,24 @@ export const useUser = defineStore<"user", UserState, UserGetters, UseraActions>
             return usersAccount
         },
         getUserAccountCoin(value) {
-            if (typeof value === "string") {
-
-            } else {
+            let key = `${this.getAccount}:${this.getCoin.toLowerCase()}`;
+            if (value) {
                 const { account, coin } = value;
-                const key = `${account}:${coin.toLowerCase()}`;
-                if (Object.prototype.hasOwnProperty.call(this.userAccountCoinData, key)) {
-                    return this.userAccountCoinData[key]
+                key = `${account}:${coin.toLowerCase()}`;
+            }
+            if (Object.prototype.hasOwnProperty.call(this.userAccountCoinData, key)) {
+                return this.userAccountCoinData[key]
+            }
+
+            return false
+        },
+        setUserAccount(value, data) {
+            for (const key in this.userAccountCoinData) {
+                if (key.includes(`${value}:`)) {
+                    const item = this.userAccountCoinData[key];
+                    Object.assign(item, data)
                 }
             }
-            return false
         }
     },
     persist: {

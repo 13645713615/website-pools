@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-11 13:49:37
- * @LastEditTime: 2022-03-27 12:39:05
+ * @LastEditTime: 2022-05-06 10:54:29
  */
 
 import { ProvidePaneData } from "@/views/Miner/provide";
@@ -14,10 +14,10 @@ export interface PaneDataProps {
     speed24hcount: number;
     speed24hinvalidcount: number;
     speed24hstalecount: number;
-    speed: string ;
-    speed24h: string ;
-    scale?: string ;
-    localspeed: string ;
+    speed: string;
+    speed24h: string;
+    localspeed24h: string;
+    scale?: string;
 }
 
 export default defineComponent({
@@ -66,7 +66,7 @@ export default defineComponent({
                                 </NSpace>
                             </NGi>
                             <NGi span="3 m:1">
-                                <strong class="font-medium block text-2xl">{this.paneData?.localspeed}</strong>
+                                <strong class="font-medium block text-2xl">{this.paneData?.localspeed24h}</strong>
                                 <span class="mt-2 text-base">{this.$t("statistic.reported")}</span>
                             </NGi>
                         </NGrid>
@@ -80,12 +80,12 @@ export default defineComponent({
                                 <span class="mt-2 text-base">{this.$t("statistic.valid")} ({this.rate.vcount}%)</span>
                             </NGi>
                             <NGi span="3 m:1">
-                                <strong class="font-medium block text-2xl">{this.paneData?.speed24hinvalidcount}</strong>
-                                <span class="mt-2 text-base">{this.$t("statistic.stale")} ({this.rate.uncount}%)</span>
+                                <strong class="font-medium block text-2xl">{this.paneData?.speed24hstalecount}</strong>
+                                <span class="mt-2 text-base">{this.$t("statistic.stale")} ({this.rate.defercount}%)</span>
                             </NGi>
                             <NGi span="3 m:1">
-                                <strong class="font-medium block text-2xl">{this.paneData?.speed24hstalecount}</strong>
-                                <span class="mt-2 text-base">{this.$t("statistic.invalid")} ({this.rate.defercount}%)</span>
+                                <strong class="font-medium block text-2xl">{this.paneData?.speed24hinvalidcount}</strong>
+                                <span class="mt-2 text-base">{this.$t("statistic.invalid")} ({this.rate.uncount}%)</span>
                             </NGi>
                         </NGrid>
                     </NCard>

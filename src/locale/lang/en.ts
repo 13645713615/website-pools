@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-03-27 15:29:26
+ * @LastEditTime: 2022-05-05 15:54:53
  */
 
 export default {
@@ -63,7 +63,8 @@ export default {
             edit: "Edit",
             delete: "Delete",
             cancel: "Cancel",
-            update: "Update"
+            update: "Update",
+            addFollow: "Collect Wallet"
         },
         profit: {
             daily: "daily",
@@ -135,8 +136,12 @@ export default {
             free: "Free",
             withdrawal: "Automatic extraction",
             formalChain: "{coin} Formal chain",
-            withdrawalRatio:"Withdrawal Ratio",
-            proportion:"Actual split proportion"
+            withdrawalRatio: "Withdrawal Ratio",
+            proportion: "Actual split proportion",
+            share: "Share",
+            settlementtable: "Settlement",
+            follow:"Follow",
+            setFollow: "Collect"
         },
         table: {
             coinType: "Coin",
@@ -194,7 +199,14 @@ export default {
             cratedts: "Submit time",
             remark: "Remark",
             scale: "Scale",
-
+            dateStr: "Date",
+            blockReward: "Mining",
+            txFree: "Miner Fee",
+            mev: "MEV",
+            totalReward: "Reward",
+            address: "Url",
+            state:"State",
+            avgHashrate:"AvgHashrate"
         },
         operation: {
             excavation: "excavation",
@@ -255,6 +267,8 @@ export default {
             yesterdayAvgeffective: "Yesterday's Avg Effective",
             total: "Total Cumulative",
             yesterdayearnings: "Yesterday's earnings",
+            noPaid: "To be paid",
+            paymentpending: "settlement"
         },
         verificationCode: {
             reacquire: "Reacquire"
@@ -277,6 +291,7 @@ export default {
             passwordatypism: "The two passwords are inconsistent",
             coinAddress: "Please enter the payment address",
             scale: "Please enter the withdrawal ratio",
+            expiration: "Please select an expiration time"
         },
         form: {
             email: "Email",
@@ -287,9 +302,14 @@ export default {
             accountName: "Account name",
             remark: "Remark",
             coinAddress: "Address",
-            scale: "Scale (1 - {scale})"
+            scale: "Scale (1 - {scale})",
+            expiration: "Expiration",
+            module: "Share module",
+            coin:"Coin",
+            address:'Address'
         },
         tip: {
+            notAccount: "Creating multiple empty accounts is not supported！",
             sentSuccessfully: "The verification code was sent successfully. Please check it!",
             requestError: "Request error, please try again later!",
             requestFail: "Request fail",
@@ -308,12 +328,16 @@ export default {
             noon: "Good noon",
             afternoon: "Good afternoon",
             night: "Good night",
+            hour: "One Hour",
+            day: "One Day",
+            month: "A Month",
+            permanent: "Permanent",
         },
         tutorial: {
             scheme: "（PPS+PPLNS）",
             bonuses: "95% of Supercharged MEV",
             payout: "Once an 24hour",
-            payouts: "from 0.01 {coin} up to 100 {coin}",
+            payouts: "from {lowest} {coin} up to 100 {coin}",
             block: "Blocks",
             minerName: "It is recommended to customize the name of the mining machine, which is easy to analyze the situation of the mining machine",
             wallet: {
@@ -337,6 +361,7 @@ export default {
                 title: "Warning",
                 positiveText: "Determine",
                 negativeText: "Uncertain",
+                delete: "confirm delete?"
             },
         },
         help: {
@@ -344,7 +369,8 @@ export default {
             h1: "1. What is automatic splitting?",
             t1: "You can bind one or more whitelisted collection wallets to the sub-account; the system will withdraw the daily income of the sub-account to multiple collection wallets according to the rules",
             h2: "2. Is there a fee?",
-            t2: "ERC20 is the Ethereum main network: fees. After the implementation of EIP1559, the handling fee will not be under our control, and the transfer fee will be charged according to the actual network situation.\nOKEX is Intelligent Ecological Chain (https://www.okexgo.com/): Free",
+            // \nOKEX is Intelligent Ecological Chain (https://www.okexgo.com/): Free
+            t2: "ERC20 is the Ethereum main network: fees. After the implementation of EIP1559, the handling fee will not be under our control, and the transfer fee will be charged according to the actual network situation.",
             h3: "3. What is the minimum split amount (automatic withdrawal threshold)?",
             t3: "When the income to be transferred> 0.1 ETH (if the automatic withdrawal threshold has been set, the setting shall prevail), the automatic withdrawal will be triggered at nextDay. If you withdraw coins to a wallet, the default minimum split amount is 0.1 ETH\nTo multiple wallets, the minimum split amount is 0.01 ETH",
             h4: "4. How to configure multiple automatic account splitting schemes?",

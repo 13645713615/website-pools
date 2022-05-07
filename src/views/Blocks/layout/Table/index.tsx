@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-03-16 17:17:19
+ * @LastEditTime: 2022-05-05 16:53:08
  */
 
 import { useService, Page, useFnReactive } from "@/hooks";
@@ -35,7 +35,7 @@ export default defineComponent({
         return (
             <div>
                 <h2>{this.$t("title.history")}</h2>
-                <NDataTable class="mt-5 table-base" scrollX={1160} loading={this.tableData.loading} data={this.tableData.data.records} pagination={this.setData} columns={this.columns} size="large" />
+                <NDataTable class="mt-5 table-base" scrollX={1180} loading={this.tableData.loading} data={this.tableData.data.records} pagination={this.setData} columns={this.columns} size="large" />
             </div>
         )
     }

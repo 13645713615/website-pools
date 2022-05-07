@@ -11,7 +11,7 @@ import { useI18n } from "vue-i18n"
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-24 15:06:53
- * @LastEditTime: 2022-03-27 09:17:27
+ * @LastEditTime: 2022-05-02 11:58:43
  */
 interface PayStatusData {
     openflag?: 1 | 0;
@@ -33,7 +33,7 @@ export default defineComponent({
         const message = useMessage();
         const dialog = useDialog();
         const currentAccountCoin = toRef(useUser(), "currentAccountCoin")
-        const payStatusService = useReactiveService<PayStatusData>(getAutomaticPayStatus, { params: () => ({ username: currentAccountCoin.value[0], coin: props.coin }),immediate:true, defaultValue: {} })
+        const payStatusService = useReactiveService<PayStatusData>(getAutomaticPayStatus, { params: () => ({ username: currentAccountCoin.value[0], coin: props.coin }), immediate: true, defaultValue: {} })
         const payOpenService = useService(getAutomaticPayOpen, { defaultValue: {} }, (_, res) => {
             if (res.status == "200") message.success("保存成功！")
         })
@@ -56,15 +56,15 @@ export default defineComponent({
                 <NSpin show={payStatusService.loading}>
                     <NAlert type="warning" class="mb-4">
                         {t("tip.automaticWithdrawal")}
-                        <div class="text-red-400">
+                        {/* <div class="text-red-400">
                             {t("tip.transferNetwork")}
-                        </div>
+                        </div> */}
                     </NAlert>
                     <NSpace class="text-lg pb-3" align="center" size={[32, 16]}>
                         <div>{t("title.transferNetwork", { coin: "ETH" })}:
                             <NRadioGroup v-model={[payStatusService.data.paychain, "value"]} class="ml-3">
-                                <NRadio value={1}>{t("title.formalChain", { coin: "ETH" })}({t("title.charge")})</NRadio>
-                                <NRadio value={0}>OKEX({t("title.free")})</NRadio>
+                                <NRadio value={0}>{t("title.formalChain", { coin: "ETH" })}({t("title.charge")})</NRadio>
+                                {/* <NRadio value={1}>OKEX({t("title.free")})</NRadio> */}
                             </NRadioGroup>
                         </div>
                         <div>{t("title.withdrawal")}:

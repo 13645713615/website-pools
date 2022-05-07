@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-10 14:26:46
- * @LastEditTime: 2022-03-12 09:24:24
+ * @LastEditTime: 2022-04-18 17:47:05
  */
 
 import Container from "@/layout/Container";
@@ -15,7 +15,7 @@ export default defineComponent({
     name: "Profit",
     render() {
         return (
-            <Container>
+            <Container class="px-0 md:px-4">
                 <Table></Table>
             </Container>
         )

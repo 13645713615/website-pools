@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-15 22:28:56
- * @LastEditTime: 2022-03-15 22:28:56
+ * @LastEditTime: 2022-04-18 14:06:41
  */
 
 import { SelectBaseOption } from "naive-ui/lib/select/src/interface";
@@ -15,6 +15,11 @@ export const dateOptions: SelectBaseOption<Dates, string>[] = [{ value: "day", l
 export const unitOptions: SelectBaseOption<Units, string>[] = [{ value: "M", label: "MH/s" }, { value: "G", label: "GH/s" }, { value: "T", label: "TH/s" }];
 export const dates = new Map<Dates, number>([["day", 1], ["month", 30], ["year", 365]]);
 export const units = new Map<Units, number>([["M", 0.001], ["G", 1], ["T", 1000]]);
+
+
+// hashrateprice（GH/s日收益）* price(块价) = GH/s 每日收益人民币
+// hashrateprice（GH/s日收益）* price(块价) * 0.001 = MH/s 每日收益人民币
+// hashrateprice（GH/s日收益）* price(块价) * 0.001 * 30 = MH/s 每月收益人民币
 
 export class SetData {
     public scope: string;

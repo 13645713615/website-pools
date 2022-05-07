@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-28 15:40:39
- * @LastEditTime: 2022-03-27 14:37:14
+ * @LastEditTime: 2022-04-07 17:42:31
  */
 
 import { useWalletToken } from "@/hooks";
@@ -46,6 +46,9 @@ export default defineComponent({
         async function handleSearch() {
             try {
                 const { coin, wallet } = setData
+                if(!wallet){
+                    throw new Error("请输入钱包地址！")
+                }
                 const token = await useWalletToken(coin, wallet);
                 if (!address.some(({ wallet }) => wallet === wallet)) {
                     address.push({ coin, wallet })

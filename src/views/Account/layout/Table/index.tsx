@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-03-25 16:12:56
+ * @LastEditTime: 2022-04-15 10:57:50
  */
 
 import { useService, IRes } from "@/hooks";
@@ -11,6 +11,7 @@ import { useApp, useUser } from "@/store";
 import { NDataTable } from "naive-ui";
 import { defineComponent, toRef, watch } from "vue";
 import { useRouter } from "vue-router";
+import { ShareForm } from "../Share";
 import { Columns, createColumns } from "./option";
 
 export default defineComponent({
@@ -45,7 +46,10 @@ export default defineComponent({
     },
     render() {
         return (
-            <NDataTable rowProps={this.rowProps} class="mt-5 table-base" scrollX={750} loading={this.tableData.loading} data={this.tableData.data} pagination={false} columns={this.columns} size="large" />
+            <>
+                <NDataTable rowProps={this.rowProps} class="mt-5 table-base" scrollX={980} loading={this.tableData.loading} data={this.tableData.data} pagination={false} columns={this.columns} size="large" />
+                <ShareForm></ShareForm>
+            </>
         )
     }
 })
