@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-22 17:39:50
- * @LastEditTime: 2022-04-18 17:16:07
+ * @LastEditTime: 2022-05-08 09:32:55
  */
 
 import ModalForm, { AlertProps } from "@/components/ModalForm";
@@ -72,24 +72,27 @@ const CreateFormButton = defineComponent({
 
         function detectNotAccount(): boolean {
             if (!usersAccount.value || Object.keys(usersAccount.value).length === 0) return false
+            let account: string[] = [];
             for (const key in usersAccount.value) {
                 const item = usersAccount.value[key] as UsersAccount;
                 const isExistAccount = item.coin.some(coin => {
                     const { offline, online } = userAccountCoinData.value[item.name + ":" + coin]
                     return offline + online
                 })
-                if (!isExistAccount) {
-                    notice(key)
+              
+                if (!isExistAccount) account.push(key);
+                if (account.length > 5) {
+                    notice(account)
                     return true
                 }
             }
             return false
         }
 
-        function notice(account: string) {
+        function notice(account: string[]) {
             const n = notification.warning({
                 title: t("dialog.warning.title"),
-                meta: account,
+                meta: () => <span>{account}</span>,
                 content: t("tip.notAccount"),
                 action: () => <NButton text type="primary" onClick={() => { n.destroy(); router.push({ name: "started" }) }}>{t("button.started")}</NButton>
             })
