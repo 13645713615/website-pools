@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-22 17:39:50
- * @LastEditTime: 2022-05-08 09:32:55
+ * @LastEditTime: 2022-05-09 17:41:05
  */
 
 import ModalForm, { AlertProps } from "@/components/ModalForm";
@@ -81,7 +81,7 @@ const CreateFormButton = defineComponent({
                 })
               
                 if (!isExistAccount) account.push(key);
-                if (account.length > 5) {
+                if (account.length >= 5) {
                     notice(account)
                     return true
                 }
