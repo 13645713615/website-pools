@@ -3,13 +3,13 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-05-05 16:53:08
+ * @LastEditTime: 2022-05-11 14:52:03
  */
 
 import { useService, Page, useFnReactive } from "@/hooks";
 import { getPoolBlockList } from "@/service/api";
 import { useApp } from "@/store";
-import { NDataTable } from "naive-ui";
+import { NCard, NDataTable, NPagination } from "naive-ui";
 import { storeToRefs } from "pinia";
 import { defineComponent, watch } from "vue";
 import { createColumns } from "./option";
@@ -20,7 +20,9 @@ export default defineComponent({
     setup() {
         const { coin } = storeToRefs(useApp())
         const setData = useFnReactive(new SetData());
-        const tableData = useService<Page<Record<string, any>[]>>(getPoolBlockList, { params: () => ({ coin: coin.value.toLowerCase(), pageNum: setData.pageNo, pageSize: setData.pageSize }), defaultValue: new Page<Record<string, any>[]>() });
+        const tableData = useService<Page<Record<string, any>[]>>(getPoolBlockList, { params: () => ({ coin: coin.value.toLowerCase(), pageNum: setData.pageNo, pageSize: setData.pageSize }), defaultValue: new Page<Record<string, any>[]>() },(data)=>{
+            setData.itemCount = data.total
+        });
 
         setData.on(() => tableData.run())
         watch(coin, () => tableData.run(), { immediate: true })
@@ -35,7 +37,8 @@ export default defineComponent({
         return (
             <div>
                 <h2>{this.$t("title.history")}</h2>
-                <NDataTable class="mt-5 table-base" scrollX={1180} loading={this.tableData.loading} data={this.tableData.data.records} pagination={this.setData} columns={this.columns} size="large" />
+                <NDataTable class="mt-5 table-base" scrollX={1100} loading={this.tableData.loading} data={this.tableData.data.records} pagination={false} columns={this.columns} size="large" />
+                <NCard size="small" class="mt-1"><NPagination  {...this.setData} page={this.setData.page}></NPagination></NCard>
             </div>
         )
     }

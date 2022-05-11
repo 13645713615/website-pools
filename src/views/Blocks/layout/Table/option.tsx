@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-04-21 10:33:49
+ * @LastEditTime: 2022-05-11 14:51:55
  */
 
 
@@ -59,15 +59,15 @@ export function createColumns(): DataTableColumns<Columns> {
             align: "right",
             title: () => t("table.date")
         },
-        {
-            key: "workerPlace",
-            width: 140,
-            align: "right",
-            title: () => t("table.region")
-        },
+        // {
+        //     key: "workerPlace",
+        //     width: 140,
+        //     align: "right",
+        //     title: () => t("table.region")
+        // },
         {
             key: "workers",
-            width: 200,
+            width: 260,
             align: "right",
             ellipsis: {
                 tooltip: true
