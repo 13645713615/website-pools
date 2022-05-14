@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-14 11:30:55
+ * @LastEditTime: 2022-05-14 11:59:27
  */
 
 export default {
@@ -262,7 +262,7 @@ export default {
             invalid: "Invalid",
             effective: "Effective",
             avgeffective: "Avg Effective",
-            reported: "Reported",
+            reported: "24H Reported",
             avgReported: "Avg Reported",
             profit: "Profit",
             yesterdayAvgeffective: "Yesterday's Avg Effective",

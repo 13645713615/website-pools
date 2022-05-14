@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-11 13:49:37
- * @LastEditTime: 2022-05-14 11:31:13
+ * @LastEditTime: 2022-05-14 11:57:58
  */
 
 import { ProvidePaneData } from "@/views/Miner/provide";
@@ -28,12 +28,10 @@ export default defineComponent({
         data: Object as PropType<PaneDataProps>
     },
     setup(props) {
-        const isSwitch = ref<boolean>(false);
         const pane = inject(ProvidePaneData)
         const paneData = computed<PaneDataProps>(() => props.data || pane.value);
         return {
             paneData,
-            isSwitch,
             rate: computed<{ vcount: number | string, defercount: number | string, uncount: number | string }>(() => {
                 const { speed24hcount, speed24hinvalidcount, speed24hstalecount } = paneData.value;
                 const total = speed24hcount + speed24hinvalidcount + speed24hstalecount;
@@ -42,10 +40,7 @@ export default defineComponent({
                     defercount: ((speed24hstalecount / total || 0) * 100).toFixed(2) || 0,
                     uncount: Math.round(speed24hinvalidcount / (speed24hcount + speed24hinvalidcount) * 10000) / 100 || 0
                 }
-            }),
-            handleSwitch() {
-                isSwitch.value = !isSwitch.value
-            }
+            })
         }
     },
     render() {
@@ -73,15 +68,8 @@ export default defineComponent({
                                 </NSpace>
                             </NGi>
                             <NGi span="3 m:1">
-                                <strong class="font-medium block text-2xl">{this.isSwitch ? (this.paneData?.localspeed24h) : (this.paneData?.localspeed)}</strong>
-                                <div><span class="mt-2 text-base">{this.isSwitch ? this.$t("statistic.avgReported") : this.$t("statistic.reported")}</span>
-                                    <NPopover trigger="hover">
-                                        {{
-                                            trigger: () => <NButton class="align-middle ml-1" onClick={this.handleSwitch} text v-slots={{ icon: () => <NIcon component={RepeatSharp}></NIcon> }}></NButton>,
-                                            default: () => <span>{this.isSwitch ? this.$t("statistic.reported") : this.$t("statistic.avgReported")} </span>
-                                        }}
-                                    </NPopover>
-                                </div>
+                                <strong class="font-medium block text-2xl">{this.paneData?.localspeed24h}</strong>
+                                <span class="mt-2 text-base">{this.$t("statistic.reported")}</span>
                             </NGi>
                         </NGrid>
                     </NCard>
