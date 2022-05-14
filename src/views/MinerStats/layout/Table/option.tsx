@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-04-21 21:56:18
+ * @LastEditTime: 2022-05-14 17:46:07
  */
 
 
@@ -104,7 +104,7 @@ export function createColumns({ handleClickWorker, ds }: { handleClickWorker: (r
             align: "right",
             sorter: true,
             title: () => t("table.validscale"),
-            render: (rowData) => `${useToggle([rowData.validscale, rowData.valid30mscale, rowData.valid24hscale])} %`
+            render: (rowData) => `${useToggle([rowData.valid30mscale, rowData.valid30mscale, rowData.valid24hscale])} %`
         },
         {
             key: "uncountFlag",
@@ -112,7 +112,7 @@ export function createColumns({ handleClickWorker, ds }: { handleClickWorker: (r
             align: "right",
             sorter: true,
             title: () => t("table.invalidscale"),
-            render: (rowData) => `${useToggle([rowData.invalidscale, rowData.invalid30mscale, rowData.invalid24hscale])} %`
+            render: (rowData) => `${useToggle([rowData.invalid30mscale, rowData.invalid30mscale, rowData.invalid24hscale])} %`
         },
         {
             key: "stale24hscale",
