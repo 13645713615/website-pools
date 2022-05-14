@@ -120,7 +120,7 @@ export function createColumns({ handleClickWorker, ds }: { handleClickWorker: (r
             align: "right",
             sorter: true,
             title: () => t("table.stalescale"),
-            render: (rowData) => `${useToggle([rowData.stalescale, rowData.stale30mscale, rowData.stale24hscale])} %`
+            render: (rowData) => `${useToggle([rowData.stale30mscale, rowData.stale30mscale, rowData.stale24hscale])} %`
         },
         {
             key: "suanlicha",
