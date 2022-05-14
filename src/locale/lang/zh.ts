@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-05 16:52:33
+ * @LastEditTime: 2022-05-14 11:30:45
  */
 
 export default {
@@ -262,6 +262,7 @@ export default {
             effective: "当前有效算力",
             avgeffective: "日均算力",
             reported: "本地算力",
+            avgReported: "日均本地算力",
             valid: "有效",
             stale: "过期",
             invalid: "无效",

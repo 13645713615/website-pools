@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-10 14:26:46
- * @LastEditTime: 2022-04-27 15:26:13
+ * @LastEditTime: 2022-05-14 11:09:47
  */
 
 import Container from "@/layout/Container";
@@ -44,7 +44,8 @@ export default defineComponent({
                 ...rowData,
                 speed: formatHashrate(rowData.speed),
                 speed24h: formatHashrate(rowData.speed24h),
-                localspeed24h: formatHashrate(rowData.localspeed24h)
+                localspeed24h: formatHashrate(rowData.localspeed24h),
+                localspeed:formatHashrate(rowData.localspeed),
             };
         }
         provide(ProvideWorker, worker)
