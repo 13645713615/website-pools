@@ -3,16 +3,14 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-04 13:50:25
- * @LastEditTime: 2022-03-19 15:52:56
+ * @LastEditTime: 2022-05-16 09:27:38
  */
 
 import Charts, { PropsOption } from "@/components/Charts";
 import Container from "@/layout/Container";
-import { repeatExecution } from "@/utils/tools";
 import { NCard, NSpace } from "naive-ui";
 import { defineComponent, ref, shallowReactive, watch } from "vue";
 import Summary from "./layout/Summary";
-import moment from "moment";
 import blendline from "@/components/Charts/type/blendline"
 import CoinSwitch from "@/components/CoinSwitch";
 import Table from "./layout/Table";

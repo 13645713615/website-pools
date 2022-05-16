@@ -3,13 +3,12 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-11 13:49:37
- * @LastEditTime: 2022-05-14 11:57:58
+ * @LastEditTime: 2022-05-16 09:45:47
  */
 
 import { ProvidePaneData } from "@/views/Miner/provide";
-import { RepeatSharp } from "@vicons/ionicons5";
-import { NGrid, NGi, NCard, NSpace, NPopover, NTag, NIcon, NButton } from "naive-ui";
-import { defineComponent, inject, computed, PropType, ref } from "vue";
+import { NGrid, NGi, NCard, NSpace, NPopover, NTag } from "naive-ui";
+import { defineComponent, inject, computed, PropType } from "vue";
 
 export interface PaneDataProps {
     speed24hcount: number;
@@ -68,7 +67,7 @@ export default defineComponent({
                                 </NSpace>
                             </NGi>
                             <NGi span="3 m:1">
-                                <strong class="font-medium block text-2xl">{this.paneData?.localspeed24h}</strong>
+                                <strong class="font-medium block text-2xl">{this.paneData?.localspeed}</strong>
                                 <span class="mt-2 text-base">{this.$t("statistic.reported")}</span>
                             </NGi>
                         </NGrid>
