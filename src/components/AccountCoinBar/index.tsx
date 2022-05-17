@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-23 20:20:27
- * @LastEditTime: 2022-05-05 15:21:27
+ * @LastEditTime: 2022-05-17 16:15:30
  */
 
 import AccountSelect from "@/components/AccountSelect";
@@ -61,7 +61,7 @@ export default defineComponent({
                 <div class="flex items-center">
                     {
                         props.showCoin &&
-                        <NDropdown  onSelect={handleCoinSelect} trigger="click" options={coinOptions.value}>
+                        <NDropdown onSelect={handleCoinSelect} trigger="click" options={coinOptions.value}>
                             <NAvatar class="cursor-pointer mr-6" round size={40} src={path.value} style={{ minWidth: "40px" }}></NAvatar>
                         </NDropdown>
                     }
@@ -72,7 +72,7 @@ export default defineComponent({
                     </div>
                     <NPopover>
                         {{
-                            trigger: () =>  <NButton secondary circle class="align-middle" onClick={handleCopy}><NIcon size={18}><Copy></Copy></NIcon> </NButton>,
+                            trigger: () => <NButton secondary circle class="align-middle hidden md:flex" onClick={handleCopy}><NIcon size={18}><Copy></Copy></NIcon> </NButton>,
                             default: () => <span>拷贝</span>
                         }}
                     </NPopover>

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-14 11:59:01
+ * @LastEditTime: 2022-05-17 16:24:28
  */
 
 export default {
@@ -66,7 +66,8 @@ export default {
             delete: "删除",
             cancel: "取消",
             update: "修改",
-            addFollow: "收藏钱包"
+            addFollow: "收藏钱包",
+            addshare: "生成分享链接"
         },
         profit: {
             daily: "每日收益",
@@ -208,7 +209,9 @@ export default {
             totalReward: "总收益",
             address: "地址",
             state: "状态",
-            avgHashrate:"日算力"
+            avgHashrate: "日算力",
+            url:"分享地址",
+            module:"分享模块",
         },
         operation: {
             excavation: "开挖",
@@ -308,8 +311,8 @@ export default {
             scale: "提币比例(1 - {scale}) ",
             expiration: "过期时间",
             module: "分享模块",
-            coin:"币种",
-            address:'地址'
+            coin: "币种",
+            address: '地址'
         },
         tip: {
             notAccount: "不支持创建多个未挖矿账户",

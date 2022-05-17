@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-04-29 15:59:33
- * @LastEditTime: 2022-05-10 18:35:18
+ * @LastEditTime: 2022-05-17 16:01:01
  */
 
 import { useService } from "@/hooks";
@@ -34,7 +34,6 @@ export default defineComponent({
 
         function setAccountInfo() {
             const data = getUserAccountCoin();
-            console.log(data)
             if (data) {
                 [accountInfo.accountId, accountInfo.hours] = [data.accountId, data.cleanHours]
             } else {

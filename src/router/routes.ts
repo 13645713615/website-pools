@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:10:44
- * @LastEditTime: 2022-04-21 14:08:43
+ * @LastEditTime: 2022-05-17 10:01:01
  */
 
 
@@ -167,6 +167,15 @@ const routes: TRoutesRaw[] = [
                         component: () => import("@/views/Account"),
                         meta: {
                             title: "route.account",
+                            visitor: true
+                        }
+                    },
+                    {
+                        path: "/acount/share",
+                        name: "acountShare",
+                        component: () => import("@/views/Share"),
+                        meta: {
+                            title: "route.share",
                             visitor: true
                         }
                     },

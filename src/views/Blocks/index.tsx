@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-04 13:50:25
- * @LastEditTime: 2022-05-16 09:27:38
+ * @LastEditTime: 2022-05-16 16:52:04
  */
 
 import Charts, { PropsOption } from "@/components/Charts";
@@ -40,7 +40,7 @@ export default defineComponent({
         const chartsData = shallowReactive<PropsOption>({
             xData: [],
             yData: [],
-            legend: [t("title.poolDifficulty") , t("title.poolBlocks")]
+            legend: [t("title.poolDifficulty"), t("title.poolBlocks")]
         });
 
         const panelData = ref<PanelData>(undefined)

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-14 11:59:27
+ * @LastEditTime: 2022-05-17 16:25:16
  */
 
 export default {
@@ -64,7 +64,8 @@ export default {
             delete: "Delete",
             cancel: "Cancel",
             update: "Update",
-            addFollow: "Collect Wallet"
+            addFollow: "Collect Wallet",
+            addshare: "Share"
         },
         profit: {
             daily: "daily",
@@ -206,7 +207,9 @@ export default {
             totalReward: "Reward",
             address: "Url",
             state:"State",
-            avgHashrate:"AvgHashrate"
+            avgHashrate:"AvgHashrate",
+            url:"Link",
+            module:"Share module",
         },
         operation: {
             excavation: "excavation",

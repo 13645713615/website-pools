@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-05-03 12:27:18
+ * @LastEditTime: 2022-05-17 15:23:06
  */
 
 import { useUser } from "@/store";
@@ -716,5 +716,44 @@ export function deleteFollow(collectUrl: string) {
 export function checkFollow(collectUrl: string) {
     return useRequest.get(`${BAESURl}/collect/check`, {
         params: { collectUrl }
+    })
+}
+
+
+
+/**
+ * @name: 分享记录
+ * @msg: 
+ * @param {object} params
+ * @return {*}
+ */
+export function getShareAddressList(data: { accountName: string, coin: string }) {
+    return useRequest.post(`${BAESURl}/getShareAddressList`, {
+        data
+    })
+}
+
+/**
+ * @name: 删除分享记录
+ * @msg: 
+ * @param {object} params
+ * @return {*}
+ */
+export function delShareAddress(data: { accountName: string, key: string }) {
+    return useRequest.post(`${BAESURl}/delShareAddress`, {
+        data
+    })
+}
+
+
+/**
+ * @name: 修改分享记录
+ * @msg: 
+ * @param {object} params
+ * @return {*}
+ */
+export function submitShareAddress(data: { accountName: string, key: string, type: string, remark: string }) {
+    return useRequest.post(`${BAESURl}/submitShareAddress`, {
+        data
     })
 }
