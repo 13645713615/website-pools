@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-04-29 16:33:19
+ * @LastEditTime: 2022-05-17 16:28:53
  */
 
 
@@ -34,7 +34,7 @@ export default defineComponent({
             return (
                 <div class="min-h-ctx">
                     <div class="flex items-center justify-between flex-wrap">
-                        <h3 class="text-2xl">{t("title.account")}</h3>
+                        <h3 class="text-xl">{t("title.account")}</h3>
                         <NSpace align="center" justify="space-between" >
                             <CleanHours></CleanHours>
                             <AccountSelect mode="select" class="w-32"></AccountSelect>

@@ -16,7 +16,7 @@ export default defineComponent({
         }
         return () => (
             <div class="min-h-ctx">
-                <h3 class="text-2xl">{t("title.share")}</h3>
+                <h3 class="text-xl">{t("title.share")}</h3>
                 <NCard>
                     <div class="flex items-center flex-wrap">
                         <AccountCoinBar class="flex-1 min-w-0 mr-3" />

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-17 16:25:16
+ * @LastEditTime: 2022-05-17 16:35:37
  */
 
 export default {
@@ -139,7 +139,7 @@ export default {
             formalChain: "{coin} Formal chain",
             withdrawalRatio: "Withdrawal Ratio",
             proportion: "Actual split proportion",
-            share: "Share",
+            share: "Share Account",
             settlementtable: "Settlement",
             follow:"Follow",
             setFollow: "Collect"

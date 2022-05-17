@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-04-23 14:41:54
+ * @LastEditTime: 2022-05-17 16:29:02
  */
 
 
@@ -96,7 +96,7 @@ export default defineComponent({
         return (
             <div>
                 <NSpace align="center" justify="space-between" size="large" >
-                    <h3 class="text-2xl"> {this.$t("title.withdrawalRatio")}</h3>
+                    <h3 class="text-xl"> {this.$t("title.withdrawalRatio")}</h3>
                     <NSpace align="center">
                         <AccountSelect mode="select" class="w-32"></AccountSelect>
                         <CreateButton class="w-32"></CreateButton>

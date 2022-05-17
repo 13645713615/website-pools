@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-17 16:24:28
+ * @LastEditTime: 2022-05-17 16:35:54
  */
 
 export default {
@@ -141,7 +141,7 @@ export default {
             formalChain: "{coin}正式链",
             withdrawalRatio: "提币比例",
             proportion: "实际分账比例",
-            share: "分享",
+            share: "分享账户",
             settlementtable: "结算列表",
             follow: "个人收藏",
             setFollow: "收藏"

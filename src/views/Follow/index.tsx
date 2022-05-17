@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-04-20 10:04:58
- * @LastEditTime: 2022-05-02 17:10:16
+ * @LastEditTime: 2022-05-17 16:29:10
  */
 
 import { defineComponent, ref } from "vue";
@@ -23,7 +23,7 @@ export default defineComponent({
         return () => (
             <div class="min-h-ctx">
                 <div class="flex items-center justify-between flex-wrap">
-                    <h3 class="text-2xl">{t("title.follow")}</h3>
+                    <h3 class="text-xl">{t("title.follow")}</h3>
                     <CreateFormButton></CreateFormButton>
                 </div>
                 <Table ref={(refs) => tableRefs.value = refs}></Table>

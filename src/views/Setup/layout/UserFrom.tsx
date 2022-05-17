@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-23 11:24:36
- * @LastEditTime: 2022-03-25 20:57:38
+ * @LastEditTime: 2022-05-17 16:29:59
  */
 
 
@@ -76,7 +76,7 @@ export default defineComponent({
         }
         return function () {
             return (
-                <NCard v-slots={{ header: () => <h3 class="text-2xl m-0">{t("title.setup")}</h3> }}>
+                <NCard v-slots={{ header: () => <h3 class="text-xl m-0">{t("title.setup")}</h3> }}>
                     {alert.visible && <NAlert class="mb-3" type="error" closable onClose={() => alert.visible = false}>{alert.message}</NAlert>}
                     <NForm class="max-w-md" showRequireMark={!isUpdate.value} rules={rules} model={formData} onSubmit={handleSubmit} ref={(ref) => formRef.value = ref}>
                         <NFormItem label={t("form.email")} path="newEmail" ref={(ref) => rEmailFormItemRef.value = ref}>
