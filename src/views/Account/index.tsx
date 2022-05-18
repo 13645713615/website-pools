@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-05-17 16:28:53
+ * @LastEditTime: 2022-05-18 18:12:40
  */
 
 
@@ -15,6 +15,7 @@ import CreateForm, { CreateFormButton } from "./layout/Create";
 import Table from "./layout/Table";
 import { useUser } from "@/store";
 import CleanHours from "./layout/CleanHours";
+import { AccountModalOpenBtn } from "@/components/AccountModal";
 
 let isActiva: boolean = false;
 
@@ -37,7 +38,8 @@ export default defineComponent({
                         <h3 class="text-xl">{t("title.account")}</h3>
                         <NSpace align="center" justify="space-between" >
                             <CleanHours></CleanHours>
-                            <AccountSelect mode="select" class="w-32"></AccountSelect>
+                            <AccountModalOpenBtn class="w-32"></AccountModalOpenBtn>
+                            {/* <AccountSelect mode="select" class="w-32"></AccountSelect> */}
                             <CreateFormButton></CreateFormButton>
                         </NSpace>
                     </div>

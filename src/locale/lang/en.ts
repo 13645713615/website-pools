@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-17 16:35:37
+ * @LastEditTime: 2022-05-18 18:11:14
  */
 
 export default {
@@ -142,7 +142,8 @@ export default {
             share: "Share Account",
             settlementtable: "Settlement",
             follow:"Follow",
-            setFollow: "Collect"
+            setFollow: "Collect",
+            slelctAccount:"Select Account",
         },
         table: {
             coinType: "Coin",

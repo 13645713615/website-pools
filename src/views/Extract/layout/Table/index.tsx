@@ -3,10 +3,11 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-05-17 16:29:02
+ * @LastEditTime: 2022-05-18 18:13:16
  */
 
 
+import { AccountModalOpenBtn } from "@/components/AccountModal";
 import AccountSelect from "@/components/AccountSelect";
 import { useService } from "@/hooks";
 import { deleteAutomaticPay, getAutomaticPayByNameList } from "@/service/api";
@@ -98,7 +99,8 @@ export default defineComponent({
                 <NSpace align="center" justify="space-between" size="large" >
                     <h3 class="text-xl"> {this.$t("title.withdrawalRatio")}</h3>
                     <NSpace align="center">
-                        <AccountSelect mode="select" class="w-32"></AccountSelect>
+                        {/* <AccountSelect mode="select" class="w-32"></AccountSelect> */}
+                        <AccountModalOpenBtn class="w-32"></AccountModalOpenBtn>
                         <CreateButton class="w-32"></CreateButton>
                     </NSpace>
                 </NSpace>

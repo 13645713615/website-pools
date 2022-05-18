@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-17 16:35:54
+ * @LastEditTime: 2022-05-18 18:11:31
  */
 
 export default {
@@ -144,7 +144,8 @@ export default {
             share: "分享账户",
             settlementtable: "结算列表",
             follow: "个人收藏",
-            setFollow: "收藏"
+            setFollow: "收藏",
+            slelctAccount:"选择账户",
         },
         table: {
             coinType: "币种",
