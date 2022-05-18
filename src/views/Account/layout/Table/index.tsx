@@ -3,25 +3,31 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-05-17 15:02:25
+ * @LastEditTime: 2022-05-18 16:17:19
  */
 
 import { useService, IRes } from "@/hooks";
 import { useApp, useUser } from "@/store";
 import { NDataTable } from "naive-ui";
-import { defineComponent, toRef, watch } from "vue";
+import { defineComponent, toRef } from "vue";
 import { useRouter } from "vue-router";
 import { Columns, createColumns } from "./option";
 
 export default defineComponent({
     name: "Table",
-    setup() {
-        const userStore = useUser();
+    props: {
+        account: {
+            type: String,
+            required: true
+        }
+    },
+    setup(props) {
+        // const userStore = useUser();
         const { push } = useRouter()
         const supportCoin = toRef(useApp(), "supportCoin")
-        const tableData = useService<Record<string, any>[]>(getAccountCoinList, { defaultValue: [] });
+        const tableData = useService<Record<string, any>[]>(getAccountCoinList, { defaultValue: [], params: () => ({ coins: supportCoin.value, account: props.account }), immediate: true });
 
-        watch(() => userStore.getAccount, (value) => tableData.run({ coins: supportCoin.value, account: value }), { immediate: true });
+        // watch(() => userStore.getAccount, (value) => tableData.run({ coins: supportCoin.value, account: value }), { immediate: true });
 
         return {
             columns: createColumns(),
@@ -49,7 +55,6 @@ export default defineComponent({
         )
     }
 })
-
 
 async function getAccountCoinList({ account, coins }: { account: string, coins: string[] }): Promise<IRes<any[]>> {
     const { getUserAccountCoin } = useUser()

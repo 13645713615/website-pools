@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-04-29 15:59:33
- * @LastEditTime: 2022-05-17 16:01:01
+ * @LastEditTime: 2022-05-18 16:10:00
  */
 
 import { useService } from "@/hooks";
@@ -17,10 +17,15 @@ const options: SelectMixedOption[] = [{ value: 24, label: '24h' }, { value: 48, 
 
 export default defineComponent({
     name: "CleanHours",
-    setup() {
-
+    props: {
+        account: {
+            type: String,
+            required: true
+        }
+    },
+    setup(props) {
         const storeUser = useUser();
-        const getAccount = toRef(storeUser, "getAccount");
+
         const message = useMessage()
         const { getUserAccountCoin, setUserAccount } = storeUser
 
@@ -33,15 +38,13 @@ export default defineComponent({
         });
 
         function setAccountInfo() {
-            const data = getUserAccountCoin();
+            const data = getUserAccountCoin(props.account);
             if (data) {
                 [accountInfo.accountId, accountInfo.hours] = [data.accountId, data.cleanHours]
             } else {
                 [accountInfo.accountId, accountInfo.hours] = [null, null]
             }
         }
-
-        watch(() => getAccount.value, setAccountInfo);
 
         onActivated(setAccountInfo)
 
@@ -51,15 +54,15 @@ export default defineComponent({
                 if (accountInfo.accountId) {
                     service.run({ ...accountInfo, hours: value }, () => {
                         accountInfo.hours = value
-                        setUserAccount(getAccount.value, { cleanHours: value })
+                        setUserAccount(props.account, { cleanHours: value })
                     })
                 }
             }
         })
 
         return () => <NSpace align="center">
-            <span>清理离线矿机周期</span>
-            <NSelect loading={service.loading} v-model={[cleanHours.value, "value"]} class="w-32" options={options}></NSelect>
+            <span class="text-sm">清理离线矿机周期</span>
+            <NSelect {...{ onclick: (e: Event) => { e.preventDefault(); e.stopPropagation(); } }} size="small" loading={service.loading} v-model={[cleanHours.value, "value"]} class="w-32" options={options}></NSelect>
         </NSpace>
     }
 })
