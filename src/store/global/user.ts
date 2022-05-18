@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 23:18:13
- * @LastEditTime: 2022-05-18 16:00:08
+ * @LastEditTime: 2022-05-02 16:18:36
  */
 
 import { getAccountCoin, getFollow, login } from "@/service/api";
@@ -36,7 +36,7 @@ export interface UseraActions {
     loadUsersCoins(): Promise<Record<string, UsersAccount> | null>;
     setAccount(account: string, coin?: string): void;
     setCoin(coin: string): void;
-    getUserAccountCoin: (v?: { account: string, coin: string } | string) => Record<string, any> | false
+    getUserAccountCoin: (v?: { account: string, coin: string }) => Record<string, any> | false
     setUsersAccount: (key: string, data: UsersAccount) => void;
     setUserAccount: (account: string, data: Record<string, any>) => void
 }
@@ -139,11 +139,9 @@ export const useUser = defineStore<"user", UserState, UserGetters, UseraActions>
         },
         getUserAccountCoin(value) {
             let key = `${this.getAccount}:${this.getCoin.toLowerCase()}`;
-            if (typeof value === "object") {
+            if (value) {
                 const { account, coin } = value;
                 key = `${account}:${coin.toLowerCase()}`;
-            } else if (typeof value === "string") {
-                key = `${value}:${this.getCoin.toLowerCase()}`;
             }
             if (Object.prototype.hasOwnProperty.call(this.userAccountCoinData, key)) {
                 return this.userAccountCoinData[key]
