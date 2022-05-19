@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-05-18 16:48:47
- * @LastEditTime: 2022-05-18 18:24:59
+ * @LastEditTime: 2022-05-19 10:17:42
  */
 
 import { useEmiter } from "@/hooks";
@@ -58,17 +58,17 @@ export const AccountModal = defineComponent({
         const activate = "text-[#005adb]"
         function BuildItem(item, key) {
             return (
-                <NListItem class="hover:bg-[#2e333821]">
-                    <a onClick={handleSelect.bind(null, key)} class={`flex !justify-between px-2 cursor-pointer ${account.value === key ? activate : ''}`}>
-                        <span class="text-base">{key}</span>
-                        <span class="text-gray-500">{item.remarkName}</span>
+                <NListItem class="hover:bg-[#2e333821] cursor-pointer">
+                    <a onClick={handleSelect.bind(null, key)} class={`flex !justify-between px-2  ${account.value === key ? activate : ''}`}>
+                        <span class="text-base truncate">{key}</span>
+                        <span class="text-gray-500 truncate">{item.remarkName}</span>
                     </a>
                 </NListItem>
             )
         }
 
         return () => (
-            <Modal contextClass="max-w-xl" v-model={[visible.value, "visible"]} title={t("title.slelctAccount")}>
+            <Modal contextClass="!max-w-xl" v-model={[visible.value, "visible"]} title={t("title.slelctAccount")}>
                 <div class="md:max-h-96 overflow-y-auto">
                     <NList class="px-4">
                         {

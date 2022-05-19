@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-10 10:13:37
- * @LastEditTime: 2022-05-05 15:22:24
+ * @LastEditTime: 2022-05-19 10:27:06
  */
 
 
@@ -13,9 +13,11 @@ import { NAvatar, NButton, NIcon, NPopover, useMessage } from "naive-ui";
 import { defineComponent } from "vue";
 import { useRoute } from "vue-router";
 import useClipboard from 'vue-clipboard3'
+import { useI18n } from "vue-i18n";
 export default defineComponent({
     name: "WalletCoinBar",
     setup() {
+        const {t} = useI18n()
         const { toClipboard } = useClipboard()
         const message = useMessage()
         const { getCoinPictures } = useApp()
@@ -25,7 +27,7 @@ export default defineComponent({
             wallet,
             handleCopy() {
                 toClipboard(wallet as string).then(() => {
-                    message.success("Copy to clipboard successfully！")
+                    message.success(t("tip.copy"))
                 })
             }
         }

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-22 17:39:50
- * @LastEditTime: 2022-05-18 18:30:35
+ * @LastEditTime: 2022-05-19 10:19:42
  */
 
 import ModalForm, { AlertProps } from "@/components/ModalForm";
@@ -50,10 +50,10 @@ export default defineComponent({
             return (
                 <ModalForm showLabel model={form} onSubmit={handleSubmit} rules={formRules} size="large" v-model={[visible.value, "visible"]} title={t("title.addAccount")}>
                     <NFormItem path="name" label={t("form.accountName")}>
-                        <NInput v-model={[form.name, "value"]} placeholder={t("form.accountName")}></NInput>
+                        <NInput v-model={[form.name, "value"]} maxlength="20" placeholder={t("form.accountName")}></NInput>
                     </NFormItem>
                     <NFormItem path="remarkName" label={t("form.remark")}>
-                        <NInput v-model={[form.remarkName, "value"]} placeholder={t("form.remark")}></NInput>
+                        <NInput v-model={[form.remarkName, "value"]} maxlength="20" placeholder={t("form.remark")}></NInput>
                     </NFormItem>
                 </ModalForm>
             )
@@ -79,7 +79,7 @@ const CreateFormButton = defineComponent({
                     const { offline, online } = userAccountCoinData.value[item.name + ":" + coin]
                     return offline + online
                 })
-              
+
                 if (!isExistAccount) account.push(key);
                 if (account.length >= 20) {
                     notice(account)

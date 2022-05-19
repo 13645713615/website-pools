@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-18 18:11:14
+ * @LastEditTime: 2022-05-19 10:27:06
  */
 
 export default {
@@ -285,7 +285,8 @@ export default {
             username: "Please enter user name",
             password: "Please input a password",
             verifyPassword: "Please confirm the password",
-            accountName: "Please input account name"
+            accountName: "Please input account name",
+          
         },
         rules: {
             email: "Please enter email address",
@@ -323,7 +324,8 @@ export default {
             empty: "No {coin} data",
             automaticWithdrawal: "After you turn on Auto Withdrawal, you will be paid automatically the next day after you meet the starting amount of 0.1 on that day.After you turn off the automatic coin withdrawal, even if you reach the starting amount, hashgo will suspend the payment until you manually turn on the automatic coin withdrawal switch.",
             transferNetwork: "If you choose OKEX or HECO transfer network, please double check if your wallet address supports the corresponding transfer network! We are not responsible for any problems caused by your personal mistakes!",
-            openAutomatic: "Please make sure that you have correctly selected the transfer network and the corresponding wallet address, and we will pay you according to your selected transfer network and wallet address.\nPlease check again whether your wallet address supports the corresponding transfer network! We are not responsible for any problems caused by your personal mistakes！！！"
+            openAutomatic: "Please make sure that you have correctly selected the transfer network and the corresponding wallet address, and we will pay you according to your selected transfer network and wallet address.\nPlease check again whether your wallet address supports the corresponding transfer network! We are not responsible for any problems caused by your personal mistakes！！！",
+            copy:"Copy to clipboard successfully！"
         },
         file: {
             agreement: "《User agreement》"

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-22 17:58:33
- * @LastEditTime: 2022-04-15 15:44:02
+ * @LastEditTime: 2022-05-19 10:03:16
  */
 
 import { FormInst, FormRules, NAlert, NButton, NForm, NSpace } from "naive-ui";
@@ -65,7 +65,7 @@ export default defineComponent({
 
         return function () {
             return (
-                <Modal contextClass="max-w-xl" visible={props.visible} onClose={handleClose} title={props.title}>
+                <Modal contextClass="!max-w-xl" visible={props.visible} onClose={handleClose} title={props.title}>
                     <div class="w-screen p-6 max-w-xl m-auto ">
                         <NForm size={props.size} showLabel={props.showLabel} ref={(ref) => formRef.value = ref} model={props.model} rules={props.rules} onSubmit={handleSubmit}>
                             {alert.visible && <NAlert class="mb-3" type="error" closable onClose={() => alert.visible = false}>{alert.message}</NAlert>}

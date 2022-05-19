@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-05-17 16:25:31
+ * @LastEditTime: 2022-05-19 10:27:03
  */
 
 
@@ -36,7 +36,7 @@ export function createColumns({ handleDelete }: { handleDelete: (row: Columns) =
 
     function handleCopy(value: string) {
         toClipboard(`${location.origin}/share/${value}`).then(() => {
-            message.success("Copy to clipboard successfully！")
+            message.success(t("tip.copy"))
         })
     }
 

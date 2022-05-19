@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-04-15 16:16:31
- * @LastEditTime: 2022-04-17 15:33:19
+ * @LastEditTime: 2022-05-19 10:27:04
  */
 
 import Modal from "@/components/Modal"
@@ -35,7 +35,7 @@ export const ShareModal = defineComponent({
         function handleCopy(e: Event) {
             e.stopPropagation();
             toClipboard(path.value, butRefs.value?.$el).then(() => {
-                message.success("Copy to clipboard successfully！")
+                message.success(t("tip.copy"))
             })
         }
 
