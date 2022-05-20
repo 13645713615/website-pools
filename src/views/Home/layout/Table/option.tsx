@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-04-29 13:52:28
+ * @LastEditTime: 2022-05-20 14:00:50
  */
 
 import { useApp } from "@/store";
@@ -54,7 +54,7 @@ export function createColumns(context: SetupContext<{ click: (rowData: Columns) 
             align: "right",
             title: () => t("table.avgHashrateprice"),
             render(rowData) {
-                return rowData.dayReward
+                return rowData.avgHashrateprice
             }
         },
         {
