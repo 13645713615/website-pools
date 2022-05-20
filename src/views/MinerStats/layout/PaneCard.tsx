@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-11 13:49:37
- * @LastEditTime: 2022-05-16 09:45:47
+ * @LastEditTime: 2022-05-20 12:12:13
  */
 
 import { ProvidePaneData } from "@/views/Miner/provide";
@@ -56,14 +56,14 @@ export default defineComponent({
                                 <strong class="font-medium  block text-2xl">{this.paneData?.speed24h}</strong>
                                 <NSpace align="center">
                                     <span class="mt-2 text-base">{this.$t("statistic.avgeffective")}</span>
-                                    {
+                                    {/* {
                                         this.paneData?.scale &&
                                         (
                                             <NPopover placement="top" trigger="hover" v-slots={{ trigger: () => <NTag size="small" type="success">{this.paneData?.scale}</NTag> }}>
                                                 <pre class="text-sm">{this.$t("tip.avgeffective")}</pre>
                                             </NPopover>
                                         )
-                                    }
+                                    } */}
                                 </NSpace>
                             </NGi>
                             <NGi span="3 m:1">
