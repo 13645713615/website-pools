@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-02 21:51:04
- * @LastEditTime: 2022-04-19 20:08:50
+ * @LastEditTime: 2022-05-20 13:51:57
  */
 
 import { useApp } from "@/store";
@@ -16,7 +16,7 @@ import { RouterLink } from "vue-router";
 const scope = 0.1
 
 interface CardPropData {
-    hashrateprice: number;
+    dayReward: string;
     price: number;
     coinUnit: string;
     baseRate: number;
@@ -31,9 +31,9 @@ export default defineComponent({
     },
     setup(props) {
         const appStore = useApp()
-        const { hashrateprice, price, coinUnit, defaultMethod, baseRate, coinType } = toRefs<CardPropData>(props.data)
+        const { dayReward, price, coinUnit, defaultMethod, baseRate, coinType } = toRefs<CardPropData>(props.data)
         return {
-            hashrateprice,
+            dayReward: computed(() => parseFloat(dayReward.value)),
             price,
             coinUnit,
             coinType,
@@ -44,13 +44,13 @@ export default defineComponent({
     },
     computed: {
         earnings(): number {
-            return Number(mul(this.hashrateprice, this.price).toFixed(6))
+            return Number(mul(this.dayReward, this.price).toFixed(6))
         },
         dayCoinEarnings(): [number, string] {
-            return [mul(this.earnings, scope), mul(this.hashrateprice, scope).toFixed(6)]
+            return [mul(this.earnings, scope), mul(this.dayReward, scope).toFixed(6)]
         },
         monthCoinEarnings(): [number, string] {
-            return [mul(this.earnings, scope * 30), mul(this.hashrateprice, scope * 30).toFixed(6)]
+            return [mul(this.earnings, scope * 30), mul(this.dayReward, scope * 30).toFixed(6)]
         },
     },
     render() {

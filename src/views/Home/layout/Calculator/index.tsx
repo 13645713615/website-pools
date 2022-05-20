@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-15 11:04:49
- * @LastEditTime: 2022-03-16 15:41:25
+ * @LastEditTime: 2022-05-20 13:49:26
  */
 
 import Modal from "@/components/Modal"
@@ -20,9 +20,9 @@ export default defineComponent({
     props: {
         visible: Boolean,
         data: {
-            type: Object as PropType<{ hashrateprice: number, price: number, [s: string]: string | number }>,
+            type: Object as PropType<{ dayReward: string, price: number, [s: string]: string | number }>,
             default: () => ({
-                hashrateprice: 0,
+                dayReward: "",
                 price: 0,
                 coinUnit: "",
                 coinType: ""
@@ -33,6 +33,7 @@ export default defineComponent({
         "update:visible": (value: boolean) => true
     },
     setup(props, context) {
+        // hashrateprice
         const calculator = useFnReactive(new SetData(computed(() => props.data), 100));
         const service = useService(getIndexPoolInfo, { defaultValue: { en: "--", content: "...", homePath: "#" } });
         watch(() => props.data.coinUnit, (value) => service.run(value));

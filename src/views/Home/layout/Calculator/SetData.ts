@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-15 22:28:56
- * @LastEditTime: 2022-04-18 14:06:41
+ * @LastEditTime: 2022-05-20 13:44:31
  */
 
 import { SelectBaseOption } from "naive-ui/lib/select/src/interface";
@@ -17,9 +17,9 @@ export const dates = new Map<Dates, number>([["day", 1], ["month", 30], ["year",
 export const units = new Map<Units, number>([["M", 0.001], ["G", 1], ["T", 1000]]);
 
 
-// hashrateprice（GH/s日收益）* price(块价) = GH/s 每日收益人民币
-// hashrateprice（GH/s日收益）* price(块价) * 0.001 = MH/s 每日收益人民币
-// hashrateprice（GH/s日收益）* price(块价) * 0.001 * 30 = MH/s 每月收益人民币
+// dayReward（GH/s日收益）* price(块价) = GH/s 每日收益人民币
+// dayReward（GH/s日收益）* price(块价) * 0.001 = MH/s 每日收益人民币
+// dayReward（GH/s日收益）* price(块价) * 0.001 * 30 = MH/s 每月收益人民币
 
 export class SetData {
     public scope: string;
@@ -38,17 +38,17 @@ export class SetData {
 
     public dateLable: string;
 
-    public getConinInfo: ComputedRef<{ hashrateprice: number, price: number }>
+    public getConinInfo: ComputedRef<{ dayReward: string, price: number }>
 
-    public get hashrateprice(): number {
-        return unref(this.getConinInfo)?.hashrateprice || 0
+    public get dayReward(): number {
+        return parseFloat(unref(this.getConinInfo)?.dayReward) || 0
     }
 
     public get price(): number {
         return unref(this.getConinInfo)?.price || 0
     }
 
-    constructor(data: ComputedRef<{ hashrateprice: number, price: number }>, scope: number | string) {
+    constructor(data: ComputedRef<{ dayReward: string, price: number }>, scope: number | string) {
         this.unit = unitOptions[0].value;
         this.date = dateOptions[0].value;
         this.onUpdateScope(scope);
@@ -60,11 +60,11 @@ export class SetData {
     }
 
     public get coinEarnings(): number {
-        return Number((this.hashrateprice * this.amountScope).toFixed(6))
+        return Number((this.dayReward * this.amountScope).toFixed(6))
     }
 
     public get moneyEarnings(): number {
-        return Number((this.hashrateprice * this.price * this.amountScope).toFixed(2))
+        return Number((this.dayReward * this.price * this.amountScope).toFixed(2))
     }
 
     public onUpdateDate(value: Dates, option: SelectBaseOption<Dates, string>) {
