@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-05-17 15:23:06
+ * @LastEditTime: 2022-05-20 15:42:50
  */
 
 import { useUser } from "@/store";
@@ -460,7 +460,18 @@ export function creacteCoinAddress(data: { name: string, remarkName?: string }) 
     })
 }
 
-
+/**
+ * @name: 修改备注
+ * @msg: 
+ * @param undefined
+ * @return {*}
+ */
+export function updateRemarkName(data: { accountName: string, remarkName: string }) {
+    return useRequest.post(`${BAESURl}/updateRemarkName`, {
+        data,
+        meta: { loading: false }
+    })
+}
 
 /**
  * @name: 获取用户和登录信息

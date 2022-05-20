@@ -3,16 +3,16 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-04-15 16:16:46
- * @LastEditTime: 2022-05-17 14:37:26
+ * @LastEditTime: 2022-05-20 15:22:57
  */
 
 import { useEmiter } from "@/hooks";
 
 
 enum Share {
-    ShareModalFormCreateOpen,
-    ShareModalFormUpdateOpen,
-    ShareModalOpen,
+    ShareModalFormCreateOpen = "ShareModalFormCreateOpen",
+    ShareModalFormUpdateOpen = "ShareModalFormUpdateOpen",
+    ShareModalOpen = "ShareModalOpen",
    
 }
 

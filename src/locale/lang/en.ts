@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-19 10:27:06
+ * @LastEditTime: 2022-05-20 16:21:33
  */
 
 export default {
@@ -58,6 +58,8 @@ export default {
             gpu: "GPU Mining",
             refresh: "Outo Refresh",
             addAccount: "Create",
+            delAccount:"Delete",
+            editAccount:"Edit",
             setCoinAddress: "Set Receiving",
             addAutomaticPay: "New payee",
             edit: "Edit",
@@ -128,6 +130,7 @@ export default {
             software: "Software",
             account: "Account",
             addAccount: "Create Account",
+            editAccount:"Edit Account",
             setCoinAddress: "Set Receiving",
             extract: "Extract currency",
             setup: "Settings",

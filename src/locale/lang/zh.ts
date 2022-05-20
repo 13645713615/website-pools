@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-19 10:27:44
+ * @LastEditTime: 2022-05-20 16:21:58
  */
 
 export default {
@@ -59,7 +59,9 @@ export default {
             started: "开始挖矿",
             gpu: "显卡矿机",
             refresh: "自动刷新",
-            addAccount: "添加账户",
+            addAccount: "添加",
+            delAccount:"删除",
+            editAccount:"编辑",
             setCoinAddress: "设置收款账号",
             addAutomaticPay: "新增收款人",
             edit: "编辑",
@@ -130,6 +132,7 @@ export default {
             software: "挖矿软件",
             account: "账户中心",
             addAccount: "创建子账户",
+            editAccount:"修改子账户",
             setCoinAddress: "设置收款账号",
             extract: "自动提币",
             setup: "用户设置",
