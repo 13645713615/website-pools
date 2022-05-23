@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-05-20 15:42:50
+ * @LastEditTime: 2022-05-23 16:25:23
  */
 
 import { useUser } from "@/store";
@@ -687,7 +687,7 @@ export function getFollow() {
  * @param {object} data
  * @return {*}
  */
-export function saveFollow(data: { collectType: number, collectUrl: string, coinType: string, collectRemark?: string }) {
+export function saveFollow(data: { collectType: number, collectUrl: string, coinType: string,collectAccountName?:string, collectRemark?: string }) {
     return useRequest.post(`${BAESURl}/collect/save`, {
         headers: { "Content-Type": "application/json;charset=utf-8" },
         data

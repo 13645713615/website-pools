@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Carroll
+ * @Date: 2022-05-03 11:16:12
+ * @LastEditTime: 2022-05-23 16:33:55
+ */
 import { usePathname, useService } from "@/hooks";
 import { checkFollow, deleteFollow } from "@/service/api";
 import { useUser } from "@/store";
@@ -43,8 +50,12 @@ export default defineComponent({
 
 
         const handleSelect = throttle(async () => {
+            let collectAccountName: string;
+            if (collectType.value === 0) {
+                collectAccountName = props.wallet;
+            }
             try {
-                await collection({ coinType: props.coin, collectRemark: remark.value, collectUrl: props.url }, collectType.value)
+                await collection({ collectAccountName, coinType: props.coin, collectRemark: remark.value, collectUrl: props.url }, collectType.value)
                 isCheck.run()
             } catch (error) {
                 console.error(error)

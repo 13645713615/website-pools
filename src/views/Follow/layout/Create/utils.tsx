@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-05-02 17:28:18
- * @LastEditTime: 2022-05-03 12:28:22
+ * @LastEditTime: 2022-05-23 16:25:47
  */
 
 import { saveFollow, updateFollow } from "@/service/api"
@@ -18,7 +18,7 @@ export function createOptions(value: string, key: string): SelectMixedOption {
 }
 
 
-export async function collection(data: { id?: number, collectUrl: string, coinType: string, collectRemark: string }, collectType: number) {
+export async function collection(data: { id?: number, collectUrl: string, collectAccountName?: string, coinType: string, collectRemark: string }, collectType: number) {
     if (data.id) {
         await updateFollow({ ...data, collectType, id: data.id })
     } else {
