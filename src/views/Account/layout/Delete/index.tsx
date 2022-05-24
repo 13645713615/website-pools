@@ -1,5 +1,7 @@
+import { useService } from "@/hooks";
+import { deleteName } from "@/service/api";
 import { useUser } from "@/store";
-import { NButton, NIcon, useDialog } from "naive-ui";
+import { NButton, NIcon, useDialog, useMessage } from "naive-ui";
 import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 
@@ -8,13 +10,23 @@ import { useI18n } from "vue-i18n";
  * @version: 
  * @Author: Carroll
  * @Date: 2022-05-20 14:59:51
- * @LastEditTime: 2022-05-20 16:18:37
+ * @LastEditTime: 2022-05-24 10:48:42
  */
 export default defineComponent({
+    name: "AccountDelete",
     setup() {
         const userStore = useUser();
         const dialog = useDialog()
-        const { t } = useI18n()
+        const { t } = useI18n();
+        const message = useMessage();
+        const service = useService(deleteName, { defaultValue: {}, params: () => userStore.getAccount }, (_, res) => {
+            if (Number(res.status) == 200) {
+                userStore.deleteUsersAccount(userStore.getAccount);
+            } else {
+                message.error(res.message);
+               
+            }
+        })
         function handleDelete() {
             const d = dialog.warning({
                 title: t("dialog.warning.title"),
@@ -22,7 +34,9 @@ export default defineComponent({
                 positiveText: t("dialog.warning.positiveText"),
                 negativeText: t("dialog.warning.negativeText"),
                 onPositiveClick: async () => {
-                    d.loading = true
+                    service.run(undefined, () => {
+                        d.loading = true;
+                    });
                     return true;
                 }
             })

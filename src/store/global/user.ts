@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 23:18:13
- * @LastEditTime: 2022-05-02 16:18:36
+ * @LastEditTime: 2022-05-24 10:43:50
  */
 
 import { getAccountCoin, getFollow, login } from "@/service/api";
@@ -38,7 +38,8 @@ export interface UseraActions {
     setCoin(coin: string): void;
     getUserAccountCoin: (v?: { account: string, coin: string }) => Record<string, any> | false
     setUsersAccount: (key: string, data: UsersAccount) => void;
-    setUserAccount: (account: string, data: Record<string, any>) => void
+    setUserAccount: (account: string, data: Record<string, any>) => void,
+    deleteUsersAccount: (account: string) => void
 }
 export type UserGetters = {
     getToken: (state: UserState) => string | undefined,
@@ -87,10 +88,26 @@ export const useUser = defineStore<"user", UserState, UserGetters, UseraActions>
             if (this.usersAccount.hasOwnProperty(account)) {
                 const { name, coin } = this.usersAccount[account]
                 this.currentAccountCoin = [name, coin[0]]
+            } else {
+                const { supportCoin } = useApp();
+                this.currentAccountCoin = [null, supportCoin[0]];
             }
         },
         setCoin(coin) {
             this.currentAccountCoin[1] = coin
+        },
+        deleteUsersAccount(account) {
+            const { supportCoin } = useApp();
+            supportCoin.forEach(coin => {
+                const key = `${account}:${coin.toLowerCase()}`
+                if (this.userAccountCoinData.hasOwnProperty(key)) {
+                    delete this.userAccountCoinData[key];
+                }
+            });
+            if (this.usersAccount.hasOwnProperty(account)) {
+                delete this.usersAccount[account];
+                this.setAccount(Object.keys(this.usersAccount)[0]);
+            }
         },
         setUsersAccount(key, data) {
             const { supportCoin } = useApp()

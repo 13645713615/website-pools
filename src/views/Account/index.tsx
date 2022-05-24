@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-05-20 16:28:14
+ * @LastEditTime: 2022-05-24 10:00:35
  */
 
 
@@ -44,7 +44,7 @@ export default defineComponent({
                             <NButtonGroup>
                                 <CreateFormButton></CreateFormButton>
                                 <UpdateFormButton></UpdateFormButton>
-                                {/* <Delete></Delete> */}
+                                <Delete></Delete>
                             </NButtonGroup>
                         </NSpace>
                     </div>

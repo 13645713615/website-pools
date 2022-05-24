@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-05-23 16:25:23
+ * @LastEditTime: 2022-05-24 10:46:12
  */
 
 import { useUser } from "@/store";
@@ -472,6 +472,14 @@ export function updateRemarkName(data: { accountName: string, remarkName: string
         meta: { loading: false }
     })
 }
+export function deleteName(accountName: string) {
+    return useRequest.post(`${BAESURl}/deleteName`, {
+        params: { accountName },
+        meta: { loading: false }
+    })
+}
+
+
 
 /**
  * @name: 获取用户和登录信息
@@ -687,7 +695,7 @@ export function getFollow() {
  * @param {object} data
  * @return {*}
  */
-export function saveFollow(data: { collectType: number, collectUrl: string, coinType: string,collectAccountName?:string, collectRemark?: string }) {
+export function saveFollow(data: { collectType: number, collectUrl: string, coinType: string, collectAccountName?: string, collectRemark?: string }) {
     return useRequest.post(`${BAESURl}/collect/save`, {
         headers: { "Content-Type": "application/json;charset=utf-8" },
         data

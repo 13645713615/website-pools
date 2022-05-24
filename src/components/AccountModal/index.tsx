@@ -3,15 +3,15 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-05-18 16:48:47
- * @LastEditTime: 2022-05-19 10:17:42
+ * @LastEditTime: 2022-05-24 10:46:46
  */
 
 import { useEmiter } from "@/hooks";
 import { useUser } from "@/store";
 import { objectToArray } from "@/utils/tools";
-import { NButton, NList, NListItem, NScrollbar, NSelect, NThing } from "naive-ui";
+import { NList, NListItem, NSelect } from "naive-ui";
 import { Subscription } from "rxjs";
-import { computed, defineComponent, defineCustomElement, onActivated, onDeactivated, onMounted, onUnmounted, PropType, ref, toRef } from "vue";
+import { defineComponent, onActivated, onDeactivated, onMounted, onUnmounted, PropType, ref, toRef } from "vue";
 import { useI18n } from "vue-i18n";
 import Modal from "../Modal";
 
@@ -69,7 +69,7 @@ export const AccountModal = defineComponent({
 
         return () => (
             <Modal contextClass="!max-w-xl" v-model={[visible.value, "visible"]} title={t("title.slelctAccount")}>
-                <div class="md:max-h-96 overflow-y-auto">
+                <div class="md:h-96 overflow-y-auto">
                     <NList class="px-4">
                         {
                             objectToArray(userStore.usersAccount, BuildItem)
