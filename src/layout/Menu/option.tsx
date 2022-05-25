@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-27 17:39:37
- * @LastEditTime: 2022-05-02 15:00:27
+ * @LastEditTime: 2022-05-25 16:51:59
  */
 import { DropdownOption, MenuOption, NButton, NIcon } from 'naive-ui';
 import { useI18n } from "vue-i18n";
@@ -20,9 +20,9 @@ export function useMenu(): { menuLeftOptions: MenuOption[], menuRightOptions: Me
             {
                 key: "statistics", label: () => <RouterLink to={{ name: "statistics" }} class="menu-text"><NIcon class="lg:hidden"><CellularOutline /></NIcon>{t("header.statistics")}</RouterLink >
             },
-            {
-                key: "blocks", label: () => <RouterLink to={{ name: "blocks" }} class="menu-text"><NIcon class="lg:hidden"><RecordingOutline /></NIcon>{t("header.blocks")}</RouterLink>
-            },
+            // {
+            //     key: "blocks", label: () => <RouterLink to={{ name: "blocks" }} class="menu-text"><NIcon class="lg:hidden"><RecordingOutline /></NIcon>{t("header.blocks")}</RouterLink>
+            // },
             {
                 key: "miners", label: () => <RouterLink to={{ name: "miners" }} class="menu-text"><NIcon class="lg:hidden"><ServerOutline /></NIcon>{t("header.miners")}</RouterLink >
             }
@@ -43,9 +43,9 @@ export const iconMenuOptions: MenuOption[] = [
     {
         key: "statistics", label: () => <RouterLink to={{ name: "statistics" }}> <NButton size="large" tag="a" text v-slots={{ icon: () => <NIcon component={CellularSharp} /> }}></NButton></RouterLink>
     },
-    {
-        key: "blocks", label: () => <RouterLink to={{ name: "blocks" }}><NButton size="large" tag="a" text v-slots={{ icon: () => <NIcon component={Recording} /> }}></NButton></RouterLink>
-    },
+    // {
+    //     key: "blocks", label: () => <RouterLink to={{ name: "blocks" }}><NButton size="large" tag="a" text v-slots={{ icon: () => <NIcon component={Recording} /> }}></NButton></RouterLink>
+    // },
     {
         key: "search", label: () => <NButton size="large" tag="a" text v-slots={{ icon: () => <NIcon component={Search} /> }}></NButton>
     },
