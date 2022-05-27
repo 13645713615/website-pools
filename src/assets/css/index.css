@@ -178,6 +178,8 @@ ul.footer-nav{
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
+    flex-wrap: nowrap;
 }
 
 .coin-switch.coin-switch--medium-type{

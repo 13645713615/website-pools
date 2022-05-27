@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-05-14 17:46:07
+ * @LastEditTime: 2022-05-27 09:57:59
  */
 
 
@@ -78,7 +78,7 @@ export function createColumns({ handleClickWorker, ds }: { handleClickWorker: (r
             sorter: true,
             title: () => t("table.worker"),
             render(rowData) {
-                return <RouterLink class="text-current" to={{ query: { worker: rowData.worker } }}><span onClick={handleClickWorker.bind(null, rowData)} class="font-semibold">{rowData.worker}</span></RouterLink>
+                return <RouterLink class="text-current" to={{ query: { worker: rowData.worker } }}><span onClick={handleClickWorker.bind(null, rowData)} class="font-semibold">{rowData.worker.split("__")[0]}</span></RouterLink>
             }
         },
         {

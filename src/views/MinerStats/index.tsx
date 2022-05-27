@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-10 14:26:46
- * @LastEditTime: 2022-05-14 11:55:07
+ * @LastEditTime: 2022-05-27 09:59:00
  */
 
 import Container from "@/layout/Container";
@@ -58,7 +58,7 @@ export default defineComponent({
                             <div class="bg-primary p-5 rounded-md flex items-center justify-between flex-row text-white" >
                                 <div class="min-w-0">
                                     当前选择的矿机
-                                    <h3 class="text-3xl my-1 break-words"><span>{worker.value}</span></h3>
+                                    <h3 class="text-3xl my-1 break-words"><span>{worker.value.split("__")[0]}</span></h3>
                                 </div>
                                 <RouterLink to={{ query: {} }}><NButton class="bg-white" onClick={() => workerData.value = null}><NIcon size={20} component={TrailSignOutline}></NIcon></NButton></RouterLink>
                             </div>
