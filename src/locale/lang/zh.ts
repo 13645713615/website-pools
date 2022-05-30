@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-20 16:21:58
+ * @LastEditTime: 2022-05-30 16:18:28
  */
 
 export default {
@@ -290,7 +290,9 @@ export default {
             username: "请输入用户名",
             password: "请输入密码",
             verifyPassword: "请确认密码",
-            accountName: "请输入账户名"
+            accountName: "请输入账户名",
+            address:"请输入钱包地址",
+            remark:"请输入备注"
         },
         rules: {
             email: "请输入邮箱",
@@ -302,6 +304,7 @@ export default {
             coinAddress: "请输入收款地址",
             scale: "请输入提币比例",
             expiration: "请选择过期时间",
+            addressinvalid:"请输入有效地址"
         },
         form: {
             email: "邮箱",

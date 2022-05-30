@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-22 17:39:50
- * @LastEditTime: 2022-05-03 12:39:31
+ * @LastEditTime: 2022-05-30 16:21:19
  */
 
 import ModalForm, { AlertProps } from "@/components/ModalForm";
@@ -44,7 +44,12 @@ export default defineComponent({
 
         const formRules: FormRules = {
             collectUrl: [
-                { required: true, message: t("placeholder.address"), trigger: 'blur' }
+                { required: true, message: t("placeholder.address"), trigger: 'blur' },
+                {
+                    validator: (_rule, value: string) => /^[0-9a-zA-Z]*$/g.test(value),
+                    message: t("rules.addressinvalid"),
+                    trigger: "blur"
+                }
             ],
             collectRemark: [
                 { required: true, message: t("placeholder.remark"), trigger: 'blur' }
@@ -82,7 +87,7 @@ export default defineComponent({
                                     <NSelect v-model={[form.coinType, "value"]} placeholder={t("form.coin")} options={options.value}></NSelect>
                                 </NFormItem>
                                 <NFormItem path="collectUrl" label={t("form.address")}>
-                                    <NInput v-model={[form.collectUrl, "value"]} placeholder={t("form.address")}></NInput>
+                                    <NInput minlength={6} maxlength={30} v-model={[form.collectUrl, "value"]} placeholder={t("form.address")}></NInput>
                                 </NFormItem>
                             </>
                         )
