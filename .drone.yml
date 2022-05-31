@@ -1,4 +1,4 @@
-kind: template 
- load: goPool-nodeJS.yaml 
- data:  
-    rootTarget: www 
+kind: template
+load: goPool-nodeJS.yaml
+data: 
+  rootTarget: www
