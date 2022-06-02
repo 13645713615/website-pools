@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-05-11 14:51:55
+ * @LastEditTime: 2022-06-02 09:57:10
  */
 
 
@@ -46,7 +46,7 @@ export function createColumns(): DataTableColumns<Columns> {
                         return "正常块"
                     case 2:
                         return "叔块"
-                    case 3:
+                    case 0:
                         return "孤块"
                     default:
                         return rowData.blockType
