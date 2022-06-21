@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-20 16:21:33
+ * @LastEditTime: 2022-06-21 17:52:17
  */
 
 export default {
@@ -67,7 +67,11 @@ export default {
             cancel: "Cancel",
             update: "Update",
             addFollow: "Collect Wallet",
-            addshare: "Share"
+            addshare: "Share",
+            export:"Export",
+            account:"Account",
+            hashrate:"Hashrate",
+            earnings:"Earnings",
         },
         profit: {
             daily: "daily",
@@ -86,6 +90,15 @@ export default {
             contact: "contact us"
         },
         title: {
+            online: "online",
+            offline: "offline",
+            totalMiners:"total number of miners",
+            realTimehashrate:"real time hashrate",
+            working:"working",
+            yesterdayearnings: "Yesterday's earnings",
+            totalRevenue:"total Revenue",
+            totalDailyIncome :"Total Daily Income",
+            dailyAccountEarnings:"Daily Account Earnings",
             currency: "Our currency",
             support: "lhpool ore pool supports multiple currencies",
             characteristic: "lhpool pool features",
@@ -149,6 +162,10 @@ export default {
             slelctAccount:"Select Account",
         },
         table: {
+            
+            hashReward:"Hash Reward",
+            startDate:"Start Date",
+            account: "Account",
             coinType: "Coin",
             price: "Price",
             algorithm: "Algorithm",

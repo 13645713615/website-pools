@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:10:44
- * @LastEditTime: 2022-05-25 16:51:13
+ * @LastEditTime: 2022-06-21 11:31:52
  */
 
 
@@ -164,7 +164,7 @@ const routes: TRoutesRaw[] = [
                     {
                         path: "/acount",
                         name: "account",
-                        component: () => import("@/views/Account"),
+                        component: () => import("@/views/AccountHub"),
                         meta: {
                             title: "route.account",
                             visitor: true

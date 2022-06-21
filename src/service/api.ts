@@ -3,10 +3,11 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-05-24 10:46:12
+ * @LastEditTime: 2022-06-21 17:08:37
  */
 
 import { useUser } from "@/store";
+import { objNoNempty } from "@/utils/tools";
 import useRequest from "./api.request"
 import { IJuHeRes, PaymentSearch, WorkerSearch } from "./api.types";
 import { IRes, IResPromise } from "./IService";
@@ -775,4 +776,29 @@ export function submitShareAddress(data: { accountName: string, key: string, typ
     return useRequest.post(`${BAESURl}/submitShareAddress`, {
         data
     })
+}
+
+
+
+/**
+ * @name: 用户矿机信息
+ * @msg: 
+ * @return {*}
+ */
+export function userCalculatingPower() {
+    return useRequest.post(`${BAESURl}/UserCalculatingPower`)
+}
+
+
+/**
+ * @name: 获取用户下所有子账户收益
+ * @msg: 
+ * @return {*}
+ */
+export function userAccountProfit(data?: { coin: string,type:string, dateStart?: string, dateEnd?: string }) {
+    return useRequest.post(`${BAESURl}/UserAccountProfit`,
+        {
+            headers: { "Content-Type": "application/json;charset=utf-8" },
+            data: objNoNempty(data)
+        })
 }

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 16:12:34
- * @LastEditTime: 2022-04-19 10:46:58
+ * @LastEditTime: 2022-06-20 16:16:33
  */
 
 
@@ -26,7 +26,8 @@ export default defineComponent({
                         <NLayoutContent>
                             <RouterView v-slots={{
                                 default: ({ Component, route }: { Component: DefineComponent, route: RouteRecordRaw }) =>
-                                    <KeepAlive include={["Account"]}>
+                                // include={["Account"]}
+                                  <KeepAlive >
                                         <Component key={route.name}></Component>
                                     </KeepAlive>
                             }}></RouterView>

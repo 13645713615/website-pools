@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-05-30 16:18:28
+ * @LastEditTime: 2022-06-21 17:52:34
  */
 
 export default {
@@ -60,8 +60,8 @@ export default {
             gpu: "显卡矿机",
             refresh: "自动刷新",
             addAccount: "添加",
-            delAccount:"删除",
-            editAccount:"编辑",
+            delAccount: "删除",
+            editAccount: "编辑",
             setCoinAddress: "设置收款账号",
             addAutomaticPay: "新增收款人",
             edit: "编辑",
@@ -69,7 +69,12 @@ export default {
             cancel: "取消",
             update: "修改",
             addFollow: "收藏钱包",
-            addshare: "生成分享链接"
+            addshare: "生成分享链接",
+            export: "导出列表",
+            account: "账户",
+            hashrate: "算力",
+            earnings: "收益",
+
         },
         profit: {
             daily: "每日收益",
@@ -88,6 +93,16 @@ export default {
             contact: "联系我们"
         },
         title: {
+            online: "在线",
+            offline: "掉线",
+            totalMiners:"矿工总数",
+            realTimehashrate:"实时总算力",
+            working:"正在挖矿子账户",
+            yesterdayearnings: "昨日收益",
+            totalRevenue:"历史收益",
+            totalDailyIncome: "日总收益",
+            
+            dailyAccountEarnings: "日子账户收益",
             currency: "我们的币种",
             support: "lhpool矿池支持多种货币",
             characteristic: "lhpool矿池特色",
@@ -132,7 +147,7 @@ export default {
             software: "挖矿软件",
             account: "账户中心",
             addAccount: "创建子账户",
-            editAccount:"修改子账户",
+            editAccount: "修改子账户",
             setCoinAddress: "设置收款账号",
             extract: "自动提币",
             setup: "用户设置",
@@ -148,9 +163,12 @@ export default {
             settlementtable: "结算列表",
             follow: "个人收藏",
             setFollow: "收藏",
-            slelctAccount:"选择账户",
+            slelctAccount: "选择账户",
         },
         table: {
+            hashReward: "单位算力收益",
+            startDate: "挖矿时间",
+            account: "挖矿账户",
             coinType: "币种",
             price: "币价",
             algorithm: "算法",
@@ -214,8 +232,8 @@ export default {
             address: "地址",
             state: "状态",
             avgHashrate: "日算力",
-            url:"分享地址",
-            module:"分享模块",
+            url: "分享地址",
+            module: "分享模块",
         },
         operation: {
             excavation: "开挖",
@@ -291,8 +309,8 @@ export default {
             password: "请输入密码",
             verifyPassword: "请确认密码",
             accountName: "请输入账户名",
-            address:"请输入钱包地址",
-            remark:"请输入备注"
+            address: "请输入钱包地址",
+            remark: "请输入备注"
         },
         rules: {
             email: "请输入邮箱",
@@ -304,7 +322,7 @@ export default {
             coinAddress: "请输入收款地址",
             scale: "请输入提币比例",
             expiration: "请选择过期时间",
-            addressinvalid:"请输入有效地址"
+            addressinvalid: "请输入有效地址"
         },
         form: {
             email: "邮箱",
@@ -332,7 +350,7 @@ export default {
             automaticWithdrawal: "打开自动提币后，当日满足起付额0.1后，次日将自动支付。关闭自动提币后，即使您达到起付额，也将暂停支付收益，直到您手动开启自动提币开关。",
             transferNetwork: " 如您选择了OKEX转账网络，请再三确认您的钱包地址是否支持对应的转账网络！由于您个人错误操作导致的任何问题，我方概不负责！",
             openAutomatic: "请确认您已经正确选择转账网络以及相应的钱包地址，我方将按照您选择的转账网络及钱包地址进行支付。\n 请再次确认您的钱包地址是否支持对应的转账网络！由于您个人的错误操作导致的任何问题，我方概不负责！",
-            copy:"复制到剪贴板成功！"
+            copy: "复制到剪贴板成功！"
         },
         file: {
             agreement: "《用户协议》"

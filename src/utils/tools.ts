@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2021-06-17 20:07:19
- * @LastEditTime: 2022-05-06 16:18:11
+ * @LastEditTime: 2022-06-21 16:14:23
  */
 
 
@@ -614,5 +614,34 @@ export function toFixed(value: number | string, size: number = 6): number {
     } catch (error) {
         console.warn(error)
         return Number(value)
+    }
+}
+
+
+export function forEach<T, K extends string | number | symbol, V>(object: Record<K, V>, callback: (key: K, value: V) => T) {
+    const value = new Map<K, T>();
+    for (const key in object) {
+        value.set(key, callback(key, object[key]))
+    }
+    if (Array.isArray(object)) {
+        return [...value.values()]
+    } else {
+        return Object.fromEntries(value.entries())
+    }
+}
+
+export function toArrary<T = any>(value: any): Array<T> {
+    if (Array.isArray(value)) return value;
+    try {
+        switch (typeof value) {
+            case "object":
+                return Object.values(value)
+            case "undefined":
+                return [];
+            default:
+                return [value]
+        }
+    } catch (error) {
+        return []
     }
 }

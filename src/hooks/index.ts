@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-04 13:43:34
- * @LastEditTime: 2022-05-03 10:31:49
+ * @LastEditTime: 2022-06-21 16:07:54
  */
 
 import { Emiter } from "@/object/Emiter";
@@ -12,7 +12,7 @@ import { useApp } from "@/store";
 import { bgColor } from "@/store/global/app";
 import { div } from "@/utils/tools";
 import { storeToRefs } from "pinia";
-import { computed, ComputedRef, onBeforeUnmount, reactive, UnwrapNestedRefs } from "vue";
+import { computed, ComputedRef, onBeforeUnmount, reactive, Ref, ref, unref, UnwrapNestedRefs, UnwrapRef, watch, watchEffect } from "vue";
 export * from "./resize"
 export * from "./service"
 export * from "./user"
@@ -111,4 +111,30 @@ function useLocation(index?: number): string | string[] {
     return paths
 }
 
-export { useTemporaryFooterBgColor, useWalletToken, useEmiter, useExchange, useFnReactive,usePathname, useLocation }
+/**
+ * 按需加载
+ * @param  {()=>unknown} observe
+ * @param  {()=>T} callback
+ */
+function useLoadDemand<T>(sources: () => unknown, callback: () => T): Ref<T> {
+    const load = ref<T>();
+    const unWatch = watch(sources, watchCallback);
+    function watchCallback(value) {
+        if (!!value) {
+            load.value = callback();
+            unWatch()
+        }
+    }
+    watchCallback(sources());
+    return load
+}
+
+
+export function useModel<T>(getter: () => T, emitter?: (value: UnwrapRef<T>) => void) {
+    const state = ref(getter()) as Ref<T>
+    watchEffect(() => emitter?.call(null, state.value))
+    watch(getter, (value) => state.value = unref<T>(value))
+    return state
+}
+
+export { useTemporaryFooterBgColor, useWalletToken, useEmiter,useLoadDemand, useExchange, useFnReactive,usePathname, useLocation }

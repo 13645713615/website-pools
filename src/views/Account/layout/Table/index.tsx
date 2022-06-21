@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-05-17 15:02:25
+ * @LastEditTime: 2022-06-21 11:57:27
  */
 
 import { useService, IRes } from "@/hooks";
@@ -45,7 +45,7 @@ export default defineComponent({
     },
     render() {
         return (
-            <NDataTable rowProps={this.rowProps} class="mt-5 table-base" scrollX={980} loading={this.tableData.loading} data={this.tableData.data} pagination={false} columns={this.columns} size="large" />
+            <NDataTable rowProps={this.rowProps} class="table-base" scrollX={980} loading={this.tableData.loading} data={this.tableData.data} pagination={false} columns={this.columns} size="large" />
         )
     }
 })

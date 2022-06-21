@@ -3,11 +3,11 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-05-27 15:08:03
+ * @LastEditTime: 2022-06-21 17:39:40
  */
 
 
-import { NButton, NButtonGroup, NIcon, NSpace } from "naive-ui";
+import { NButton, NButtonGroup, NCard, NIcon, NSpace } from "naive-ui";
 import { defineComponent, onActivated, onDeactivated } from "vue";
 import { useI18n } from "vue-i18n";
 import AccountSelect from "@/components/AccountSelect";
@@ -23,7 +23,6 @@ let isActiva: boolean = false;
 export default defineComponent({
     name: "Account",
     setup() {
-        const { t } = useI18n();
         const { loadUsersCoins } = useUser();
         onActivated(() => {
             if (isActiva) loadUsersCoins();
@@ -34,12 +33,9 @@ export default defineComponent({
         })
         return function () {
             return (
-                <div class="min-h-ctx">
-                    <div class="flex items-center justify-between flex-wrap">
-                        <h3 class="text-xl">{t("title.account")}</h3>
+                <div >
+                    <div class="flex items-center justify-between flex-wrap md:absolute top-0 right-0">
                         <NSpace align="center" justify="space-between">
-                            <CleanHours></CleanHours>
-                            <AccountModalOpenBtn class="w-32"></AccountModalOpenBtn>
                             {/* <AccountSelect mode="select" class="w-32"></AccountSelect> */}
                             <NButtonGroup>
                                 <CreateFormButton></CreateFormButton>
@@ -48,7 +44,13 @@ export default defineComponent({
                             </NButtonGroup>
                         </NSpace>
                     </div>
-                    <Table></Table>
+                    <NCard class="mt-6">
+                        <NSpace align="center">
+                            <CleanHours></CleanHours>
+                            <AccountModalOpenBtn class="w-32"></AccountModalOpenBtn>
+                        </NSpace>
+                        <Table class="mt-6"></Table>
+                    </NCard>
                     <CreateForm></CreateForm>
                 </div>
             )
