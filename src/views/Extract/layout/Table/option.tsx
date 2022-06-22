@@ -3,12 +3,13 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-03-26 20:37:33
+ * @LastEditTime: 2022-06-22 10:53:14
  */
 
 
 import { useApp } from "@/store";
 import { DataTableColumns, NAvatar, NButton, NSpace } from "naive-ui";
+import { Ref } from "vue";
 import { useI18n } from "vue-i18n";
 import PayStatus from "../PayStatus";
 import { EditButton } from "../SetAutomaticPay";
@@ -28,7 +29,7 @@ export interface Columns {
     scale?: number,
     children?: Columns[],
     type?: ColumnsType,
-    parentIndex?:number
+    parentIndex?: number
 }
 
 function RenderCoin(rowData: Columns, getCoinPictures: Map<string, string>) {
@@ -39,14 +40,14 @@ function RenderCoin(rowData: Columns, getCoinPictures: Map<string, string>) {
             <span class="ml-3">{coin}</span>
         </div>
     )
+}   
+
+
+function RenderPayStatus(rowData: Columns, threshold: Ref<Record<string, number>>) {
+    return <PayStatus coin={rowData.coin} threshold={threshold.value?.[rowData.coin]} />
 }
 
-
-function RenderPayStatus(rowData: Columns) {
-    return <PayStatus coin={rowData.coin} />
-}
-
-export function createColumns({ handleDelete }: { handleDelete: (row: Columns) => void }): DataTableColumns<Columns> {
+export function createColumns({ handleDelete, threshold }: { handleDelete: (row: Columns) => void, threshold: Ref<Record<string, number>> }): DataTableColumns<Columns> {
     const { t } = useI18n()
     const { getCoinPictures } = useApp();
 
@@ -63,7 +64,7 @@ export function createColumns({ handleDelete }: { handleDelete: (row: Columns) =
                     case ColumnsType.Father:
                         return RenderCoin(rowData, getCoinPictures)
                     case ColumnsType.PayStatus:
-                        return RenderPayStatus(rowData)
+                        return RenderPayStatus(rowData, threshold)
                     default:
                         return rowData.coin?.toUpperCase()
                 }

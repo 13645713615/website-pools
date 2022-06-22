@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-23 22:38:50
- * @LastEditTime: 2022-03-26 14:11:32
+ * @LastEditTime: 2022-06-22 10:58:46
  */
 
 import { NCard, NDescriptions, NDescriptionsItem } from "naive-ui";
@@ -23,9 +23,6 @@ export default defineComponent({
                     </NDescriptionsItem>
                     <NDescriptionsItem label={this.$t("help.h3")}>
                         <pre class="text-sm  my-1 whitespace-pre-wrap break-words">{this.$t("help.t3")}</pre>
-                    </NDescriptionsItem>
-                    <NDescriptionsItem label={this.$t("help.h4")}>
-                        <pre class="text-sm  my-1 whitespace-pre-wrap break-words">{this.$t("help.t4")}</pre>
                     </NDescriptionsItem>
                 </NDescriptions>
             </NCard>

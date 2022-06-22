@@ -3,17 +3,16 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-05-18 18:13:16
+ * @LastEditTime: 2022-06-22 10:48:47
  */
 
 
 import { AccountModalOpenBtn } from "@/components/AccountModal";
-import AccountSelect from "@/components/AccountSelect";
 import { useService } from "@/hooks";
 import { deleteAutomaticPay, getAutomaticPayByNameList } from "@/service/api";
 import { useUser } from "@/store";
 import { NDataTable, NSpace, useDialog } from "naive-ui";
-import { computed, defineComponent, toRaw, toRef, watch } from "vue";
+import { computed, defineComponent, ref, toRaw, toRef, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import AutomaticPayForm, { CreateButton } from "../SetAutomaticPay";
 import { Columns, ColumnsType, createColumns } from "./option";
@@ -24,11 +23,16 @@ export default defineComponent({
         const { t } = useI18n()
         const dialog = useDialog()
         const getAccount = toRef(useUser(), "getAccount")
-        const tableService = useService<Columns[]>(getAutomaticPayByNameList, { params: () => getAccount.value, defaultValue: [] })
+        const threshold = ref<Record<string,number>>();
+        const tableService = useService<Columns[]>(getAutomaticPayByNameList, { params: () => getAccount.value, defaultValue: [] }, (_data,res) => {
+            if(res.status == 200){
+                threshold.value = res.ext
+            }
+        })
 
         const tableData = computed(() => {
             const keysMap = new Map<string, number>();
-           return toRaw(tableService.data)?.reduce<Columns[]>((prevValue, row) => {
+            return toRaw(tableService.data)?.reduce<Columns[]>((prevValue, row) => {
                 if (keysMap.has(row.coin)) {
                     const item = prevValue[keysMap.get(row.coin)];
                     if (!item.children || (row.coin === "eth" && item.children.length == 1)) {
@@ -61,12 +65,12 @@ export default defineComponent({
                 tableService.run()
             }
         }, { immediate: true })
-        
-        
+
+
         function handleDelete(row: Columns) {
             const d = dialog.warning({
                 title: t("dialog.warning.title"),
-                content:  t("dialog.warning.delete"),
+                content: t("dialog.warning.delete"),
                 positiveText: t("dialog.warning.positiveText"),
                 negativeText: t("dialog.warning.negativeText"),
                 onPositiveClick: async () => {
@@ -80,7 +84,7 @@ export default defineComponent({
 
         return {
             tableData,
-            columns: createColumns({ handleDelete }),
+            columns: createColumns({ handleDelete,threshold }),
             tableService,
             rowKey(row: Columns) {
                 return row.coin

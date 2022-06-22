@@ -11,7 +11,7 @@ import { useI18n } from "vue-i18n"
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-24 15:06:53
- * @LastEditTime: 2022-05-02 11:58:43
+ * @LastEditTime: 2022-06-22 10:41:40
  */
 interface PayStatusData {
     openflag?: 1 | 0;
@@ -25,7 +25,8 @@ interface PayStatusData {
 export default defineComponent({
     name: "PayStatus",
     props: {
-        coin: String
+        coin: String,
+        threshold: Number,
     },
     setup(props) {
 
@@ -55,7 +56,7 @@ export default defineComponent({
             return (
                 <NSpin show={payStatusService.loading}>
                     <NAlert type="warning" class="mb-4">
-                        {t("tip.automaticWithdrawal")}
+                        {t("tip.automaticWithdrawal", { threshold:props.threshold})}
                         {/* <div class="text-red-400">
                             {t("tip.transferNetwork")}
                         </div> */}

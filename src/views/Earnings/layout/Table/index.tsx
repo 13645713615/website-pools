@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-06-21 18:06:20
+ * @LastEditTime: 2022-06-22 10:31:58
  */
 
 
@@ -25,15 +25,12 @@ export default defineComponent({
         const columns = createColumns(props)
 
         return {
-            columns,
-            export: () => {
-                
-            }
+            columns
         }
     },
     render() {
         return (
-            <NDataTable class="table-base" loading={this.loading} scrollX={750} data={this.data} pagination={false} columns={this.columns} />
+            <NDataTable class="table-base" loading={this.loading} scrollX={900} data={this.data} pagination={false} columns={this.columns} />
         )
     }
 

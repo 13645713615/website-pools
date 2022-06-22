@@ -3,20 +3,17 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-06-22 09:47:11
+ * @LastEditTime: 2022-06-22 10:30:15
  */
 
 
-import { NButton, NButtonGroup, NCard, NIcon, NSpace } from "naive-ui";
+import { NButtonGroup, NCard, NSpace } from "naive-ui";
 import { defineComponent, onActivated, onDeactivated } from "vue";
-import { useI18n } from "vue-i18n";
-import AccountSelect from "@/components/AccountSelect";
 import CreateForm, { CreateFormButton, UpdateFormButton } from "./layout/Create";
 import Table from "./layout/Table";
 import { useUser } from "@/store";
 import CleanHours from "./layout/CleanHours";
 import { AccountModalOpenBtn } from "@/components/AccountModal";
-import Delete from "./layout/Delete";
 
 let isActiva: boolean = false;
 

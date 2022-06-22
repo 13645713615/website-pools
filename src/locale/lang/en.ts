@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-06-21 17:52:17
+ * @LastEditTime: 2022-06-22 10:59:04
  */
 
 export default {
@@ -342,7 +342,7 @@ export default {
             digging: "{miner} worker is mining {coin} and is hashing {hashrate}/s in total.",
             avgeffective: `That is, the ratio of the daily average difference between the\n  actual computing power and the local computing power.\nThe smaller the absolute value, the better. It is normal within 5%\nCause of loss:\n1. Software charges：1% - 2%  \n2. Network transmission loss：2% - 3% \n3. Calculate task switching loss：0.5% - 1%\n4. Severe overclocking loss：> 1%`,
             empty: "No {coin} data",
-            automaticWithdrawal: "After you turn on Auto Withdrawal, you will be paid automatically the next day after you meet the starting amount of 0.1 on that day.After you turn off the automatic coin withdrawal, even if you reach the starting amount, hashgo will suspend the payment until you manually turn on the automatic coin withdrawal switch.",
+            automaticWithdrawal: "After you turn on Auto Withdrawal, you will be paid automatically the next day after you meet the starting amount of {threshold} on that day.After you turn off the automatic coin withdrawal, even if you reach the starting amount, hashgo will suspend the payment until you manually turn on the automatic coin withdrawal switch.",
             transferNetwork: "If you choose OKEX or HECO transfer network, please double check if your wallet address supports the corresponding transfer network! We are not responsible for any problems caused by your personal mistakes!",
             openAutomatic: "Please make sure that you have correctly selected the transfer network and the corresponding wallet address, and we will pay you according to your selected transfer network and wallet address.\nPlease check again whether your wallet address supports the corresponding transfer network! We are not responsible for any problems caused by your personal mistakes！！！",
             copy:"Copy to clipboard successfully！"
@@ -398,10 +398,8 @@ export default {
             h2: "2. Is there a fee?",
             // \nOKEX is Intelligent Ecological Chain (https://www.okexgo.com/): Free
             t2: "ERC20 is the Ethereum main network: fees. After the implementation of EIP1559, the handling fee will not be under our control, and the transfer fee will be charged according to the actual network situation.",
-            h3: "3. What is the minimum split amount (automatic withdrawal threshold)?",
-            t3: "When the income to be transferred> 0.1 ETH (if the automatic withdrawal threshold has been set, the setting shall prevail), the automatic withdrawal will be triggered at nextDay. If you withdraw coins to a wallet, the default minimum split amount is 0.1 ETH\nTo multiple wallets, the minimum split amount is 0.01 ETH",
-            h4: "4. How to configure multiple automatic account splitting schemes?",
-            t4: "Each sub-account only supports one set of plans; after switching the sub-account, a new split plan can be configured. For example: lh_a sets automatic withdrawal to wallet A and B, lh_b sets withdrawal to wallet B and C"
+            h3: "3. How to configure multiple automatic account splitting schemes?",
+            t3: "Each sub-account only supports one set of plans; after switching the sub-account, a new split plan can be configured. For example: lh_a sets automatic withdrawal to wallet A and B, lh_b sets withdrawal to wallet B and C"
         },
     }
 
