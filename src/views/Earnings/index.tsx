@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-06-20 17:00:28
- * @LastEditTime: 2022-06-21 18:13:51
+ * @LastEditTime: 2022-06-22 09:30:17
  */
 
 import ExportButton from "@/components/ExportButton";
@@ -29,7 +29,7 @@ export default defineComponent({
 
         const handle = {
             onChange: (value: FilterParams) => {
-                service.run(value)
+                service.run(value) 
                 type.value = value.type as string;
             }
         }
