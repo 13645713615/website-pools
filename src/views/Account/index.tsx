@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-06-21 17:39:40
+ * @LastEditTime: 2022-06-22 09:47:11
  */
 
 
@@ -34,21 +34,19 @@ export default defineComponent({
         return function () {
             return (
                 <div >
-                    <div class="flex items-center justify-between flex-wrap md:absolute top-0 right-0">
-                        <NSpace align="center" justify="space-between">
-                            {/* <AccountSelect mode="select" class="w-32"></AccountSelect> */}
-                            <NButtonGroup>
-                                <CreateFormButton></CreateFormButton>
-                                <UpdateFormButton></UpdateFormButton>
-                                {/* <Delete></Delete> */}
-                            </NButtonGroup>
-                        </NSpace>
-                    </div>
                     <NCard class="mt-6">
-                        <NSpace align="center">
-                            <CleanHours></CleanHours>
-                            <AccountModalOpenBtn class="w-32"></AccountModalOpenBtn>
-                        </NSpace>
+                        <div class="flex justify-between">
+                            <NSpace align="center">
+                                <CleanHours></CleanHours>
+                                <AccountModalOpenBtn class="w-32"></AccountModalOpenBtn>
+                            </NSpace>
+                            <NSpace align="center">
+                                <NButtonGroup>
+                                    <CreateFormButton></CreateFormButton>
+                                    <UpdateFormButton></UpdateFormButton>
+                                </NButtonGroup>
+                            </NSpace>
+                        </div>
                         <Table class="mt-6"></Table>
                     </NCard>
                     <CreateForm></CreateForm>

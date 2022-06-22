@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-06-21 17:43:17
+ * @LastEditTime: 2022-06-22 09:52:32
  */
 
 
@@ -42,18 +42,22 @@ export default defineComponent({
 
         return function () {
             return (
-                <div class="min-h-ctx relative pt-[40px]">
-                    <GroupButton class="flex gap-x-3 absolute top-0" value="account" onSelect={handle.onSelect}>
-                        <NButton key="account" class="w-20" ghost>{t("button.account")}</NButton>
-                        <NButton key="hashrate" class="w-20" ghost>{t("button.hashrate")}</NButton>
-                        <NButton key="earnings" class="w-20" ghost>{t("button.earnings")}</NButton>
-                    </GroupButton>
-                    <div>
-                        <div class={name.value == "account" ? "block" : "hidden"}><Account></Account></div>
-                        <div class={name.value == "hashrate" ? "block" : "hidden"}>{render.Hashrate.value}</div>
-                        <div class={name.value == "earnings" ? "block" : "hidden"}>{render.Earnings.value}</div>
+                <div class="min-h-ctx">
+                    <h3 class="text-xl">{t("title.account")}</h3>
+                    <div class="relative pt-[40px]">
+                        <GroupButton class="flex gap-x-3 absolute top-0" value="account" onSelect={handle.onSelect}>
+                            <NButton key="account" class="w-20" ghost>{t("button.account")}</NButton>
+                            <NButton key="hashrate" class="w-20" ghost>{t("button.hashrate")}</NButton>
+                            <NButton key="earnings" class="w-20" ghost>{t("button.earnings")}</NButton>
+                        </GroupButton>
+                        <div>
+                            <div class={name.value == "account" ? "block" : "hidden"}><Account></Account></div>
+                            <div class={name.value == "hashrate" ? "block" : "hidden"}>{render.Hashrate.value}</div>
+                            <div class={name.value == "earnings" ? "block" : "hidden"}>{render.Earnings.value}</div>
+                        </div>
                     </div>
                 </div>
+
             )
         }
     }
