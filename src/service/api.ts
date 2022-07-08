@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-07-08 16:34:04
+ * @LastEditTime: 2022-07-08 18:16:15
  */
 
 import { useUser } from "@/store";
@@ -267,7 +267,7 @@ export function getSettlementChart(params: { coin: string, accountName: string, 
  * @param {string} token
  * @return {*}
  */
-export function getSettlementList(params: { coin: string, accountName: string, token, szie: number, current: number, month: string }) {
+export function getSettlementList(params: { coin: string, accountName: string, token, size: number, current: number, month: string }) {
     return useRequest.post(`${BAESURl}/settlement_table`, {
         params,
     })

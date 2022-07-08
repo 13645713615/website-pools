@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-07-08 16:11:06
- * @LastEditTime: 2022-07-08 16:45:41
+ * @LastEditTime: 2022-07-08 18:28:33
  */
 
 
@@ -16,7 +16,7 @@ type SearchData = Parameters<typeof getSettlementList>[0]
 
 export default class SetData {
 
-    public szie = 20;
+    private _size = 30;
 
     public current = 1;
 
@@ -34,7 +34,7 @@ export default class SetData {
         return unref(this.walletInfo).wallet
     }
 
-    public pageSizes: number[] = [20, 50, 100, 200, 500];
+    public pageSizes: number[] = [10, 30, 40, 50, 60];
 
     public showSizePicker: boolean = true;
 
@@ -59,8 +59,8 @@ export default class SetData {
     }
 
     public onUpdatePageSize(pageSize) {
-        if (this.szie == pageSize) return;
-        this.szie = pageSize;
+        if (this._size == pageSize) return;
+        this._size = pageSize;
         this.current = 1;
         this.trigger?.apply(this);
     }
@@ -69,14 +69,13 @@ export default class SetData {
         console.log(formattedValue)
         this.month = formattedValue;
         this.current = 1;
-
         this.trigger?.apply(this);
     }
 
 
     public getData(): SearchData {
-        const { token, coin, accountName, szie, current, month } = this;
-        return objNoNempty<SearchData>({ token, coin, accountName, szie, current, month })
+        const { token, coin, accountName, _size: size, current, month } = this;
+        return objNoNempty<SearchData>({ token, coin, accountName, size, current, month })
     }
 
     public on(fn: (this: SetData) => void) {

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-07-08 17:35:57
+ * @LastEditTime: 2022-07-08 18:20:28
  */
 
 
@@ -11,7 +11,7 @@ import { DataTableColumns, NIcon, NSpace, NTooltip } from "naive-ui";
 import { useI18n } from "vue-i18n";
 import moment from "moment"
 import { AlertCircleOutline } from "@vicons/ionicons5";
-import { formatHashrate, formatHashrateUnit, toFixed } from "@/utils/tools";
+import {  formatHashrateUnit, toFixed } from "@/utils/tools";
 export interface Columns {
     dateStr: string,
     reward: number,

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-07-08 17:42:09
+ * @LastEditTime: 2022-07-08 18:27:00
  */
 
 import { useFnReactive } from "@/hooks";
@@ -47,10 +47,9 @@ export default defineComponent({
             },
             handleExport: () => {
                 const header = [t("table.dateStr"), t("table.avgHashrate"), t("table.totalReward"), t("table.mev"), t("table.txFree"), t("table.blockReward"), t("table.state"),]
-                getSettlementList({ ...workerSearch.getData(), current: 1, szie: workerSearch.itemCount, month: "" }).then((res: IRes<Page<Columns>>) => {
+                getSettlementList({ ...workerSearch.getData(), current: 1, size: workerSearch.itemCount, month: "" }).then((res: IRes<Page<Columns>>) => {
                     if (res.status == 200) {
                         const body = res.data.records?.map(dataFormat);
-                        console.log(body)
                         const worksheet = utils.aoa_to_sheet([header, ...body])
                         FileSaver.saveAs(new Blob([write({ Sheets: { a: worksheet }, SheetNames: ["a"] }, { bookType: 'xlsx', bookSST: true, type: 'array' })], { type: 'application/octet-stream' }), `收益.xlsx`);
                     }
@@ -59,6 +58,7 @@ export default defineComponent({
         }
     },
     render() {
+          {/* </div> {...this.workerSearch} */}
         return (
             <div>
                 <div class="flex justify-between items-center mb-3 mt-8">
@@ -69,7 +69,7 @@ export default defineComponent({
                     </NSpace>
                 </div>
                 <NDataTable class="table-base" scrollX={660} loading={this.tableData.loading} data={this.tableData.data.records} columns={this.columns} size="large" />
-                <NCard size="small" class="mt-1"><NPagination  {...this.workerSearch} page={this.workerSearch.page}></NPagination></NCard>
+                <NCard size="small" class="mt-1"><NPagination {...this.workerSearch} page={this.workerSearch.page}></NPagination></NCard>
             </div>
         )
     }
