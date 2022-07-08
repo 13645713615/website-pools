@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-07-08 16:11:06
- * @LastEditTime: 2022-07-08 18:28:33
+ * @LastEditTime: 2022-07-08 18:44:56
  */
 
 
@@ -16,7 +16,7 @@ type SearchData = Parameters<typeof getSettlementList>[0]
 
 export default class SetData {
 
-    private _size = 30;
+    private pageSize = 30;
 
     public current = 1;
 
@@ -59,8 +59,8 @@ export default class SetData {
     }
 
     public onUpdatePageSize(pageSize) {
-        if (this._size == pageSize) return;
-        this._size = pageSize;
+        if (this.pageSize == pageSize) return;
+        this.pageSize = pageSize;
         this.current = 1;
         this.trigger?.apply(this);
     }
@@ -74,7 +74,7 @@ export default class SetData {
 
 
     public getData(): SearchData {
-        const { token, coin, accountName, _size: size, current, month } = this;
+        const { token, coin, accountName, pageSize: size, current, month } = this;
         return objNoNempty<SearchData>({ token, coin, accountName, size, current, month })
     }
 
