@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-06-21 17:08:37
+ * @LastEditTime: 2022-07-08 16:34:04
  */
 
 import { useUser } from "@/store";
@@ -267,7 +267,7 @@ export function getSettlementChart(params: { coin: string, accountName: string, 
  * @param {string} token
  * @return {*}
  */
-export function getSettlementList(params: { coin: string, accountName: string, token }) {
+export function getSettlementList(params: { coin: string, accountName: string, token, szie: number, current: number, month: string }) {
     return useRequest.post(`${BAESURl}/settlement_table`, {
         params,
     })
@@ -795,7 +795,7 @@ export function userCalculatingPower() {
  * @msg: 
  * @return {*}
  */
-export function userAccountProfit(data?: { coin: string,type:string, dateStart?: string, dateEnd?: string }) {
+export function userAccountProfit(data?: { coin: string, type: string, dateStart?: string, dateEnd?: string }) {
     return useRequest.post(`${BAESURl}/UserAccountProfit`,
         {
             headers: { "Content-Type": "application/json;charset=utf-8" },

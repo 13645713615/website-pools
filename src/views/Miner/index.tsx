@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-09 22:12:11
- * @LastEditTime: 2022-05-05 15:13:58
+ * @LastEditTime: 2022-07-08 15:50:28
  */
 
 import Container from "@/layout/Container";
@@ -11,7 +11,7 @@ import { NButton, NCard, NGi, NGrid, NIcon, NPopover, NSpace, NTabPane, NTabs } 
 import { computed, defineAsyncComponent, defineComponent, onMounted, provide, ref, toRef, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import RefreshSwitch from "./layout/RefreshSwitch";
-import { useEmiter, useLocation, userVisitoRender, useService } from "@/hooks";
+import { useEmiter, useLocation, useService } from "@/hooks";
 import { getIndexPoolInfo, getPanelData } from "@/service/api";
 import { BarChart, BarChartSharp, RefreshSharp, Wallet } from "@vicons/ionicons5";
 import { ProvideLoad, ProvidePaneData, ProvideWalletInfo } from "./provide";

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-05-06 16:14:02
+ * @LastEditTime: 2022-07-08 17:35:57
  */
 
 
@@ -42,7 +42,7 @@ export function createColumns(): DataTableColumns<Columns> {
             title: () => t("table.avgHashrate"),
             align: "right",
             render(rowData) {
-                return formatHashrateUnit(rowData.avgHashrate,"M")
+                return formatHashrateUnit(rowData.avgHashrate, "M")
             }
         },
         {
@@ -82,4 +82,17 @@ function Reward(props: { data: Columns }) {
             </NTooltip>
         </NSpace>
     )
+}
+
+
+export function dataFormat(rowData: Columns) {
+    return [
+        moment(rowData.dateStr).format("YYYY-MM-DD"),
+        formatHashrateUnit(rowData.avgHashrate, "M"),
+        rowData.totalReward,
+        rowData.mev,
+        rowData.txFree,
+        rowData.blockReward,
+        status[rowData.status]
+    ]
 }

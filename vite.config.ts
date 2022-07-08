@@ -3,7 +3,7 @@
  * @version:
  * @Author: Carroll
  * @Date: 2022-02-26 10:13:35
- * @LastEditTime: 2022-03-19 18:09:38
+ * @LastEditTime: 2022-07-01 16:49:55
  */
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -24,6 +24,7 @@ export default defineConfig(({ mode, command }) => (
       host: "0.0.0.0",
       port: 8030,
       open: true,
+      https:true,
       proxy: {
         [env.VITE_APP_IMAGES_BASE]: {
           target: env.VITE_APP_PEOXY_TARGET,
