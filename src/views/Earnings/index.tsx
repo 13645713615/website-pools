@@ -3,14 +3,14 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-06-20 17:00:28
- * @LastEditTime: 2022-06-22 09:30:17
+ * @LastEditTime: 2022-07-18 15:38:18
  */
 
 import ExportButton from "@/components/ExportButton";
-import { useService } from "@/hooks";
+import { Page, useService } from "@/hooks";
 import { userAccountProfit } from "@/service/api";
-import { NButton, NCard, NSpace } from "naive-ui";
-import { defineComponent, ref } from "vue";
+import { NCard, NSpace } from "naive-ui";
+import { defineComponent, ref, reactive } from "vue";
 import { useI18n } from "vue-i18n";
 import Filter, { FilterParams } from "./layout/Filter";
 import Table from "./layout/Table";
@@ -20,17 +20,33 @@ export default defineComponent({
     setup() {
         const { t } = useI18n()
         const coins = ref<string[]>([]);
-        const type = ref<string>();
-        const service = useService(userAccountProfit, { params: { coin: "all" }, defaultValue: [] }, (data) => {
+
+        const params: FilterParams & { current: number, size: number } = reactive({
+            type: '1',
+            coin: "All",
+            current: 1,
+            size: 10
+        })
+
+        const service = useService<Page<any>>(userAccountProfit, { params: () => params, defaultValue: new Page() }, (data) => {
             const set = new Set<string>();
-            data.forEach((item) => set.add(item.coin.toUpperCase()));
+            data.records.forEach((item) => set.add(item.coin.toUpperCase()));
             coins.value = [...set];
         })
 
         const handle = {
             onChange: (value: FilterParams) => {
-                service.run(value) 
-                type.value = value.type as string;
+                Object.assign(params, value)
+                service.run()
+            },
+            onUpdatePage: (page: number) => {
+                params.current = page;
+                service.run()
+            },
+            onUpdatePageSize: (pageSize: number) => {
+                params.current = 0;
+                params.size = pageSize
+                service.run()
             }
         }
         return () => (
@@ -43,7 +59,7 @@ export default defineComponent({
                 <NCard class="mt-6">
                     <div>
                         <Filter coins={coins.value} onChange={handle.onChange}></Filter>
-                        <Table {...{ id: "earnings-table" }} type={type.value} class="mt-6" loading={service.loading} data={service.data}></Table>
+                        <Table {...{ id: "earnings-table" }} onUpdatePage={handle.onUpdatePage} onUpdatePageSize={handle.onUpdatePageSize} type={params.type} class="mt-6" loading={service.loading} data={service.data}></Table>
                     </div>
                 </NCard>
             </div>

@@ -3,12 +3,13 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-06-22 10:31:58
+ * @LastEditTime: 2022-07-18 15:42:46
  */
 
 
-import { NDataTable } from "naive-ui";
-import { defineComponent, PropType } from "vue";
+import { Page } from "@/hooks";
+import { NCard, NDataTable, NPagination, PaginationProps } from "naive-ui";
+import { computed, defineComponent, PropType } from "vue";
 
 import { Columns, createColumns } from "./option";
 
@@ -18,19 +19,51 @@ export default defineComponent({
         type: String,
         loading: Boolean,
         cion: String,
-        data: Array as PropType<Columns[]>
+        data: {
+            type: Object as PropType<Page<Record<string, any>>>,
+            default: () => ({
+                total: 1,
+                current: 1,
+                size: 30,
+                records: [],
+            })
+        },
     },
-    setup(props) {
+    inheritAttrs: false,
+    emits: {
+        'updatePage': (_page: number) => true,
+        'updatePageSize': (_pageSize: number) => true
+    },
+    setup(props, context) {
 
         const columns = createColumns(props)
 
+        const handle = {
+            onUpdatePage: (page: number) => {
+                context.emit("updatePage", page)
+            },
+            onUpdatePageSize: (pageSize: number) => {
+                context.emit("updatePageSize", pageSize)
+            },
+        }
+
         return {
-            columns
+            columns,
+            pagination: computed<PaginationProps>(() => ({
+                itemCount: props.data.total,
+                page: props.data.current,
+                pageSize: props.data.size,
+                pageSlot: 5,
+                ...handle,
+            }))
         }
     },
     render() {
         return (
-            <NDataTable class="table-base" loading={this.loading} scrollX={900} data={this.data} pagination={false} columns={this.columns} />
+            <>
+                <NDataTable  {...this.$attrs} class="table-base" loading={this.loading} scrollX={900} data={this.data.records} columns={this.columns} />
+                <NPagination class="mt-3" {...this.pagination}></NPagination>
+            </>
         )
     }
 

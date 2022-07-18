@@ -3,11 +3,11 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-27 17:39:37
- * @LastEditTime: 2022-05-25 16:51:59
+ * @LastEditTime: 2022-07-18 18:19:58
  */
 import { DropdownOption, MenuOption, NButton, NIcon } from 'naive-ui';
 import { useI18n } from "vue-i18n";
-import { Search, CellularSharp, Recording, PersonOutline, SettingsOutline, TrailSignOutline, CellularOutline, RecordingOutline, ServerOutline, JournalOutline, StarHalfOutline } from "@vicons/ionicons5"
+import { Search, CellularSharp, Recording, PersonOutline, SettingsOutline, TrailSignOutline, CellularOutline, RecordingOutline, ServerOutline, JournalOutline, StarHalfOutline, ReceiptOutline } from "@vicons/ionicons5"
 import { OpenDrawerBut } from '../Drawer';
 import { RouterLink } from 'vue-router';
 import { useLogout } from '@/hooks';
@@ -66,6 +66,9 @@ export function useUserMenu(): DropdownOption[] {
         },
         {
             key: "follow", label: () => <RouterLink to={{ name: "follow" }} class="menu-text"><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><StarHalfOutline /></NIcon>{t("header.follow")}</RouterLink >
+        },
+        {
+            key: "withdraw", label: () => <RouterLink to={{ name: "withdraw" }} class="menu-text"><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><ReceiptOutline /></NIcon>小额提币</RouterLink >
         },
         {
             key: "setup", label: () => <RouterLink to={{ name: "setup" }} class="menu-text"><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><SettingsOutline /></NIcon>{t("header.setup")}</RouterLink >

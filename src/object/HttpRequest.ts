@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2021-07-08 19:15:03
- * @LastEditTime: 2022-04-19 20:11:10
+ * @LastEditTime: 2022-07-18 18:00:06
  */
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, Canceler } from "axios"
 import qs from 'qs';
@@ -193,14 +193,15 @@ class CreateRequest<Options extends IHttpOptions> {
     }
     // 错误处理
     static explainError(error: AxiosError): IError {
-        let data, status;
+        let data, status, message = error.message;
         if (axios.isCancel(error)) {
             //客户端取消请求
             status = 499;
         } else if (error.response) {
             //请求已发出，服务器用状态代码响应
             status = error.response.status;
-            data = error.response.data
+            data = error.response.data;
+            message = error.response?.data?.message ?? error.response?.data ?? error.message
         } else if (isTimeout(error)) {
             status = 408;
             data = { status, path: error.config.url, error: "请求超时" }
@@ -209,7 +210,7 @@ class CreateRequest<Options extends IHttpOptions> {
             status = 500;
             data = error.request;
         }
-        return { message: error.message, data, status }
+        return { message, data, status }
     }
     // 请求拦截
     public interceptorsResponse(config: AxiosRequestConfig): AxiosRequestConfig {

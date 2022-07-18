@@ -3,10 +3,11 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-06-22 09:52:32
+ * @LastEditTime: 2022-07-18 15:18:15
  */
 
 
+import { AccountModal } from "@/components/AccountModal";
 import GroupButton from "@/components/GroupButton";
 import { useLoadDemand } from "@/hooks";
 import { NButton } from "naive-ui";
@@ -56,6 +57,7 @@ export default defineComponent({
                             <div class={name.value == "earnings" ? "block" : "hidden"}>{render.Earnings.value}</div>
                         </div>
                     </div>
+                    <AccountModal></AccountModal>
                 </div>
 
             )

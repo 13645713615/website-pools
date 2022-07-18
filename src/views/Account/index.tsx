@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-06-22 10:30:15
+ * @LastEditTime: 2022-07-18 15:17:54
  */
 
 
@@ -35,7 +35,7 @@ export default defineComponent({
                         <div class="flex justify-between">
                             <NSpace align="center">
                                 <CleanHours></CleanHours>
-                                <AccountModalOpenBtn class="w-32"></AccountModalOpenBtn>
+                                <AccountModalOpenBtn modal={false} class="w-32"></AccountModalOpenBtn>
                             </NSpace>
                             <NSpace align="center">
                                 <NButtonGroup>

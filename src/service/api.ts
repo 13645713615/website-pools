@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-07-08 18:16:15
+ * @LastEditTime: 2022-07-18 17:56:31
  */
 
 import { useUser } from "@/store";
@@ -801,4 +801,40 @@ export function userAccountProfit(data?: { coin: string, type: string, dateStart
             headers: { "Content-Type": "application/json;charset=utf-8" },
             data: objNoNempty(data)
         })
+}
+
+
+
+/**
+ * @name 小额提币申请
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function automaticPayment(data: { username: string, coin: string }) {
+    return useRequest.post(`${BAESURl}/automatic-payment/`, {
+        meta: {
+            loading: false,
+        },
+        data
+    })
+}
+
+/**
+ * @name 申请列表
+ * @msg: 
+ * @param {object} params
+ * @return {*}
+ */
+export function automaticPaymentList(params: { username: string, coin: string }) {
+    return useRequest.get(`${BAESURl}/automatic-payment/`, {
+        params
+    })
+}
+
+
+export function automaticPaymenCancelt(params: { username: string, coin: string }) {
+    return useRequest.delete(`${BAESURl}/automatic-payment/`, {
+        params
+    })
 }

@@ -3,13 +3,13 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2021-07-08 20:05:35
- * @LastEditTime: 2022-04-19 20:02:21
+ * @LastEditTime: 2022-07-18 17:10:46
  */
 import CreateRequest, { onCreate, onStart, onEnd, cancelWorks } from "@/object/HttpRequest";
 import { HttpOptions as Options, IRes } from "./IService";
 import locale from "@/locale"
 import { useLoading } from "@/components/Loading";
-import { useNotification } from "naive-ui";
+import { useMessage, useNotification } from "naive-ui";
 import { localSave, localRead } from "@/utils/cache";
 import { useLogout } from "@/hooks";
 import { useApp, useUser } from "@/store";
@@ -39,9 +39,12 @@ const useRequest = new CreateRequest<Options>({
         } else if (state >= 500 || state === 408) {
             useNotification()?.error({ title: $t("tip.requestFail"), content: res.manager })
         } else {
+            // res.message?.toString() || $t("tip.requestError")
+
             // window.$message?.warning(res.message || $t("tip.requestError"))
             console.error(res.message)
         }
+
         return res
     }
 })

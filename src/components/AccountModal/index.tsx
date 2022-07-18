@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-05-18 16:48:47
- * @LastEditTime: 2022-05-24 10:46:46
+ * @LastEditTime: 2022-07-18 15:17:24
  */
 
 import { useEmiter } from "@/hooks";
@@ -11,7 +11,7 @@ import { useUser } from "@/store";
 import { objectToArray } from "@/utils/tools";
 import { NList, NListItem, NSelect } from "naive-ui";
 import { Subscription } from "rxjs";
-import { defineComponent, onActivated, onDeactivated, onMounted, onUnmounted, PropType, ref, toRef } from "vue";
+import { defineComponent, onActivated, onDeactivated, onMounted, onUnmounted, PropType, ref, toRef, watch, watchEffect } from "vue";
 import { useI18n } from "vue-i18n";
 import Modal from "../Modal";
 
@@ -85,7 +85,16 @@ export const AccountModal = defineComponent({
 export const AccountModalOpenBtn = defineComponent({
     name: "AccountModalOpenBtn",
     inheritAttrs: false,
-    setup(_, { attrs }) {
+    props: {
+        modal: {
+            type: Boolean,
+            default: true,
+        }
+    },
+    emits: {
+        change: (_value: string) => true
+    },
+    setup(props, { attrs, emit }) {
 
         const account = toRef(useUser(), "getAccount");
 
@@ -94,10 +103,14 @@ export const AccountModalOpenBtn = defineComponent({
             modalFormEmiter.emit("AccountModal");
         }
 
+        watchEffect(() => emit("change", account.value))
+
         return () => (
             <>
-                <NSelect show={false} value={account.value} {...{ ...attrs, onClick: handleClick }} />
-                <AccountModal />
+                <NSelect show={false} value={account.value}   {...{ ...attrs, onClick: handleClick }} />
+                {
+                    props.modal && <AccountModal />
+                }
             </>
         )
     }

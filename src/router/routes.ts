@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:10:44
- * @LastEditTime: 2022-06-21 11:31:52
+ * @LastEditTime: 2022-07-18 15:54:04
  */
 
 
@@ -214,6 +214,15 @@ const routes: TRoutesRaw[] = [
                             return false
                         })
                     },
+                    {
+                        path: "/withdraw",
+                        name: "withdraw",
+                        component: () => import("@/views/Withdraw"),
+                        meta: {
+                            title: "route.withdraw",
+                            visitor: true
+                        }
+                    }
                 ]
             }
         ]

@@ -3,9 +3,11 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-06-21 15:44:42
- * @LastEditTime: 2022-06-21 17:34:56
+ * @LastEditTime: 2022-07-18 15:30:52
  */
 
+import { AccountModalOpenBtn } from "@/components/AccountModal";
+import { debounce } from "@/utils/tools";
 import { NDatePicker, NSelect } from "naive-ui";
 import { SelectMixedOption } from "naive-ui/es/select/src/interface";
 import { computed, defineComponent, PropType, ref, watchEffect } from "vue";
@@ -15,7 +17,8 @@ export interface FilterParams {
     coin: string,
     dateStart?: string,
     dateEnd?: string,
-    type: number | string
+    type: string,
+    accountName?: string
 }
 
 export default defineComponent({
@@ -36,6 +39,8 @@ export default defineComponent({
 
         const coin = ref<string>("all");
 
+        const accountName = ref<string>();
+
         const typeOptions: SelectMixedOption[] = [{
             value: "1",
             label: t("title.totalDailyIncome")
@@ -54,15 +59,24 @@ export default defineComponent({
             ]
         })
 
-        watchEffect(() => {
-            emit("change", { coin: coin.value.toLocaleLowerCase(), type: type.value, dateStart: range.value?.[0], dateEnd: range.value?.[1] })
-        })
+        const handle = {
+            onChange: (value: string) => {
+                accountName.value = value;
+            }
+        }
+
+        const methods = {
+            change: debounce(() => emit("change", { accountName: accountName.value, coin: coin.value.toLocaleLowerCase(), type: type.value, dateStart: range.value?.[0], dateEnd: range.value?.[1] }), 500)
+        }
+
+        watchEffect(methods.change);
 
         return () => (
             <div class="flex flex-wrap gap-3 items-center">
                 <NDatePicker class="max-w-xs" value-format="yyyy-MM-dd" v-model={[range.value, "formattedValue"]} type="daterange" clearable></NDatePicker>
                 <NSelect class="max-w-10" v-model={[type.value, "value"]} options={typeOptions}></NSelect>
                 <NSelect class="max-w-10" v-model={[coin.value, "value"]} options={coinOptions.value}></NSelect>
+                <AccountModalOpenBtn modal={false} class="w-32" onChange={handle.onChange}></AccountModalOpenBtn>
             </div>
         )
     }
