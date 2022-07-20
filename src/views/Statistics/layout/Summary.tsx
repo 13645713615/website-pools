@@ -57,7 +57,7 @@ export default defineComponent({
 
                     <NGi span="2 m:1" class="m-2">
                         <NCard class="rounded-md border-light">
-                            <NStatistic v-slots={{ suffix: () => <span class="text-green-300 md:text-2xl text-xs">%</span>, label: () => <span>{this.$t("statistic.averageLuck")}<NTooltip v-slots={{ trigger: () => <NIcon size={14} component={AlertCircleOutline} /> }}>过去30天区块平均幸运值。</NTooltip></span> }}>
+                            <NStatistic v-slots={{ suffix: () => <span class="text-green-300 md:text-2xl text-xs">%</span>, label: () => <span class="whitespace-nowrap">{this.$t("statistic.averageLuck")}<NTooltip v-slots={{ trigger: () => <NIcon size={14} component={AlertCircleOutline} /> }}>过去30天区块平均幸运值。</NTooltip></span> }}>
                                 <span class=" text-green-300"> <NNumberAnimation showSeparator from={0} to={this.poolCoinInfo?.lucky}></NNumberAnimation></span>
                             </NStatistic>
                         </NCard>
