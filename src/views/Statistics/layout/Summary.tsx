@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-04 14:46:26
- * @LastEditTime: 2022-05-05 15:04:51
+ * @LastEditTime: 2022-07-20 10:28:44
  */
 
 import { getIndexPool } from "@/service/api"
@@ -50,7 +50,7 @@ export default defineComponent({
                     <NGi span="2 m:1" class="m-2">
                         <NCard class="rounded-md border-light">
                             <NStatistic label={this.$t("statistic.hashrate")} v-slots={{ suffix: () => <span class="text-light md:text-2xl text-xs" >{this.hashrate[1]}/s</span> }}>
-                                <span class="text-light">  <NNumberAnimation showSeparator precision={2} from={0} to={this.hashrate[0]}></NNumberAnimation></span>
+                                <span class="text-light">  <NNumberAnimation showSeparator precision={2} from={0} to={Number(this.hashrate[0] | 0)}></NNumberAnimation></span>
                             </NStatistic>
                         </NCard>
                     </NGi>
@@ -58,21 +58,21 @@ export default defineComponent({
                     <NGi span="2 m:1" class="m-2">
                         <NCard class="rounded-md border-light">
                             <NStatistic v-slots={{ suffix: () => <span class="text-green-300 md:text-2xl text-xs">%</span>, label: () => <span class="whitespace-nowrap">{this.$t("statistic.averageLuck")}<NTooltip v-slots={{ trigger: () => <NIcon size={14} component={AlertCircleOutline} /> }}>过去30天区块平均幸运值。</NTooltip></span> }}>
-                                <span class=" text-green-300"> <NNumberAnimation showSeparator from={0} to={this.poolCoinInfo?.lucky}></NNumberAnimation></span>
+                                <span class=" text-green-300"> <NNumberAnimation showSeparator from={0} to={Number(this.poolCoinInfo?.lucky | 0)}></NNumberAnimation></span>
                             </NStatistic>
                         </NCard>
                     </NGi>
                     <NGi span="2 m:1" class="m-2">
                         <NCard class="rounded-md border-light">
                             <NStatistic label={this.$t("statistic.miners")}>
-                                <span class="text-light"> <NNumberAnimation showSeparator from={0} to={this.poolCoinInfo?.activeminers}></NNumberAnimation></span>
+                                <span class="text-light"> <NNumberAnimation showSeparator from={0} to={Number(this.poolCoinInfo?.activeminers || 0)}></NNumberAnimation></span>
                             </NStatistic>
                         </NCard>
                     </NGi>
                     <NGi span="2 m:1" class="m-2">
                         <NCard class="rounded-md border-light">
                             <NStatistic label={this.$t("statistic.workers")}>
-                                <span class="text-light">  <NNumberAnimation showSeparator from={0} to={this.poolCoinInfo?.activeworkers}></NNumberAnimation></span>
+                                <span class="text-light">  <NNumberAnimation showSeparator from={0} to={Number(this.poolCoinInfo?.activeworkers | 0)}></NNumberAnimation></span>
                             </NStatistic>
                         </NCard>
                     </NGi>
