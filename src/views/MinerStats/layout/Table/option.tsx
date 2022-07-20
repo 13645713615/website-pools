@@ -3,12 +3,15 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-05-27 09:57:59
+ * @LastEditTime: 2022-07-20 10:16:10
  */
 
 
 import { formatHashrate } from "@/utils/tools";
-import { DataTableColumns } from "naive-ui";
+import { RepeatSharp } from "@vicons/ionicons5";
+import moment from "moment";
+import { DataTableColumns, NIcon } from "naive-ui";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { RouterLink } from "vue-router";
 
@@ -54,7 +57,7 @@ export interface Columns {
 }
 export function createColumns({ handleClickWorker, ds }: { handleClickWorker: (rowData: Columns) => void, ds: Record<string, any> }): DataTableColumns<Columns> {
     const { t } = useI18n()
-
+    const toggle = ref<boolean>(false);
     function useToggle(value: Array<string | number>) {
         switch (ds.minType) {
             case 0:
@@ -67,6 +70,12 @@ export function createColumns({ handleClickWorker, ds }: { handleClickWorker: (r
                 return ""
         }
     }
+
+    function handleToggle(e: Event) {
+        e.stopPropagation();
+        toggle.value = !toggle.value;
+    }
+
     return [
         {
             key: "worker",
@@ -135,8 +144,13 @@ export function createColumns({ handleClickWorker, ds }: { handleClickWorker: (r
             width: 200,
             sorter: true,
             align: "right",
-            title: () => t("table.nowTime"),
-            render: (rowData) => rowData.lastbeat
+            title: () => (
+                <span class="inline-flex items-center group">
+                    <a class={`px-2 group-hover:text-primary ${toggle.value ? 'text-primary' : ''}`} onClick={handleToggle}><NIcon class="align-middle" component={RepeatSharp}></NIcon></a>
+                    {t("table.nowTime")}
+                </span>
+            ),
+            render: (rowData) => !toggle.value ? rowData.lastbeat : moment(rowData.lastbeat).fromNow()
         }
     ]
 }
