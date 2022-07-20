@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-06-20 17:00:28
- * @LastEditTime: 2022-07-18 15:38:18
+ * @LastEditTime: 2022-07-20 11:32:42
  */
 
 import ExportButton from "@/components/ExportButton";
@@ -44,7 +44,7 @@ export default defineComponent({
                 service.run()
             },
             onUpdatePageSize: (pageSize: number) => {
-                params.current = 0;
+                params.current = 1;
                 params.size = pageSize
                 service.run()
             }

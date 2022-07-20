@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-06-21 15:44:42
- * @LastEditTime: 2022-07-18 15:30:52
+ * @LastEditTime: 2022-07-20 11:31:34
  */
 
 import { AccountModalOpenBtn } from "@/components/AccountModal";
@@ -66,10 +66,12 @@ export default defineComponent({
         }
 
         const methods = {
-            change: debounce(() => emit("change", { accountName: accountName.value, coin: coin.value.toLocaleLowerCase(), type: type.value, dateStart: range.value?.[0], dateEnd: range.value?.[1] }), 500)
+            change: debounce((value: FilterParams) => emit("change", value), 500)
         }
 
-        watchEffect(methods.change);
+        watchEffect(() => {
+            methods.change({ accountName: accountName.value, coin: coin.value.toLocaleLowerCase(), type: type.value, dateStart: range.value?.[0], dateEnd: range.value?.[1] })
+        });
 
         return () => (
             <div class="flex flex-wrap gap-3 items-center">

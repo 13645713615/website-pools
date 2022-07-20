@@ -3,15 +3,15 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-07-18 15:42:46
+ * @LastEditTime: 2022-07-20 11:11:53
  */
 
 
 import { Page } from "@/hooks";
-import { NCard, NDataTable, NPagination, PaginationProps } from "naive-ui";
+import { NDataTable, NPagination, PaginationProps } from "naive-ui";
 import { computed, defineComponent, PropType } from "vue";
 
-import { Columns, createColumns } from "./option";
+import { createColumns } from "./option";
 
 export default defineComponent({
     name: "Table",
@@ -62,7 +62,7 @@ export default defineComponent({
         return (
             <>
                 <NDataTable  {...this.$attrs} class="table-base" loading={this.loading} scrollX={900} data={this.data.records} columns={this.columns} />
-                <NPagination class="mt-3" {...this.pagination}></NPagination>
+                <NPagination class="mt-3" {...this.pagination} pageSizes={[10,20,30,60]} showSizePicker></NPagination>
             </>
         )
     }
