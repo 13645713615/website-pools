@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-04 14:46:26
- * @LastEditTime: 2022-07-20 10:28:44
+ * @LastEditTime: 2022-07-25 10:01:36
  */
 
 import { getIndexPool } from "@/service/api"
@@ -50,7 +50,7 @@ export default defineComponent({
                     <NGi span="2 m:1" class="m-2">
                         <NCard class="rounded-md border-light">
                             <NStatistic label={this.$t("statistic.hashrate")} v-slots={{ suffix: () => <span class="text-light md:text-2xl text-xs" >{this.hashrate[1]}/s</span> }}>
-                                <span class="text-light">  <NNumberAnimation showSeparator precision={2} from={0} to={Number(this.hashrate[0] | 0)}></NNumberAnimation></span>
+                                <span class="text-light">  <NNumberAnimation showSeparator precision={2} from={0.00} to={this.hashrate[0]}></NNumberAnimation></span>
                             </NStatistic>
                         </NCard>
                     </NGi>
