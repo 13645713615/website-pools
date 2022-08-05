@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-27 17:39:37
- * @LastEditTime: 2022-07-18 18:19:58
+ * @LastEditTime: 2022-08-05 09:29:31
  */
 import { DropdownOption, MenuOption, NButton, NIcon } from 'naive-ui';
 import { useI18n } from "vue-i18n";
@@ -23,9 +23,9 @@ export function useMenu(): { menuLeftOptions: MenuOption[], menuRightOptions: Me
             // {
             //     key: "blocks", label: () => <RouterLink to={{ name: "blocks" }} class="menu-text"><NIcon class="lg:hidden"><RecordingOutline /></NIcon>{t("header.blocks")}</RouterLink>
             // },
-            {
-                key: "miners", label: () => <RouterLink to={{ name: "miners" }} class="menu-text"><NIcon class="lg:hidden"><ServerOutline /></NIcon>{t("header.miners")}</RouterLink >
-            }
+            // {
+            //     key: "miners", label: () => <RouterLink to={{ name: "miners" }} class="menu-text"><NIcon class="lg:hidden"><ServerOutline /></NIcon>{t("header.miners")}</RouterLink >
+            // }
         ],
         menuRightOptions: [
             // {
