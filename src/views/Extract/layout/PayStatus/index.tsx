@@ -2,7 +2,7 @@ import { useReactiveService, useService } from "@/hooks"
 import { getAutomaticPayOpen, getAutomaticPayStatus } from "@/service/api"
 import { useUser } from "@/store"
 import { SaveOutline } from "@vicons/ionicons5"
-import { NAlert, NSpace, NRadioGroup, NRadio, NSwitch, NSpin, NButton, useMessage, useDialog, NIcon } from "naive-ui"
+import { NAlert, NSpace, NRadioGroup, NRadio, NSwitch, NSpin, NButton, useMessage, useDialog, NIcon, NInputNumber } from "naive-ui"
 import { defineComponent, PropType, toRef } from "vue"
 import { useI18n } from "vue-i18n"
 
@@ -11,7 +11,7 @@ import { useI18n } from "vue-i18n"
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-24 15:06:53
- * @LastEditTime: 2022-06-22 10:41:40
+ * @LastEditTime: 2022-08-05 10:35:31
  */
 interface PayStatusData {
     openflag?: 1 | 0;
@@ -20,6 +20,7 @@ interface PayStatusData {
     username?: string;
     coin?: string;
     updatets?: string;
+    confirmed?: string | number;
 }
 
 export default defineComponent({
@@ -56,7 +57,7 @@ export default defineComponent({
             return (
                 <NSpin show={payStatusService.loading}>
                     <NAlert type="warning" class="mb-4">
-                        {t("tip.automaticWithdrawal", { threshold:props.threshold})}
+                        {t("tip.automaticWithdrawal", { threshold: props.threshold })}
                         {/* <div class="text-red-400">
                             {t("tip.transferNetwork")}
                         </div> */}
@@ -68,8 +69,12 @@ export default defineComponent({
                                 {/* <NRadio value={1}>OKEX({t("title.free")})</NRadio> */}
                             </NRadioGroup>
                         </div>
-                        <div>{t("title.withdrawal")}:
+                        <div class="flex items-center">
+                            <span>{t("title.withdrawal")}</span>:
                             <NSwitch checkedValue={1} uncheckedValue={0} v-model={[payStatusService.data.openflag, "value"]} class="ml-3"></NSwitch>
+                            {
+                                !!payStatusService.data.openflag  &&  <NInputNumber placeholder="起付额" size="small" v-model={[payStatusService.data.confirmed, "value"]} defaultValue={props.threshold} min={props.threshold} class="w-28 ml-4" step={0.2}></NInputNumber>
+                            }
                         </div>
                     </NSpace>
                     <NButton class="float-right w-24" v-slots={{ icon: () => <NIcon component={SaveOutline} /> }} onClick={handleUpdatePayStatus} loading={payOpenService.loading} type="warning">保 存</NButton>

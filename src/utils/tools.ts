@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2021-06-17 20:07:19
- * @LastEditTime: 2022-06-21 16:14:23
+ * @LastEditTime: 2022-08-05 11:31:00
  */
 
 
@@ -644,4 +644,25 @@ export function toArrary<T = any>(value: any): Array<T> {
     } catch (error) {
         return []
     }
+}
+
+
+/**
+ * @name: 隐藏字符串
+ * @msg: 
+ * @param {string} value
+ * @param {number} start
+ * @param {number} end
+ * @return {*}
+ */
+export function ellipsis(value: string, start: number, end?: number, symbol?: string) {
+    let len = value.length - start - end;
+    if (!symbol) {
+        symbol = "";
+        for (let i = 0; i < len; i++) {
+            symbol += "*";
+        }
+    }
+    console.log(len,symbol)
+    return value.substring(0, start) + symbol + value.substring(value.length - end)
 }
