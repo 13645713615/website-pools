@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-08-09 14:22:11
+ * @LastEditTime: 2022-08-09 15:39:37
  */
 
 
@@ -44,7 +44,7 @@ function RenderCoin(rowData: Columns, getCoinPictures: Map<string, string>) {
 
 
 function RenderPayStatus(rowData: Columns, threshold: Ref<Record<string, number>>) {
-    return <PayStatus coin={rowData.coin} threshold={threshold.value?.[rowData.coin]} />
+    return <PayStatus key={rowData.id} coin={rowData.coin} threshold={threshold.value?.[rowData.coin]} />
 }
 
 export function createColumns({ handleDelete, threshold }: { handleDelete: (row: Columns) => void, threshold: Ref<Record<string, number>> }): DataTableColumns<Columns> {

@@ -3,7 +3,7 @@ import { getAutomaticPayOpen, getAutomaticPayStatus } from "@/service/api"
 import { useUser } from "@/store"
 import { SaveOutline } from "@vicons/ionicons5"
 import { NAlert, NSpace, NRadioGroup, NRadio, NSwitch, NSpin, NButton, useMessage, useDialog, NIcon, NInputNumber } from "naive-ui"
-import { defineComponent, PropType, toRef } from "vue"
+import { defineComponent, toRef } from "vue"
 import { useI18n } from "vue-i18n"
 
 /*
@@ -11,7 +11,7 @@ import { useI18n } from "vue-i18n"
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-24 15:06:53
- * @LastEditTime: 2022-08-09 14:21:04
+ * @LastEditTime: 2022-08-09 15:41:23
  */
 interface PayStatusData {
     openflag?: 1 | 0;
@@ -27,10 +27,9 @@ export default defineComponent({
     name: "PayStatus",
     props: {
         coin: String,
-        threshold: Number,
+        threshold: Number
     },
     setup(props) {
-
         const { t } = useI18n();
         const message = useMessage();
         const dialog = useDialog();

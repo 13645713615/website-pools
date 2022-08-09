@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-06-22 10:48:47
+ * @LastEditTime: 2022-08-09 15:38:41
  */
 
 
@@ -23,9 +23,9 @@ export default defineComponent({
         const { t } = useI18n()
         const dialog = useDialog()
         const getAccount = toRef(useUser(), "getAccount")
-        const threshold = ref<Record<string,number>>();
-        const tableService = useService<Columns[]>(getAutomaticPayByNameList, { params: () => getAccount.value, defaultValue: [] }, (_data,res) => {
-            if(res.status == 200){
+        const threshold = ref<Record<string, number>>();
+        const tableService = useService<Columns[]>(getAutomaticPayByNameList, { params: () => getAccount.value, defaultValue: [] }, (_data, res) => {
+            if (res.status == 200) {
                 threshold.value = res.ext
             }
         })
@@ -53,12 +53,14 @@ export default defineComponent({
                     prevValue.push(row)
                     keysMap.set(row.coin, prevValue.length - 1);
                     if (row.coin === "eth") {
-                        row.children = [{ type: ColumnsType.PayStatus, coin: row.coin }]
+                        row.children = [{ type: ColumnsType.PayStatus, coin: row.coin, id: row.id }]
                     }
                 }
                 return prevValue
             }, [])
         })
+
+
 
         watch(getAccount, (value) => {
             if (value) {
@@ -84,7 +86,7 @@ export default defineComponent({
 
         return {
             tableData,
-            columns: createColumns({ handleDelete,threshold }),
+            columns: createColumns({ handleDelete, threshold }),
             tableService,
             rowKey(row: Columns) {
                 return row.coin
