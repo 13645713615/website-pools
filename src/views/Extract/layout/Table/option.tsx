@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-06-22 10:53:14
+ * @LastEditTime: 2022-08-09 14:22:11
  */
 
 
@@ -40,7 +40,7 @@ function RenderCoin(rowData: Columns, getCoinPictures: Map<string, string>) {
             <span class="ml-3">{coin}</span>
         </div>
     )
-}   
+}
 
 
 function RenderPayStatus(rowData: Columns, threshold: Ref<Record<string, number>>) {
@@ -99,7 +99,7 @@ export function createColumns({ handleDelete, threshold }: { handleDelete: (row:
         },
         {
             key: "updateTime",
-            width: 180,
+            width: 190,
             align: "right",
             title: () => t("table.cratedts")
         },

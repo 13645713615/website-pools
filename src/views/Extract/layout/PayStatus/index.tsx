@@ -11,7 +11,7 @@ import { useI18n } from "vue-i18n"
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-24 15:06:53
- * @LastEditTime: 2022-08-05 10:35:31
+ * @LastEditTime: 2022-08-09 14:21:04
  */
 interface PayStatusData {
     openflag?: 1 | 0;
@@ -73,7 +73,7 @@ export default defineComponent({
                             <span>{t("title.withdrawal")}</span>:
                             <NSwitch checkedValue={1} uncheckedValue={0} v-model={[payStatusService.data.openflag, "value"]} class="ml-3"></NSwitch>
                             {
-                                !!payStatusService.data.openflag  &&  <NInputNumber placeholder="起付额" size="small" v-model={[payStatusService.data.confirmed, "value"]} defaultValue={props.threshold} min={props.threshold} class="w-28 ml-4" step={0.2}></NInputNumber>
+                                !!payStatusService.data.openflag && <NInputNumber placeholder="自定义起付额" size="small" v-model={[payStatusService.data.confirmed, "value"]} min={props.threshold} class="ml-4 w-36" step={0.2}></NInputNumber>
                             }
                         </div>
                     </NSpace>
