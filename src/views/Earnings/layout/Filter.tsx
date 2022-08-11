@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-06-21 15:44:42
- * @LastEditTime: 2022-07-20 11:31:34
+ * @LastEditTime: 2022-08-11 14:41:32
  */
 
 import { AccountModalOpenBtn } from "@/components/AccountModal";
@@ -78,7 +78,10 @@ export default defineComponent({
                 <NDatePicker class="max-w-xs" value-format="yyyy-MM-dd" v-model={[range.value, "formattedValue"]} type="daterange" clearable></NDatePicker>
                 <NSelect class="max-w-10" v-model={[type.value, "value"]} options={typeOptions}></NSelect>
                 <NSelect class="max-w-10" v-model={[coin.value, "value"]} options={coinOptions.value}></NSelect>
-                <AccountModalOpenBtn modal={false} class="w-32" onChange={handle.onChange}></AccountModalOpenBtn>
+                {
+                    type.value == "2" &&
+                    <AccountModalOpenBtn clearable alone modal={false} class="w-32" onChange={handle.onChange}></AccountModalOpenBtn>
+                }
             </div>
         )
     }

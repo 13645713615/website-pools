@@ -3,10 +3,10 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-05-18 16:48:47
- * @LastEditTime: 2022-07-18 15:17:24
+ * @LastEditTime: 2022-08-11 15:02:27
  */
 
-import { useEmiter } from "@/hooks";
+import { useEmiter, useModel } from "@/hooks";
 import { useUser } from "@/store";
 import { objectToArray } from "@/utils/tools";
 import { NList, NListItem, NSelect } from "naive-ui";
@@ -17,17 +17,22 @@ import Modal from "../Modal";
 
 
 const modalFormEmiter = useEmiter<"AccountModal">()
-
+type AccountModalProps = {
+    alone?: boolean, onSelect?: (_value: string) => void
+}
 export const AccountModal = defineComponent({
     name: "AccountModal",
-    props: {
-        onSelect: Function as PropType<(value: string) => void>
+    emits: {
+        select: (_value: string) => true
     },
     setup(_, { emit }) {
         const { t } = useI18n()
 
         const userStore = useUser();
-        const account = toRef(userStore, "getAccount");
+
+        let props: null | AccountModalProps;
+
+        const model = useModel(() => userStore.getAccount, (value) => !props?.alone && userStore.setAccount(value))
 
         const visible = ref<boolean>(false);
 
@@ -35,7 +40,8 @@ export const AccountModal = defineComponent({
 
         function onSubscribe() {
             if (!subscribe) {
-                subscribe = modalFormEmiter.on("AccountModal").subscribe(() => {
+                subscribe = modalFormEmiter.on("AccountModal").subscribe((options?: AccountModalProps) => {
+                    props = options;
                     visible.value = true
                 })
             }
@@ -51,15 +57,16 @@ export const AccountModal = defineComponent({
         onUnmounted(unSubscribe);
 
         function handleSelect(value: string) {
-            userStore.setAccount(value);
+            model.value = value;
             emit("select", value);
+            props?.onSelect(value);
             visible.value = false;
         }
         const activate = "text-[#005adb]"
         function BuildItem(item, key) {
             return (
                 <NListItem class="hover:bg-[#2e333821] cursor-pointer">
-                    <a onClick={handleSelect.bind(null, key)} class={`flex !justify-between px-2  ${account.value === key ? activate : ''}`}>
+                    <a onClick={handleSelect.bind(null, key)} class={`flex !justify-between px-2  ${model.value === key ? activate : ''}`}>
                         <span class="text-base truncate">{key}</span>
                         <span class="text-gray-500 truncate">{item.remarkName}</span>
                     </a>
@@ -89,6 +96,12 @@ export const AccountModalOpenBtn = defineComponent({
         modal: {
             type: Boolean,
             default: true,
+        },
+        alone: {
+            type: Boolean,
+        },
+        clearable: {
+            type: Boolean
         }
     },
     emits: {
@@ -96,18 +109,27 @@ export const AccountModalOpenBtn = defineComponent({
     },
     setup(props, { attrs, emit }) {
 
-        const account = toRef(useUser(), "getAccount");
+        const userStore = useUser();
+
+        const model = useModel(() => userStore.getAccount, (value) => emit("change", value))
 
         function handleClick(e: Event) {
             e.stopPropagation();
-            modalFormEmiter.emit("AccountModal");
+            modalFormEmiter.emit("AccountModal", { alone: props.alone, onSelect: handleSelect });
         }
 
-        watchEffect(() => emit("change", account.value))
+        function handleSelect(value: string) {
+            console.log(value);
+            model.value = value;
+        }
+
+        function handleClear() {
+            model.value = "";
+        }
 
         return () => (
             <>
-                <NSelect show={false} value={account.value}   {...{ ...attrs, onClick: handleClick }} />
+                <NSelect placeholder="子账户" show={false} value={model.value} clearable={props.clearable} onClear={handleClear}  {...{ ...attrs, onClick: handleClick }} />
                 {
                     props.modal && <AccountModal />
                 }
