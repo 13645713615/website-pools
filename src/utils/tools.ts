@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2021-06-17 20:07:19
- * @LastEditTime: 2022-08-05 11:31:00
+ * @LastEditTime: 2022-08-16 12:04:13
  */
 
 
@@ -663,6 +663,5 @@ export function ellipsis(value: string, start: number, end?: number, symbol?: st
             symbol += "*";
         }
     }
-    console.log(len,symbol)
     return value.substring(0, start) + symbol + value.substring(value.length - end)
 }

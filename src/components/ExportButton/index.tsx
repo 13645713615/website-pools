@@ -3,13 +3,12 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-06-21 18:01:09
- * @LastEditTime: 2022-06-21 18:11:52
+ * @LastEditTime: 2022-08-12 15:50:45
  */
 
 import { NButton } from "naive-ui";
 import { defineComponent, renderSlot } from "vue";
-import { utils, write } from 'xlsx'
-import FileSaver from 'file-saver'
+import { exportTable } from "@/utils/export";
 
 export default defineComponent({
     name: "ExportButton",
@@ -21,13 +20,7 @@ export default defineComponent({
 
         const handle = {
             onClick: () => {
-                const wb = utils.table_to_book(document.querySelector(props.path));
-                const wbout = write(wb, { bookType: 'xlsx', bookSST: true, type: 'array' });
-                try {
-                    FileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), `${props.fileName}.xlsx`);
-                } catch (e) {
-                    console.log(e, wbout);
-                }
+                exportTable(props.path,props.fileName)
             }
         }
         return () => <NButton type="primary" onClick={handle.onClick}>{renderSlot(slots, "default")}</NButton>

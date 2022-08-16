@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-06-21 15:44:42
- * @LastEditTime: 2022-08-11 14:41:32
+ * @LastEditTime: 2022-08-12 11:58:12
  */
 
 import { AccountModalOpenBtn } from "@/components/AccountModal";
@@ -53,7 +53,7 @@ export default defineComponent({
             return [
                 {
                     value: "all",
-                    label: "All"
+                    label: "全部"
                 },
                 ...(props.coins?.map((coin) => ({ value: coin, label: coin })) || [])
             ]
@@ -80,7 +80,7 @@ export default defineComponent({
                 <NSelect class="max-w-10" v-model={[coin.value, "value"]} options={coinOptions.value}></NSelect>
                 {
                     type.value == "2" &&
-                    <AccountModalOpenBtn clearable alone modal={false} class="w-32" onChange={handle.onChange}></AccountModalOpenBtn>
+                    <AccountModalOpenBtn all alone modal={false} class="w-32" onChange={handle.onChange}></AccountModalOpenBtn>
                 }
             </div>
         )

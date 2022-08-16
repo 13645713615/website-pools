@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-07-18 17:56:31
+ * @LastEditTime: 2022-08-12 17:28:27
  */
 
 import { useUser } from "@/store";
@@ -795,7 +795,7 @@ export function userCalculatingPower() {
  * @msg: 
  * @return {*}
  */
-export function userAccountProfit(data?: { coin: string, type: string, dateStart?: string, dateEnd?: string }) {
+export function userAccountProfit(data?: { coin: string, type: string, dateStart?: string, dateEnd?: string ,current:number,size:number}) {
     return useRequest.post(`${BAESURl}/UserAccountProfit`,
         {
             headers: { "Content-Type": "application/json;charset=utf-8" },
