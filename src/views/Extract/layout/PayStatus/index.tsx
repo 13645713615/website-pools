@@ -11,7 +11,7 @@ import { useI18n } from "vue-i18n"
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-24 15:06:53
- * @LastEditTime: 2022-08-09 15:41:23
+ * @LastEditTime: 2022-08-29 15:54:17
  */
 interface PayStatusData {
     openflag?: 1 | 0;
@@ -21,6 +21,7 @@ interface PayStatusData {
     coin?: string;
     updatets?: string;
     confirmed?: string | number;
+    locktime?: string
 }
 
 export default defineComponent({
@@ -61,6 +62,7 @@ export default defineComponent({
                             {t("tip.transferNetwork")}
                         </div> */}
                     </NAlert>
+                    {!!payStatusService.data.locktime && <NAlert type="warning" class="inline-block mb-4">冻结支付至{payStatusService.data.locktime}</NAlert>}
                     <NSpace class="text-lg pb-3" align="center" size={[32, 16]}>
                         <div>{t("title.transferNetwork", { coin: "ETH" })}:
                             <NRadioGroup v-model={[payStatusService.data.paychain, "value"]} class="ml-3">

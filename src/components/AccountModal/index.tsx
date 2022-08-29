@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-05-18 16:48:47
- * @LastEditTime: 2022-08-16 12:05:22
+ * @LastEditTime: 2022-08-16 15:06:08
  */
 
 import { useEmiter, useModel } from "@/hooks";
@@ -11,9 +11,9 @@ import { useUser } from "@/store";
 import { UsersAccount, UserState } from "@/store/global/user";
 import { debounce, objectToArray } from "@/utils/tools";
 import { Search } from "@vicons/ionicons5";
-import { NIcon, NInput, NList, NListItem, NScrollbar, NSelect } from "naive-ui";
+import { NIcon, NInput, NList, NListItem, NSelect } from "naive-ui";
 import { Subscription } from "rxjs";
-import { computed, defineComponent, onActivated, onDeactivated, onMounted, onUnmounted, PropType, ref, toRef, watch, watchEffect } from "vue";
+import { computed, defineComponent, onActivated, onDeactivated, onMounted, onUnmounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import Modal from "../Modal";
 
