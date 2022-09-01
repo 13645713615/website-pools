@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-08-05 11:32:10
+ * @LastEditTime: 2022-09-01 10:03:57
  */
 
 
@@ -29,9 +29,8 @@ export function createColumns(): DataTableColumns<Columns> {
         {
             key: "minerName",
             title: () => t("table.wallet"),
-            
             width: 240,
-            render: (rowData) => <RouterLink to={`/miner/${appStore.coin.toLowerCase()}/${rowData.minerName}`} class="block text-primary truncate max-w-20 hover:underline">{ellipsis(rowData.minerName,2,2)}</RouterLink>
+            render: (rowData) => <RouterLink to={`/miner/${appStore.coin.toLowerCase()}/${rowData.minerName}`} class="block text-primary truncate max-w-20 hover:underline">{rowData.minerName}</RouterLink>
 
         },
         {
