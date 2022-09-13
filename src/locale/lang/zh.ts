@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-06-22 10:58:48
+ * @LastEditTime: 2022-09-13 14:44:11
  */
 
 export default {
@@ -337,7 +337,9 @@ export default {
             expiration: "过期时间",
             module: "分享模块",
             coin: "币种",
-            address: '地址'
+            address: '地址',
+            olderPassword:"旧密码",
+            newPassword:"新密码"
         },
         tip: {
             notAccount: "不支持创建多个未挖矿账户",

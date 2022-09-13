@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-08-12 17:28:27
+ * @LastEditTime: 2022-09-13 14:24:38
  */
 
 import { useUser } from "@/store";
@@ -386,6 +386,31 @@ export function registEmail(data: { username: string, email: string, emailCode: 
  */
 export function forget(data: { userKey: string, password: string, code: string, type: number }) {
     return useRequest.post(`${BAESURl}/forget`, { data, meta: { loading: false } })
+}
+
+
+/**
+ * @name: 
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function updateEmail(data: { email: string, code: string, password: string, }) {
+    return useRequest.post(`${BAESURl}/updateEmail`, {
+        data
+    })
+}
+
+/**
+ * @name: 用户 - 修改密码
+ * @msg: 
+ * @param {object} data
+ * @return {*}
+ */
+export function updatePw(data: { olderPassword: string, newPassword: string }) {
+    return useRequest.post(`${BAESURl}/updatePw`, {
+        data
+    })
 }
 
 
@@ -795,7 +820,7 @@ export function userCalculatingPower() {
  * @msg: 
  * @return {*}
  */
-export function userAccountProfit(data?: { coin: string, type: string, dateStart?: string, dateEnd?: string ,current:number,size:number}) {
+export function userAccountProfit(data?: { coin: string, type: string, dateStart?: string, dateEnd?: string, current: number, size: number }) {
     return useRequest.post(`${BAESURl}/UserAccountProfit`,
         {
             headers: { "Content-Type": "application/json;charset=utf-8" },

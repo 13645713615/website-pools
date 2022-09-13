@@ -3,7 +3,7 @@
  * @version:
  * @Author: Carroll
  * @Date: 2022-02-26 10:13:35
- * @LastEditTime: 2022-04-19 20:32:57
+ * @LastEditTime: 2022-09-12 15:30:31
  */
 
 import { defineComponent } from "vue";
@@ -15,7 +15,7 @@ export default defineComponent({
   setup() {
     const { language, setLanguage } = useApp();
     setLanguage(language);
-    // 土豪调用
+    // 收费功能
     // loadFinanceExchange();
     return {
       language

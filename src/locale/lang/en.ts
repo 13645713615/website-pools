@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-06-22 10:59:04
+ * @LastEditTime: 2022-09-13 14:43:47
  */
 
 export default {
@@ -332,7 +332,9 @@ export default {
             expiration: "Expiration",
             module: "Share module",
             coin:"Coin",
-            address:'Address'
+            address:'Address',
+            olderPassword:"Old password",
+            newPassword:"New password"
         },
         tip: {
             notAccount: "Creating multiple empty accounts is not supported！",
