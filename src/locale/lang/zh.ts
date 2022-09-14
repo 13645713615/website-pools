@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-09-13 14:44:11
+ * @LastEditTime: 2022-09-14 16:25:58
  */
 
 export default {
@@ -277,8 +277,8 @@ export default {
             nethashrate: "全网算力",
             netdifficulty: "全网难度",
             minerStatus: "在线/离线矿机",
-            balance: "账号余额",
-            dugToday: "今日已挖",
+            balance: "账号余额(预估)",
+            dugToday: "今日已挖(预估)",
             threshold: "支付阈值",
             rate: "费率",
             settlement: "结算时间",

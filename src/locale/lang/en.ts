@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-09-13 14:43:47
+ * @LastEditTime: 2022-09-14 16:29:15
  */
 
 export default {
@@ -274,8 +274,8 @@ export default {
             nethashrate: "NETWORK HASHRATE",
             netdifficulty: "NETWORK DIFFICULTY",
             minerStatus: "Online / offline",
-            balance: "Balance",
-            dugToday: "Dug Today",
+            balance: "Balance(Estimate)",
+            dugToday: "Dug Today(Estimate)",
             threshold: "Payout Threshold",
             rate: "Rate",
             settlement: "Settlement Time",

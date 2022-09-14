@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-05 14:49:10
- * @LastEditTime: 2022-09-13 14:24:38
+ * @LastEditTime: 2022-09-14 16:33:22
  */
 
 import { useUser } from "@/store";
@@ -862,4 +862,14 @@ export function automaticPaymenCancelt(params: { username: string, coin: string 
     return useRequest.delete(`${BAESURl}/automatic-payment/`, {
         params
     })
+}
+
+
+/**
+ * @name: ETH2倒计时
+ * @msg: 
+ * @return {*}
+ */
+export function mergeTime() {
+    return useRequest.get(`${BAESURl}/mergeTime`)
 }

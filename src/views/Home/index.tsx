@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 15:59:43
- * @LastEditTime: 2022-03-27 17:58:39
+ * @LastEditTime: 2022-09-14 11:04:48
  */
 
 import { NButton, NGi, NGrid } from "naive-ui"
@@ -20,6 +20,7 @@ import { getIndexPool } from "@/service/api";
 import Calculator from "./layout/Calculator";
 import { Columns } from "./layout/Table/option";
 import { RouterLink } from "vue-router";
+import CountDown from "./layout/CountDown";
 
 export default defineComponent({
     setup() {
@@ -56,6 +57,7 @@ export default defineComponent({
                 <Background>
                     <Search />
                 </Background>
+                <CountDown></CountDown>
                 <Container class="mt-5">
                     {/* 卡片 */}
                     <NGrid class="profit-grid" cols={12} responsive="screen" itemResponsive={true}>
