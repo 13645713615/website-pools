@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 11:31:36
- * @LastEditTime: 2022-05-17 16:00:11
+ * @LastEditTime: 2022-09-14 18:24:50
  */
 
 import { useService } from "@/hooks";
@@ -32,18 +32,18 @@ export default defineComponent({
             }, defaultValue: []
         });
 
-        watch(currentAccountCoin, () => tableService.run(), { deep: true })
+        watch(currentAccountCoin, () => tableService.run(), { deep: true,immediate:true })
 
-        onMounted(() => {
-            if (!isEmpty(query)) {
-                const { accountName, coin } = query as { [x: string]: string };
-                userStore.$patch((state) => {
-                    state.currentAccountCoin = [accountName, coin]
-                })
-            } else {
-                tableService.run()
-            }
-        })
+        // onMounted(() => {
+        //     if (!isEmpty(query)) {
+        //         const { accountName, coin } = query as { [x: string]: string };
+        //         userStore.$patch((state) => {
+        //             state.currentAccountCoin = [accountName, coin]
+        //         })
+        //     } else {
+        //         tableService.run()
+        //     }
+        // })
 
         function handleDelete(row: Columns) {
             const d = dialog.warning({

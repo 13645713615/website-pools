@@ -3,11 +3,11 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-27 17:39:37
- * @LastEditTime: 2022-08-05 10:25:47
+ * @LastEditTime: 2022-09-14 18:36:15
  */
 import { DropdownOption, MenuOption, NButton, NIcon } from 'naive-ui';
 import { useI18n } from "vue-i18n";
-import { Search, CellularSharp, Recording, PersonOutline, SettingsOutline, TrailSignOutline, CellularOutline, RecordingOutline, ServerOutline, JournalOutline, StarHalfOutline, ReceiptOutline } from "@vicons/ionicons5"
+import { Search, CellularSharp, Recording, PersonOutline, SettingsOutline, TrailSignOutline, CellularOutline, RecordingOutline, ServerOutline, JournalOutline, StarHalfOutline, ReceiptOutline, ShareSocial } from "@vicons/ionicons5"
 import { OpenDrawerBut } from '../Drawer';
 import { RouterLink } from 'vue-router';
 import { useLogout } from '@/hooks';
@@ -72,6 +72,9 @@ export function useUserMenu(): DropdownOption[] {
         },
         {
             key: "setup", label: () => <RouterLink to={{ name: "setup" }} class="menu-text"><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><SettingsOutline /></NIcon>{t("header.setup")}</RouterLink >
+        },
+        {
+            key: "acountShare", label: () => <RouterLink to={{ name: "acountShare" }} class="menu-text"><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><ShareSocial /></NIcon>{t("title.sharemanage")}</RouterLink >
         },
         {
             key: "signout", label: () => <a class="menu-text" onClick={() => useLogout()}><NIcon class="mr-0 md:mr-2 lg:mr-4" size={18}><TrailSignOutline /></NIcon><span class="text-red-600">{t("button.signout")}</span></a>

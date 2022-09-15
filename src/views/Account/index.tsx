@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-08 15:54:29
- * @LastEditTime: 2022-07-18 15:17:54
+ * @LastEditTime: 2022-09-14 18:17:26
  */
 
 
@@ -14,6 +14,7 @@ import Table from "./layout/Table";
 import { useUser } from "@/store";
 import CleanHours from "./layout/CleanHours";
 import { AccountModalOpenBtn } from "@/components/AccountModal";
+import { ShareForm } from "../Share/layout/Create";
 
 let isActiva: boolean = false;
 
@@ -47,6 +48,7 @@ export default defineComponent({
                         <Table class="mt-6"></Table>
                     </NCard>
                     <CreateForm></CreateForm>
+                    <ShareForm></ShareForm>
                 </div>
             )
         }

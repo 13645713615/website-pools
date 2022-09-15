@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-16 09:23:30
- * @LastEditTime: 2022-03-17 17:47:19
+ * @LastEditTime: 2022-09-15 12:06:47
  */
 
 import Container from "@/layout/Container"
@@ -39,6 +39,9 @@ export default defineComponent({
                     return new modules!.default(t);
                 case "etc":
                     modules = await import("./etc")
+                    return new modules!.default(t);
+                case "ethw":
+                    modules = await import("./ethw")
                     return new modules!.default(t);
                 default:
                     throw new Error(route.params.coin + " file does not exist")

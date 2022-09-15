@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-02-26 16:57:32
- * @LastEditTime: 2022-09-14 16:29:15
+ * @LastEditTime: 2022-09-14 18:33:42
  */
 
 export default {
@@ -125,6 +125,7 @@ export default {
             avgeffective: "Avg Effective",
             reported: "Reported",
             shares: "Shares",
+            sharemanage:"Shares Manage",
             valid: "Valid",
             stale: "Stale",
             invalid: "Invalid",

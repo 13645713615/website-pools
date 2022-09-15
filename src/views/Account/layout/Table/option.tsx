@@ -3,11 +3,12 @@
  * @version: 
  * @Author: Carroll
  * @Date: 2022-03-03 13:15:49
- * @LastEditTime: 2022-05-17 15:51:32
+ * @LastEditTime: 2022-09-14 18:17:24
  */
 
 
 import { useApp } from "@/store";
+import { useCreateSharel } from "@/views/Share/layout/Create";
 import { ShareSocial } from "@vicons/ionicons5";
 import { DataTableColumns, NAvatar, NButton, NIcon } from "naive-ui";
 import { useI18n } from "vue-i18n";
@@ -35,8 +36,8 @@ export function createColumns(): DataTableColumns<Columns> {
     const { getCoinPictures } = useApp();
     function handleShare({ currency, accountName }: Columns, e: Event) {
         e.stopPropagation()
-        push({ name: "acountShare", query: { accountName, coin: currency } })
-
+        useCreateSharel({ coin: currency, accountName })
+        // push({ name: "acountShare", query: { accountName, coin: currency } })
     }
 
     return [
@@ -100,7 +101,7 @@ export function createColumns(): DataTableColumns<Columns> {
             render(row) {
                 return (
                     <div>
-                        <NButton  tertiary onClick={handleShare.bind(null, row)} circle type="info" v-slots={{ icon: () => <NIcon component={ShareSocial} /> }}></NButton>
+                        <NButton tertiary onClick={handleShare.bind(null, row)} circle type="info" v-slots={{ icon: () => <NIcon component={ShareSocial} /> }}></NButton>
                     </div>
                 )
             }
