@@ -310,25 +310,7 @@ export async function getIndexPoolInfo(coin: string) {
  * @return {*}
  */
 export async function getWorkerMinerTop(coin: string) {
-    // return useRequest.get(`${BAESURlV2}/workerminer-top`, { params: { coin }, meta: { loading: false } })
-    return {
-        data: [
-            {
-                minerName: "test",
-                hash: "12321 TH",
-                balance: "2.12",
-                miners: "10",
-                time: "2021-01-01 00:00:00"
-            },
-            {
-                minerName: "test1",
-                hash: "12321 TH",
-                balance: "2.12",
-                miners: "10",
-                time: "2021-01-01 00:00:00"
-            }
-        ]
-    }
+    return useRequest.get(`${BAESURlV2}/workerminer-top`, { params: { coin }, meta: { loading: false } })
 }
 
 
