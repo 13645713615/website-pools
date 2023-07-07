@@ -48,8 +48,8 @@ export function getPictures(type: number, isOpen?: string) {
  * @param {string} isOpen
  * @return {*}
  */
-export function getNotice(type: number, isOpen?: string) {
-    return useRequest.get(`${BAESURl}/getPictures`, { params: { type: 5, isOpen } })
+export function getNotice(type: number = 5, isOpen?: string) {
+    return useRequest.get(`${BAESURl}/getPictures`, { params: { type, isOpen } })
 }
 
 /**
@@ -60,7 +60,6 @@ export function getNotice(type: number, isOpen?: string) {
  */
 export function supportCoin() {
     return useRequest.get(`${BAESURl}/getSettingAllCoin`, { meta: { cache: true } })
-
 }
 
 /**
@@ -106,7 +105,7 @@ export function getPoolBlock(coin) {
  * @param {*} address
  * @return {*}
  */
-export function findDataByAddress(coin, address) {
+export async function findDataByAddress(coin, address) {
     return useRequest.get(`${BAESURl}/findDataByAddress`, {
         params: { coin, address },
     })
@@ -292,11 +291,14 @@ export function getEarningPanel(params: { coin: string, accountName: string, tok
  * @param {string} coin
  * @return {*}
  */
-export function getIndexPoolInfo(coin: string) {
-    return useRequest.get(`${BAESURl}/getIndexPoolInfo`, {
-        params: { coin },
-        meta: { cache: true, loading: false }
-    })
+export async function getIndexPoolInfo(coin: string) {
+    // return useRequest.get(`${BAESURl}/getIndexPoolInfo`, {
+    //     params: { coin },
+    //     meta: { cache: true, loading: false }
+    // })
+    return {
+        data: []
+    }
 }
 
 
@@ -307,8 +309,26 @@ export function getIndexPoolInfo(coin: string) {
  * @param {string} coin
  * @return {*}
  */
-export function getWorkerMinerTop(coin: string) {
-    return useRequest.get(`${BAESURlV2}/workerminer-top`, { params: { coin }, meta: { loading: false } })
+export async function getWorkerMinerTop(coin: string) {
+    // return useRequest.get(`${BAESURlV2}/workerminer-top`, { params: { coin }, meta: { loading: false } })
+    return {
+        data: [
+            {
+                minerName: "test",
+                hash: "12321 TH",
+                balance: "2.12",
+                miners: "10",
+                time: "2021-01-01 00:00:00"
+            },
+            {
+                minerName: "test1",
+                hash: "12321 TH",
+                balance: "2.12",
+                miners: "10",
+                time: "2021-01-01 00:00:00"
+            }
+        ]
+    }
 }
 
 
